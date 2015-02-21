@@ -10,6 +10,7 @@ enum thread_status
   {
     THREAD_RUNNING,     /* Running thread. */
     THREAD_READY,       /* Not running but ready to run. */
+    THREAD_SLEEPING,    /* New State for Sleeping Threads. */
     THREAD_BLOCKED,     /* Waiting for an event to trigger. */
     THREAD_DYING        /* About to be destroyed. */
   };
@@ -100,6 +101,9 @@ struct thread
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
+
+    /* Owned by thread.c. */
+    int64_t wake_time;                  /* Time at which to wake thread */
   };
 
 /* If false (default), use round-robin scheduler.
