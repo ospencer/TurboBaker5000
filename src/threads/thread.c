@@ -587,7 +587,7 @@ schedule (void)
     if(cur_ticks >= t->wake_time){
       list_push_back (&ready_list, &t->elem);/* Wake this thread up! */
       t->status = THREAD_READY;
-      temp= e;
+      temp = e;
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
     }
