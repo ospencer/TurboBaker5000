@@ -95,6 +95,7 @@ thread_init (void)
 
   lock_init (&tid_lock);
   list_init (&ready_list);
+  list_init (&sleeping_list);
   list_init (&all_list);
 
   /* Set up a thread structure for the running thread. */
@@ -582,15 +583,15 @@ schedule (void)
   ASSERT (is_thread (next));
 
   while(e != list_end (&sleeping_list)){
-    struct thread *t = list_entry (e, struct thread, allelem);
+    struct thread *t = list_entry (e, struct thread, elem);
 
     if(cur_ticks >= t->wake_time){
-      list_push_back (&ready_list, &t->elem);/* Wake this thread up! */
       t->status = THREAD_READY;
       temp = e;
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
-    }
+      list_push_back (&ready_list, &t->elem);/* Wake this thread up! */  
+  }
     else e = list_next(e);
   }
 
