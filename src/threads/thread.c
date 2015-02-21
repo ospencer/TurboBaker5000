@@ -585,14 +585,12 @@ static void
 schedule (void) 
 {
   struct thread *cur = running_thread ();
-//  struct thread *next = next_thread_to_run ();
   struct thread *prev = NULL;
   struct list_elem *temp, *e = list_begin (&sleeping_list);
   int64_t cur_ticks = timer_ticks();
 
   ASSERT (intr_get_level () == INTR_OFF);
   ASSERT (cur->status != THREAD_RUNNING);
-//  ASSERT (is_thread (next));
 
   while(e != list_end (&sleeping_list)){
     struct thread *t = list_entry (e, struct thread, elem);
@@ -604,7 +602,8 @@ schedule (void)
       list_remove(temp);/* Remove this thread from sleeping_list */
       list_push_back (&ready_list, &t->elem);/* Wake this thread up! */  
   }
-    else e = list_next(e);
+    else break; /* Since sleeping_list is ordered there are no more threads
+                   after this point that are ready to wake up */
   }
 
   struct thread *next = next_thread_to_run ();
