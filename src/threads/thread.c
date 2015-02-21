@@ -600,7 +600,7 @@ schedule (void)
       temp = e;
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
-      list_push_back (&ready_list, &t->elem);/* Wake this thread up! */  
+      list_push_front (&ready_list, &t->elem);/* Wake this thread up! */  
     }
     else break; /* Since sleeping_list is ordered there are no more threads
                    after this point that are ready to wake up */

@@ -1,4 +1,4 @@
-qemu -hda /tmp/e7vtgtbEfW.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Mqnp2AKfu6.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run alarm-multiple
@@ -14,16 +14,20 @@ Executing 'alarm-multiple':
 (alarm-multiple) thread 1 sleeps 20 ticks each time, and so on.
 (alarm-multiple) If successful, product of iteration count and
 (alarm-multiple) sleep duration will appear in nondescending order.
-(alarm-multiple) thread 4: duration=50, iteration=1, product=50
-(alarm-multiple) thread 3: duration=40, iteration=1, product=40
-(alarm-multiple) FAIL: thread 3 woke up out of order (50 > 40)!
+(alarm-multiple) thread 0: duration=10, iteration=1, product=10
+(alarm-multiple) thread 0: duration=10, iteration=2, product=20
+(alarm-multiple) thread 0: duration=10, iteration=3, product=30
+(alarm-multiple) thread 0: duration=10, iteration=4, product=40
+(alarm-multiple) thread 0: duration=10, iteration=5, product=50
+(alarm-multiple) thread 1: duration=20, iteration=1, product=20
+(alarm-multiple) FAIL: thread 1 woke up out of order (50 > 20)!
 Kernel PANIC at ../../tests/threads/tests.c:95 in fail(): test failed
 Call stack: 0xc002850e.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 576 ticks
-Thread: 550 idle ticks, 26 kernel ticks, 0 user ticks
-Console: 1076 characters output
+Timer: 577 ticks
+Thread: 550 idle ticks, 27 kernel ticks, 0 user ticks
+Console: 1332 characters output
 Keyboard: 0 keys pressed
 Powering off...
