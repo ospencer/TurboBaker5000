@@ -247,14 +247,26 @@ thread_unblock (struct thread *t)
   intr_set_level (old_level);
 }
 
+/* list_less_func to be used with sleeping_list. */
+bool
+less_by_wake_time (const struct list_elem *a, const struct list_elem *b, void *aux)
+{
+  struct thread *t_a = list_entry (a, struct thread, elem);
+  struct thread *t_b = list_entry (b, struct thread, elem);
+  if (t_a->wake_time < t_b->wake_time) return true;
+  else return false;
+}
+
 /* Transitions the current thread to the sleep state. */
-void thread_sleep(int64_t ticks){
+void 
+thread_sleep(int64_t ticks){
   struct thread *cur = thread_current();
   enum intr_level old_level;
 
   old_level = intr_disable();
   if(cur != idle_thread){
-    list_push_back (&sleeping_list, &cur->elem);
+    //list_push_back (&sleeping_list, &cur->elem);
+    list_insert_ordered (&sleeping_list, &cur->elem, &less_by_wake_time, NULL);
     cur->status = THREAD_SLEEPING;
     cur->wake_time = timer_ticks() + ticks;
     schedule();

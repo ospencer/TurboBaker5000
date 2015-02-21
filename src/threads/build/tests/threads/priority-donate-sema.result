@@ -1,5 +1,23 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/synch.c:232 in lock_release(): assertion `lock_held_by_current_thread (lock)' failed.
-Call stack: 0xc00284de
-Translation of call stack:
-0xc00284de: debug_panic (.../../lib/kernel/debug.c:38)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (priority-donate-sema) begin
+  (priority-donate-sema) Thread L acquired lock.
+  (priority-donate-sema) Thread L downed semaphore.
+  (priority-donate-sema) Thread H acquired lock.
+  (priority-donate-sema) Thread H finished.
+  (priority-donate-sema) Thread M finished.
+  (priority-donate-sema) Thread L finished.
+  (priority-donate-sema) Main thread finished.
+  (priority-donate-sema) end
+Differences in `diff -u' format:
+  (priority-donate-sema) begin
+- (priority-donate-sema) Thread L acquired lock.
+- (priority-donate-sema) Thread L downed semaphore.
+- (priority-donate-sema) Thread H acquired lock.
+- (priority-donate-sema) Thread H finished.
+- (priority-donate-sema) Thread M finished.
+- (priority-donate-sema) Thread L finished.
+  (priority-donate-sema) Main thread finished.
+  (priority-donate-sema) end
