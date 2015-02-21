@@ -74,7 +74,7 @@ static void *alloc_frame (struct thread *, size_t size);
 static void schedule (void);
 void thread_schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
-
+bool less_by_wake_time(const struct list_elem *, const struct list_elem *, void *aux);
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
@@ -97,7 +97,7 @@ thread_init (void)
   list_init (&ready_list);
   list_init (&sleeping_list);
   list_init (&all_list);
-
+  //sort (&sleeping_list, &less_by_wake_time, NULL);
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
   init_thread (initial_thread, "main", PRI_DEFAULT);
@@ -253,7 +253,7 @@ less_by_wake_time (const struct list_elem *a, const struct list_elem *b, void *a
 {
   struct thread *t_a = list_entry (a, struct thread, elem);
   struct thread *t_b = list_entry (b, struct thread, elem);
-  if (t_a->wake_time < t_b->wake_time) return true;
+  if (t_a->wake_time <= t_b->wake_time) return true;
   else return false;
 }
 
@@ -591,7 +591,7 @@ schedule (void)
 
   ASSERT (intr_get_level () == INTR_OFF);
   ASSERT (cur->status != THREAD_RUNNING);
-
+  //ASSERT (is_sorted (list_begin (&sleeping_list), list_end (&sleeping_list), &less_by_wake_time, NULL));
   while(e != list_end (&sleeping_list)){
     struct thread *t = list_entry (e, struct thread, elem);
 
@@ -601,7 +601,7 @@ schedule (void)
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
       list_push_back (&ready_list, &t->elem);/* Wake this thread up! */  
-  }
+    }
     else break; /* Since sleeping_list is ordered there are no more threads
                    after this point that are ready to wake up */
   }
