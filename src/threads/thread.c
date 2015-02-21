@@ -590,7 +590,8 @@ schedule (void)
       list_remove(temp);/* Remove this thread from sleeping_list */
       list_push_back (&ready_list, &t->elem);/* Wake this thread up! */  
   }
-    else e = list_next(e);
+    else break; /* Since sleeping_list is ordered there are no more threads
+                   after this point that are ready to wake up */
   }
 
   struct thread *next = next_thread_to_run ();
