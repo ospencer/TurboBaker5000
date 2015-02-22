@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 qemu -hda /tmp/5kHlDdxLSv.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/xYO_yx5c93.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
 PiLo hda1
-Loading.........
+Loading..........
 Kernel command line: -q run priority-donate-chain
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
@@ -10,25 +14,18 @@ Boot complete.
 Executing 'priority-donate-chain':
 (priority-donate-chain) begin
 (priority-donate-chain) main? got lock.
-(priority-donate-chain) main? should have priority 3.  Actual priority: 0.
-(priority-donate-chain) interloper 1 finished.
-(priority-donate-chain) main? should have priority 6.  Actual priority: 0.
-(priority-donate-chain) interloper 2 finished.
-(priority-donate-chain) main? should have priority 9.  Actual priority: 0.
-(priority-donate-chain) interloper 3 finished.
-(priority-donate-chain) main? should have priority 12.  Actual priority: 0.
-(priority-donate-chain) interloper 4 finished.
-(priority-donate-chain) main? should have priority 15.  Actual priority: 0.
-(priority-donate-chain) interloper 5 finished.
-(priority-donate-chain) main? should have priority 18.  Actual priority: 0.
-(priority-donate-chain) interloper 6 finished.
-(priority-donate-chain) main? should have priority 21.  Actual priority: 0.
-(priority-donate-chain) interloper 7 finished.
-(priority-donate-chain) main? finishing with priority 0.
+(priority-donate-chain) main? should have priority 3.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 6.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 9.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 12.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 15.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 18.  Actual priority: 31.
+(priority-donate-chain) main? should have priority 21.  Actual priority: 31.
+(priority-donate-chain) main? finishing with priority 31.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
-Timer: 27 ticks
-Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
-Console: 1377 characters output
+Timer: 26 ticks
+Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
+Console: 1056 characters output
 Keyboard: 0 keys pressed
 Powering off...

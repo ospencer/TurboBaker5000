@@ -195,9 +195,83 @@ lock_acquire (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (!intr_context ());
   ASSERT (!lock_held_by_current_thread (lock));
+  if (lock->holder == NULL){
+    sema_down (&lock->semaphore);
+    lock->holder = thread_current ();
+  } else {
+    // Set up this thread for a chain of priority donations
+    set_lock_chain(lock->holder, thread_current ());
+    // attempt to acquire the lock
+    sema_down (&lock->semaphore);
+    lock->holder = thread_current ();
+    // Remove priority donations chains for this lock
+    remove_lock_chain(list_pop_front(&thread_current ()->donated_to_list), 
+                                     thread_current ());;
+  }
+}
 
-  sema_down (&lock->semaphore);
-  lock->holder = thread_current ();
+void
+set_lock_chain(struct thread *holder, struct thread *receive_from)
+{
+  // Add holder to receive_from's donated_to_list
+  list_push_back(&receive_from->donated_to_list, holder);
+  // Add receive_from to holder's donated_from_list
+  list_push_back(&holder->donated_from_list, receive_from);
+  // Set holder's highest_priority
+  if (holder->highest_priority < receive_from->highest_priority) {
+    holder->highest_priority = &receive_from->highest_priority;
+  }
+  // Recursively call set_lock_chain
+  if (list_empty (&holder->donated_to_list)){
+    return;
+  }
+  struct list_elem *temp, *e = list_begin (&holder->donated_to_list);
+  while(e != list_end (&holder->donated_to_list)){
+    struct thread *t = list_entry (e, struct thread, elem);
+    set_lock_chain(&t, &holder);
+    temp = e;
+    e = list_next(e);
+  }
+}
+
+void
+remove_lock_chain(struct thread *holder, struct thread *receive_from)
+{
+  // Remove holder from receive_from's donated_to_list
+  list_pop_front(&receive_from->donated_to_list);
+  // Remove received_from from holder's donated_from_list
+  struct list_elem *temp, *e = list_begin (&holder->donated_from_list);
+  while(e != list_end (&holder->donated_from_list)){
+    struct thread *t = list_entry (e, struct thread, elem);
+    if (t == receive_from){
+      list_remove(temp);
+      break;
+    }
+    temp = e;
+    e = list_next(e);
+  }
+  // set holder's highest_priority
+  if (&receive_from->highest_priority == &holder->highest_priority){
+    int temp_pri = &holder->priority;
+    temp, e = list_begin (&holder->donated_from_list);
+    while(e != list_end (&holder->donated_from_list)){
+      struct thread *t = list_entry (e, struct thread, elem);
+      if (&t->highest_priority > temp_pri){
+        temp_pri = &t->highest_priority;
+      }
+      temp = e;
+      e = list_next(e);
+    }
+    holder->highest_priority = temp_pri;
+  }
+  // Recursively call remove_lock_chain
+  temp, e = list_begin (&holder->donated_to_list);
+  while(e != list_end (&holder->donated_to_list)){
+    struct thread *t = list_entry (e, struct thread, elem);
+    remove_lock_chain(t, &holder);
+    temp = e;
+    e = list_next(e);
+  }
 }
 
 /* Tries to acquires LOCK and returns true if successful or false

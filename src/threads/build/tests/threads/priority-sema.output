@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 qemu -hda /tmp/q4QZW5mCQ9.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/pKQ5tyz8ld.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
 PiLo hda1
-Loading.........
+Loading..........
 Kernel command line: -q run priority-sema
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
