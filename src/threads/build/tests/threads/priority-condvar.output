@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-qemu -hda /tmp/QvniiKp5lW.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/L1V8rv5WqF.dsk -m 4 -net none -nographic -monitor null
->>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
+qemu -hda /tmp/fcvLOHPLlQ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-condvar
@@ -25,14 +21,8 @@ Executing 'priority-condvar':
 (priority-condvar) Signaling...
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-<<<<<<< HEAD
-Timer: 27 ticks
-Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
-Console: 1197 characters output
-=======
 Timer: 26 ticks
 Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
 Console: 717 characters output
->>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
 Keyboard: 0 keys pressed
 Powering off...

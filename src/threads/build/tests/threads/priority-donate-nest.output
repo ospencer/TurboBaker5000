@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-qemu -hda /tmp/srPTqasPnj.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/O37IjcGLux.dsk -m 4 -net none -nographic -monitor null
->>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
+qemu -hda /tmp/cWG43q19zJ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-nest
@@ -13,31 +9,13 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-nest':
 (priority-donate-nest) begin
-<<<<<<< HEAD
-(priority-donate-nest) Low thread should have priority 32.  Actual priority: 31.
-(priority-donate-nest) Low thread should have priority 33.  Actual priority: 31.
-(priority-donate-nest) Medium thread should have priority 33.  Actual priority: 32.
-(priority-donate-nest) Medium thread got the lock.
-(priority-donate-nest) High thread got the lock.
-(priority-donate-nest) High thread finished.
-(priority-donate-nest) High thread should have just finished.
-(priority-donate-nest) Middle thread finished.
-(priority-donate-nest) Medium thread should just have finished.
-(priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
-(priority-donate-nest) end
-Execution of 'priority-donate-nest' complete.
-Timer: 27 ticks
-Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
-Console: 1062 characters output
-=======
-Kernel PANIC at ../../threads/thread.c:357 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
-Call stack: 0xc0028a5e.
+Kernel PANIC at ../../threads/thread.c:358 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
+Call stack: 0xc0028a6e.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 26 ticks
 Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
 Console: 634 characters output
->>>>>>> d720b114199cba36d244f52b7ab981da2066ab9f
 Keyboard: 0 keys pressed
 Powering off...
