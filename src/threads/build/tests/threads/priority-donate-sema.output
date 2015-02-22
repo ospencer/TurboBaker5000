@@ -1,4 +1,4 @@
-qemu -hda /tmp/G0qfQAsaQa.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/SD0_4CmvM7.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-sema
@@ -10,8 +10,8 @@ Boot complete.
 Executing 'priority-donate-sema':
 (priority-donate-sema) begin
 (priority-donate-sema) Thread L acquired lock.
-Kernel PANIC at ../../threads/thread.c:358 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
-Call stack: 0xc0028a6e.
+Kernel PANIC at ../../threads/thread.c:360 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
+Call stack: 0xc0028aae.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.

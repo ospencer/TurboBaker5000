@@ -1,4 +1,4 @@
-qemu -hda /tmp/pKGmx2Svzl.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/b5xYdar7Xk.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-multiple2
@@ -9,8 +9,8 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) begin
-Kernel PANIC at ../../threads/thread.c:358 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
-Call stack: 0xc0028a6e.
+Kernel PANIC at ../../threads/thread.c:360 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
+Call stack: 0xc0028aae.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.

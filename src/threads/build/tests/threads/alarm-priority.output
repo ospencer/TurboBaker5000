@@ -1,24 +1,14 @@
-qemu -hda /tmp/hsPE75Tj_j.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/s7Wfjv1tTF.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run alarm-priority
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'alarm-priority':
 (alarm-priority) begin
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
 (alarm-priority) Thread prio2Üÿÿ 30 woke up.
 (alarm-priority) Thread prio2Øÿÿ 29 woke up.
 (alarm-priority) Thread prio2Ôÿÿ 28 woke up.
@@ -31,8 +21,8 @@ Executing 'alarm-priority':
 (alarm-priority) Thread prio2àÿÿ 21 woke up.
 (alarm-priority) end
 Execution of 'alarm-priority' complete.
-Timer: 528 ticks
-Thread: 490 idle ticks, 38 kernel ticks, 0 user ticks
-Console: 1070 characters output
+Timer: 527 ticks
+Thread: 490 idle ticks, 37 kernel ticks, 0 user ticks
+Console: 840 characters output
 Keyboard: 0 keys pressed
 Powering off...

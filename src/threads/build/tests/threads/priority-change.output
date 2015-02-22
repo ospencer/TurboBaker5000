@@ -1,4 +1,4 @@
-qemu -hda /tmp/kz9MWan8lH.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/M273yC0knK.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-change

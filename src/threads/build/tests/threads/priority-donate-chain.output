@@ -1,4 +1,4 @@
-qemu -hda /tmp/tD2bBJ2EOP.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/N_6pbK9OXK.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-chain
@@ -21,7 +21,7 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
 Timer: 26 ticks
-Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
+Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
 Console: 1056 characters output
 Keyboard: 0 keys pressed
 Powering off...
