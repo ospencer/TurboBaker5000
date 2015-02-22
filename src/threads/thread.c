@@ -76,6 +76,8 @@ void thread_schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 bool less_by_wake_time(const struct list_elem *, const struct list_elem *, void *aux);
 bool more_by_priority(const struct list_elem *, const struct list_elem *, void *aux);
+void update_list_insert_ordered (struct list *, const struct list_elem *, list_less_func *, void *aux);
+
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
@@ -143,6 +145,7 @@ thread_tick (void)
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
     intr_yield_on_return ();
+  //if (running_thread ()->status = THREAD_RUNNING) schedule ();
 }
 
 /* Prints thread statistics. */
@@ -206,7 +209,17 @@ thread_create (const char *name, int priority,
 
   /* Add to run queue. */
   thread_unblock (t);
-
+  if (t->priority > thread_get_priority ())
+  {
+    struct thread *cur = running_thread ();
+    if (intr_get_level () != INTR_OFF) intr_set_level (INTR_OFF);
+    if (cur != idle_thread)
+    {
+      cur->status = THREAD_READY;
+      update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+      schedule();
+    }
+  }
   return tid;
 }
 
@@ -243,7 +256,7 @@ thread_unblock (struct thread *t)
 
   old_level = intr_disable ();
   ASSERT (t->status == THREAD_BLOCKED);
-  list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
+  update_list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
   t->status = THREAD_READY;
   intr_set_level (old_level);
 }
@@ -350,7 +363,7 @@ thread_yield (void)
 
   old_level = intr_disable ();
   if (cur != idle_thread) 
-    list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+    update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
   cur->status = THREAD_READY;
   schedule ();
   intr_set_level (old_level);
@@ -377,7 +390,15 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority) 
 {
-  thread_current ()->priority = new_priority;
+  struct thread *cur = running_thread ();
+  cur->priority = new_priority;
+  if (new_priority < list_entry( list_begin (&ready_list), struct thread, elem)->priority)
+  {
+    if (intr_get_level () != INTR_OFF) intr_set_level (INTR_OFF);
+    cur->status = THREAD_READY;
+    update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+    schedule ();
+  }
 }
 
 /* Returns the current thread's priority. */
@@ -582,6 +603,11 @@ thread_schedule_tail (struct thread *prev)
       ASSERT (prev != cur);
       palloc_free_page (prev);
     }
+  else if (prev != NULL && prev->status != THREAD_DYING && prev != initial_thread)
+  {
+  //  update_list_insert_ordered (&ready_list, &prev->elem, &more_by_priority, NULL);
+  
+  }
 }
 
 /* Schedules a new process.  At entry, interrupts must be off and
@@ -610,8 +636,9 @@ schedule (void)
       temp = e;
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
-      list_push_front (&ready_list, &t->elem);/* Wake this thread up! */  
-    }
+      //list_push_front (&ready_list, &t->elem);/* Wake this thread up! */  
+      update_list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
+  }
     else break; /* Since sleeping_list is ordered there are no more threads
                    after this point that are ready to wake up */
   }
@@ -622,6 +649,23 @@ schedule (void)
   if (cur != next)
     prev = switch_threads (cur, next);
   thread_schedule_tail (prev);
+}
+
+/* Insert into the list and check the running thread, change may be needed. */
+void
+update_list_insert_ordered (struct list *l, const struct list_elem *e, list_less_func *func, void *aux)
+{
+  list_insert_ordered (l, e, func, NULL);
+  /*struct thread *t = list_entry (e, struct thread, elem);
+  
+struct thread *cur = running_thread ();
+  struct thread *prev = NULL;
+  struct thread *next = next_thread_to_run ();
+  ASSERT (is_thread(next));
+ 
+  if (cur != next)
+    prev = switch_threads (cur, next);
+  thread_schedule_tail (prev);*/
 }
 
 /* Returns a tid to use for a new thread. */
@@ -640,4 +684,5 @@ allocate_tid (void)
 
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
+
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
