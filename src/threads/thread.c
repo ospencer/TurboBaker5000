@@ -426,7 +426,7 @@ thread_foreach (thread_action_func *func, void *aux)
 void
 thread_set_priority (int new_priority) 
 {
-  struct thread *cur = running_thread ();
+  struct thread *cur = thread_current ();
   cur->priority = new_priority;
   if (new_priority < list_entry( list_begin (&ready_list), struct thread, elem)->priority)
   {
@@ -441,7 +441,7 @@ thread_set_priority (int new_priority)
 int
 thread_get_priority (void) 
 {
-  return running_thread ()->highest_priority;
+  return thread_current ()->highest_priority;
 }
 
 /* Sets the current thread's nice value to NICE. */

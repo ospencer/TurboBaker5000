@@ -1,4 +1,4 @@
-qemu -hda /tmp/iEPx5pbqNK.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/x_jsmWg3kH.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run alarm-priority
@@ -9,6 +9,16 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'alarm-priority':
 (alarm-priority) begin
+(alarm-priority) priority 30
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
+(alarm-priority) prio?
 (alarm-priority) Thread prio2Üÿÿ 30 woke up.
 (alarm-priority) Thread prio2Øÿÿ 29 woke up.
 (alarm-priority) Thread prio2Ôÿÿ 28 woke up.
@@ -23,6 +33,6 @@ Executing 'alarm-priority':
 Execution of 'alarm-priority' complete.
 Timer: 527 ticks
 Thread: 490 idle ticks, 37 kernel ticks, 0 user ticks
-Console: 840 characters output
+Console: 1076 characters output
 Keyboard: 0 keys pressed
 Powering off...
