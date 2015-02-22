@@ -96,6 +96,8 @@ struct thread
     struct list donated_to_list;	/* List of threads this thread has
 					   donated priorities to */
     struct list_elem allelem;           /* List element for all threads list. */
+    int nice;
+    int recent_cpu;
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
