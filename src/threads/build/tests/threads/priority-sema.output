@@ -1,4 +1,4 @@
-qemu -hda /tmp/ESY7eL17vh.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/q4QZW5mCQ9.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run priority-sema

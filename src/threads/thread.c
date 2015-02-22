@@ -255,6 +255,7 @@ thread_create (const char *name, int priority,
       update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
       schedule();
     }
+    intr_set_level (INTR_ON);
   }
   return tid;
 }
