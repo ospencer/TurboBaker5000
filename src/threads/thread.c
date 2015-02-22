@@ -82,7 +82,6 @@ static void schedule (void);
 void thread_schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 bool less_by_wake_time(const struct list_elem *, const struct list_elem *, void *aux);
-bool more_by_priority(const struct list_elem *, const struct list_elem *, void *aux);
 void update_list_insert_ordered (struct list *, const struct list_elem *, list_less_func *, void *aux);
 
 /* Initializes the threading system by transforming the code
@@ -433,6 +432,7 @@ thread_set_priority (int new_priority)
 {
   struct thread *cur = thread_current ();
   cur->priority = new_priority;
+  //TODO set highest_priority here based on received_from_list and new_priority
   if (new_priority < list_entry( list_begin (&ready_list), struct thread, elem)->priority)
   {
     enum intr_level old_level = intr_disable ();
@@ -569,6 +569,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->highest_priority = priority;
+  t->donated_to = NULL;
   t->magic = THREAD_MAGIC;
   if (t != initial_thread) 
   {
@@ -582,8 +583,12 @@ init_thread (struct thread *t, const char *name, int priority)
   }
 
   list_init(&t->donated_from_list);
+<<<<<<< HEAD
+
+=======
   list_init(&t->donated_to_list);
   
+>>>>>>> 49f2afde51e9e38f1e4d9bc677b2af772be5cedb
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);
