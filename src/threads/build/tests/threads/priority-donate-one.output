@@ -1,4 +1,4 @@
-qemu -hda /tmp/PWJjGiIlv_.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/jjzX9l685H.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-one
@@ -9,16 +9,14 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-one':
 (priority-donate-one) begin
-(priority-donate-one) LOCK HAS BEEN INITIALIZED, ABOUT TO ATTEMPT TO ACQUIRE THE LOCK
-(priority-donate-one) LOCK HAS BEEN ACQUIRED FOR THE FIRST TIME, WOOT WOOT
-(priority-donate-one) FIRST THREAD HAS BEEN CREATED, ABOUT TO ATTEMPT TO ACQUIRE THE LOCK
-Kernel PANIC at ../../threads/thread.c:358 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
-Call stack: 0xc0028a6e.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(priority-donate-one) This thread should have priority 32.  Actual priority: 32.
+(priority-donate-one) This thread should have priority 33.  Actual priority: 33.
+(priority-donate-one) acquire2, acquire1 must already have finished, in that order.
+(priority-donate-one) This should be the last line before finishing this test.
+(priority-donate-one) end
+Execution of 'priority-donate-one' complete.
 Timer: 26 ticks
 Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
-Console: 882 characters output
+Console: 737 characters output
 Keyboard: 0 keys pressed
 Powering off...

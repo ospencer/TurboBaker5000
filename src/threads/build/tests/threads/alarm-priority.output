@@ -1,38 +1,28 @@
-qemu -hda /tmp/hsPE75Tj_j.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/CAcJ7ru_lD.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run alarm-priority
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'alarm-priority':
 (alarm-priority) begin
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) prio?
-(alarm-priority) Thread prio2Üÿÿ 30 woke up.
-(alarm-priority) Thread prio2Øÿÿ 29 woke up.
-(alarm-priority) Thread prio2Ôÿÿ 28 woke up.
-(alarm-priority) Thread prio2Ðÿÿ 27 woke up.
-(alarm-priority) Thread prio2Ìÿÿ 26 woke up.
-(alarm-priority) Thread prio2ðÿÿ 25 woke up.
-(alarm-priority) Thread prio2ìÿÿ 24 woke up.
-(alarm-priority) Thread prio2èÿÿ 23 woke up.
-(alarm-priority) Thread prio2äÿÿ 22 woke up.
-(alarm-priority) Thread prio2àÿÿ 21 woke up.
+(alarm-priority) Thread prio8 woke up.
+(alarm-priority) Thread prio8 woke up.
+(alarm-priority) Thread prio8 woke up.
+(alarm-priority) Thread prio9 woke up.
+(alarm-priority) Thread prio9 woke up.
+(alarm-priority) Thread prio9 woke up.
+(alarm-priority) Thread prio9 woke up.
+(alarm-priority) Thread prio: woke up.
+(alarm-priority) Thread prio: woke up.
+(alarm-priority) Thread prio: woke up.
 (alarm-priority) end
 Execution of 'alarm-priority' complete.
-Timer: 528 ticks
-Thread: 490 idle ticks, 38 kernel ticks, 0 user ticks
-Console: 1070 characters output
+Timer: 526 ticks
+Thread: 490 idle ticks, 36 kernel ticks, 0 user ticks
+Console: 780 characters output
 Keyboard: 0 keys pressed
 Powering off...

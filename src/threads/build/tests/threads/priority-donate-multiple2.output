@@ -1,4 +1,4 @@
-qemu -hda /tmp/pKGmx2Svzl.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/g2AvvcCKeq.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-multiple2
@@ -9,13 +9,16 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) begin
-Kernel PANIC at ../../threads/thread.c:358 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
-Call stack: 0xc0028a6e.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(priority-donate-multiple2) Main thread should have priority 34.  Actual priority: 34.
+(priority-donate-multiple2) Thread c finished.
+(priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 36.
+(priority-donate-multiple2) Main thread should have priority 36.  Actual priority: 31.
+(priority-donate-multiple2) Threads b, a, c should have just finished, in that order.
+(priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
+(priority-donate-multiple2) end
+Execution of 'priority-donate-multiple2' complete.
 Timer: 26 ticks
 Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
-Console: 649 characters output
+Console: 923 characters output
 Keyboard: 0 keys pressed
 Powering off...

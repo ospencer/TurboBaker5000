@@ -68,7 +68,8 @@ sema_down (struct semaphore *sema)
   old_level = intr_disable ();
   while (sema->value == 0) 
     {
-      list_push_back (&sema->waiters, &thread_current ()->elem);
+//      list_push_back (&sema->waiters, &thread_current ()->elem);
+	list_insert_ordered(&sema->waiters, &thread_current ()->elem, &more_by_priority, NULL);
       thread_block ();
     }
   sema->value--;
@@ -199,39 +200,79 @@ lock_acquire (struct lock *lock)
     sema_down (&lock->semaphore);
     lock->holder = thread_current ();
   } else {
+    
+    struct thread *a = thread_current ();
+    struct thread *b = lock->holder;
+    while(b != NULL){
+      //TODO b.donated_from_list.add(a)
+      struct list_elem *temp, *e = list_begin (&b->donated_from_list);
+      bool contains = false;
+      while(e != list_end (&b->donated_from_list)){
+        struct thread *t = list_entry (e, struct thread, elem);
+	if(t == a){
+	  contains = true;
+	  break;
+	}
+	temp = e;
+	e = list_next(e);
+      }
+      if(contains == false){
+	bool change_back_to = intr_get_level ();
+	intr_disable ();
+//	list_push_back(&b->donated_from_list, &a);
+	if (change_back_to) intr_enable ();
+      }
+      a->donated_to = b;
+      //TODO b set highest priority
+      if(a->highest_priority > b->highest_priority){
+	b->highest_priority = a->highest_priority;
+      }
+      a = b;
+      b = b->donated_to;
+    }
     // Set up this thread for a chain of priority donations
-    set_lock_chain(lock->holder, thread_current ());
+    //set_lock_chain(&lock->holder, &thread_current ());
     // attempt to acquire the lock
     sema_down (&lock->semaphore);
     lock->holder = thread_current ();
+
+
+    thread_current ()->donated_to = NULL;
+
     // Remove priority donations chains for this lock
-    remove_lock_chain(list_pop_front(&thread_current ()->donated_to_list), 
-                                     thread_current ());;
+//    remove_lock_chain(list_pop_front(&thread_current ()->donated_to_list), 
+//                                     thread_current ());;
   }
 }
-
+/*
 void
 set_lock_chain(struct thread *holder, struct thread *receive_from)
 {
   // Add holder to receive_from's donated_to_list
-  list_push_back(&receive_from->donated_to_list, holder);
+  list_push_back(&receive_from->donated_to_list, &holder);
   // Add receive_from to holder's donated_from_list
-  list_push_back(&holder->donated_from_list, receive_from);
-  // Set holder's highest_priority
-  if (holder->highest_priority < receive_from->highest_priority) {
-    holder->highest_priority = &receive_from->highest_priority;
+  list_push_back(&holder->donated_from_list, &receive_from);
+  while(&holder != NULL){
+    struct list_elem *temp, *e = list_begin (&holder->donated_to_list);
+    struct thread *t = list_entry (e, struct thread, elem);
+    // Set holder's highest_priority
+    if (holder->highest_priority < receive_from->highest_priority) {
+      holder->highest_priority = &receive_from->highest_priority;
+    }
+    receive_from = &holder;
+    holder = &t;
   }
   // Recursively call set_lock_chain
-  if (list_empty (&holder->donated_to_list)){
-    return;
-  }
-  struct list_elem *temp, *e = list_begin (&holder->donated_to_list);
-  while(e != list_end (&holder->donated_to_list)){
-    struct thread *t = list_entry (e, struct thread, elem);
-    set_lock_chain(&t, &holder);
-    temp = e;
-    e = list_next(e);
-  }
+//  if (list_empty (&holder->donated_to_list)){
+//    return;
+//  }
+//  struct list_elem *temp, *e = list_begin (&holder->donated_to_list);
+//  while(e != list_end (&holder->donated_to_list)){
+//    struct thread *t = list_entry (e, struct thread, elem);
+//    set_lock_chain(&t, &holder);
+//    temp = e;
+//    e = list_next(e);
+//  }
 }
 
 void
@@ -273,7 +314,7 @@ remove_lock_chain(struct thread *holder, struct thread *receive_from)
     e = list_next(e);
   }
 }
-
+*/
 /* Tries to acquires LOCK and returns true if successful or false
    on failure.  The lock must not already be held by the current
    thread.
@@ -304,6 +345,18 @@ lock_release (struct lock *lock)
 {
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
+
+  //TODO: for now this should work but will need to keep track of what lock is being waited for in donated_from so only those are removed
+
+  bool change_back_to = intr_get_level ();
+  intr_disable ();
+
+  while(!list_empty(&thread_current ()->donated_from_list)){
+    list_pop_back(&thread_current ()->donated_from_list);
+  }
+  thread_current ()->highest_priority = thread_current ()->priority;
+
+  if(change_back_to) intr_enable ();
 
   lock->holder = NULL;
   sema_up (&lock->semaphore);

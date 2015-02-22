@@ -26,24 +26,14 @@ Differences in `diff -u' format:
 - (alarm-priority) Thread priority 23 woke up.
 - (alarm-priority) Thread priority 22 woke up.
 - (alarm-priority) Thread priority 21 woke up.
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) prio?
-+ (alarm-priority) Thread prio2Üÿÿ 30 woke up.
-+ (alarm-priority) Thread prio2Øÿÿ 29 woke up.
-+ (alarm-priority) Thread prio2Ôÿÿ 28 woke up.
-+ (alarm-priority) Thread prio2Ðÿÿ 27 woke up.
-+ (alarm-priority) Thread prio2Ìÿÿ 26 woke up.
-+ (alarm-priority) Thread prio2ðÿÿ 25 woke up.
-+ (alarm-priority) Thread prio2ìÿÿ 24 woke up.
-+ (alarm-priority) Thread prio2èÿÿ 23 woke up.
-+ (alarm-priority) Thread prio2äÿÿ 22 woke up.
-+ (alarm-priority) Thread prio2àÿÿ 21 woke up.
++ (alarm-priority) Thread prio8 woke up.
++ (alarm-priority) Thread prio8 woke up.
++ (alarm-priority) Thread prio8 woke up.
++ (alarm-priority) Thread prio9 woke up.
++ (alarm-priority) Thread prio9 woke up.
++ (alarm-priority) Thread prio9 woke up.
++ (alarm-priority) Thread prio9 woke up.
++ (alarm-priority) Thread prio: woke up.
++ (alarm-priority) Thread prio: woke up.
++ (alarm-priority) Thread prio: woke up.
   (alarm-priority) end

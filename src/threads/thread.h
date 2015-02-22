@@ -93,8 +93,8 @@ struct thread
                                            received priorities from */
     int highest_priority;		/* Highest of priority and all
 					   donated priorities */
-    struct list donated_to_list;	/* List of threads this thread has
-					   donated priorities to */
+    struct thread * donated_to;		/* Threads this thread has
+					   donated priority to */
     struct list_elem allelem;           /* List element for all threads list. */
     int nice;
     int recent_cpu;
@@ -137,6 +137,8 @@ const char *thread_name (void);
 
 void thread_exit (void) NO_RETURN;
 void thread_yield (void);
+
+bool more_by_priority(const struct list_elem *, const struct list_elem *, void *aux);
 
 /* Performs some operation on thread t, given auxiliary data AUX. */
 typedef void thread_action_func (struct thread *t, void *aux);
