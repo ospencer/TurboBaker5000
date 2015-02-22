@@ -137,6 +137,7 @@ thread_start (void)
 void
 thread_tick (void) 
 {
+  ASSERT (intr_get_level () == INTR_OFF);
   struct thread *t = thread_current ();
 
   /* Update statistics. */
@@ -150,11 +151,7 @@ thread_tick (void)
     kernel_ticks++;
 
   if (t != idle_thread) t->recent_cpu += f;
-
-  /* Enforce preemption. */
-  if (++thread_ticks >= TIME_SLICE)
-    intr_yield_on_return ();
-  
+ 
   if (timer_ticks () % TIMER_FREQ == 0)
   {
     if (t == idle_thread) load_avg = (59/60)*load_avg + (1/60)*f*list_size (&ready_list);
@@ -181,6 +178,9 @@ thread_tick (void)
     thread_set_priority (running_thread ()->priority);
   }
 
+  /* Enforce preemption. */
+  if (++thread_ticks >= TIME_SLICE)
+    intr_yield_on_return ();
 }
 
 /* Prints thread statistics. */
@@ -241,21 +241,23 @@ thread_create (const char *name, int priority,
   sf = alloc_frame (t, sizeof *sf);
   sf->eip = switch_entry;
   sf->ebp = 0;
-
+  
   /* Add to run queue. */
   thread_unblock (t);
+  
   if (t->priority > thread_get_priority ())
   {
     struct thread *cur = running_thread ();
-    if (intr_get_level () != INTR_OFF) intr_set_level (INTR_OFF);
+    enum intr_level old_level = intr_disable();
     if (cur != idle_thread)
     {
       cur->status = THREAD_READY;
-      update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+      list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
       schedule();
     }
-    intr_set_level (INTR_ON);
+    intr_set_level (old_level);
   }
+  
   return tid;
 }
 
@@ -292,7 +294,7 @@ thread_unblock (struct thread *t)
 
   old_level = intr_disable ();
   ASSERT (t->status == THREAD_BLOCKED);
-  update_list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
+  list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
   t->status = THREAD_READY;
   intr_set_level (old_level);
 }
@@ -399,7 +401,7 @@ thread_yield (void)
 
   old_level = intr_disable ();
   if (cur != idle_thread) 
-    update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+    list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
   cur->status = THREAD_READY;
   schedule ();
   intr_set_level (old_level);
@@ -431,10 +433,11 @@ thread_set_priority (int new_priority)
   //TODO set highest_priority here based on received_from_list and new_priority
   if (new_priority < list_entry( list_begin (&ready_list), struct thread, elem)->priority)
   {
-    if (intr_get_level () != INTR_OFF) intr_set_level (INTR_OFF);
+    enum intr_level old_level = intr_disable ();
     cur->status = THREAD_READY;
-    update_list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
+    list_insert_ordered (&ready_list, &cur->elem, &more_by_priority, NULL);
     schedule ();
+    intr_set_level (old_level);
   }
 }
 
@@ -560,6 +563,7 @@ init_thread (struct thread *t, const char *name, int priority)
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
   strlcpy (t->name, name, sizeof t->name);
+  
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->highest_priority = priority;
@@ -577,7 +581,12 @@ init_thread (struct thread *t, const char *name, int priority)
   }
 
   list_init(&t->donated_from_list);
+<<<<<<< HEAD
 
+=======
+  list_init(&t->donated_to_list);
+  
+>>>>>>> 49f2afde51e9e38f1e4d9bc677b2af772be5cedb
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);
@@ -688,7 +697,7 @@ schedule (void)
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
       //list_push_front (&ready_list, &t->elem);/* Wake this thread up! */  
-      update_list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
+      list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
   }
     else break; /* Since sleeping_list is ordered there are no more threads
                    after this point that are ready to wake up */
@@ -696,9 +705,14 @@ schedule (void)
 
   struct thread *next = next_thread_to_run ();
   ASSERT (is_thread(next));
-
+  char * message[16];
+  strlcpy(message, next->name, sizeof message);
   if (cur != next)
+  {  
+    //msg ("About to switch to %s...", next->name);
+    
     prev = switch_threads (cur, next);
+  }
   thread_schedule_tail (prev);
 }
 
