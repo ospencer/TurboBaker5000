@@ -11,6 +11,7 @@
 #include "threads/switch.h"
 #include "threads/synch.h"
 #include "threads/vaddr.h"
+#include "devices/timer.h"
 #ifdef USERPROG
 #include "userprog/process.h"
 #endif
@@ -57,6 +58,12 @@ static long long user_ticks;    /* # of timer ticks in user programs. */
 /* Scheduling. */
 #define TIME_SLICE 4            /* # of timer ticks to give each thread. */
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
+
+/* The system load average. */
+static int load_avg;
+
+/* 2^14 to be used for faking floating point artihmetic. */
+static const int f = 16384;
 
 /* If false (default), use round-robin scheduler.
    If true, use multi-level feedback queue scheduler.
@@ -106,6 +113,7 @@ thread_init (void)
   init_thread (initial_thread, "main", PRI_DEFAULT);
   initial_thread->status = THREAD_RUNNING;
   initial_thread->tid = allocate_tid ();
+  load_avg = 0;
 }
 
 /* Starts preemptive thread scheduling by enabling interrupts.
@@ -142,10 +150,38 @@ thread_tick (void)
   else
     kernel_ticks++;
 
+  if (t != idle_thread) t->recent_cpu += f;
+
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
     intr_yield_on_return ();
-  //if (running_thread ()->status = THREAD_RUNNING) schedule ();
+  
+  if (timer_ticks () % TIMER_FREQ == 0)
+  {
+    if (t == idle_thread) load_avg = (59/60)*load_avg + (1/60)*f*list_size (&ready_list);
+    else load_avg = (59/60)*load_avg + (1/60)*f*(list_size (&ready_list) + 1);
+    const struct list_elem *e = list_begin (&all_list);
+    int coeff = ((int64_t) (2*load_avg))*f/(2*load_avg + f);
+    while (e != list_end(&all_list))
+    {
+      struct thread *a = list_entry (e, struct thread, elem);
+      a->recent_cpu = ((int64_t) coeff)*a->recent_cpu/f + a->nice*f;
+      e = list_next(e);
+    }
+  }
+  
+  if (timer_ticks () % 4 == 0)
+  {
+    const struct list_elem *i = list_begin (&all_list);
+    while (i != list_end(&all_list))
+    {
+      struct thread *ti = list_entry (i, struct thread, elem);
+      ti->priority = PRI_MAX - (ti->recent_cpu/4)/f - (t->nice*2);
+      i = list_next(i);
+    }
+    thread_set_priority (running_thread ()->priority);
+  }
+
 }
 
 /* Prints thread statistics. */
@@ -412,31 +448,31 @@ thread_get_priority (void)
 void
 thread_set_nice (int nice UNUSED) 
 {
-  /* Not yet implemented. */
+  thread_current ()->nice = nice;
 }
 
 /* Returns the current thread's nice value. */
 int
 thread_get_nice (void) 
 {
-  /* Not yet implemented. */
-  return 0;
+  return thread_current ()->nice;
 }
 
 /* Returns 100 times the system load average. */
 int
 thread_get_load_avg (void) 
 {
-  /* Not yet implemented. */
-  return 0;
+  if (load_avg >= 0) return (load_avg*100 + f/2)/f;
+  else return (load_avg*100 - f/2)/f;
 }
 
 /* Returns 100 times the current thread's recent_cpu value. */
 int
 thread_get_recent_cpu (void) 
 {
-  /* Not yet implemented. */
-  return 0;
+  struct thread *cur = running_thread ();
+  if (cur->recent_cpu >= 0) return (cur->recent_cpu*100 + f/2)/f;
+  else return (cur->recent_cpu*100 - f/2)/f;
 }
 
 /* Idle thread.  Executes when no other thread is ready to run.
@@ -527,6 +563,16 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->donated_priority = PRI_MIN;
   t->magic = THREAD_MAGIC;
+  if (t != initial_thread) 
+  {
+    t->nice = thread_get_nice ();
+    t->recent_cpu = thread_get_recent_cpu ();
+  }
+  else 
+  {
+    t->nice = 0;
+    t->recent_cpu = 0;
+  }
 
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
