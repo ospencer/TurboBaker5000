@@ -150,7 +150,7 @@ thread_tick (void)
 #endif
   else
     kernel_ticks++;
-
+/*
   if (t != idle_thread) t->recent_cpu += f;
  
   if (timer_ticks () % TIMER_FREQ == 0)
@@ -173,12 +173,14 @@ thread_tick (void)
     while (i != list_end(&all_list))
     {
       struct thread *ti = list_entry (i, struct thread, elem);
-      ti->priority = PRI_MAX - (ti->recent_cpu/4)/f - (t->nice*2);
+      int pri_temp = PRI_MAX - (ti->recent_cpu/4)/f - (ti->nice*2);
+      if (pri_temp >= PRI_MIN && pri_temp <= PRI_MAX) ti->priority = pri_temp;
+      else ti->priority = PRI_MIN;
       i = list_next(i);
     }
     thread_set_priority (running_thread ()->priority);
   }
-
+*/
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
     intr_yield_on_return ();
