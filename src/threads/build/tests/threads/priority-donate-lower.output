@@ -1,4 +1,4 @@
-qemu -hda /tmp/5fE2WobUYN.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/UmQTfokZ_e.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q run priority-donate-lower
@@ -9,30 +9,13 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-lower':
 (priority-donate-lower) begin
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-
-TIMEOUT after 60 seconds of host CPU time
+Kernel PANIC at ../../threads/thread.c:357 in thread_current(): assertion `t->status == THREAD_RUNNING' failed.
+Call stack: 0xc0028a5e.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 26 ticks
+Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
+Console: 637 characters output
+Keyboard: 0 keys pressed
+Powering off...

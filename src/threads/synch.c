@@ -200,7 +200,7 @@ lock_acquire (struct lock *lock)
     lock->holder = thread_current ();
   } else {
     // Set up this thread for a chain of priority donations
-    set_lock_chain(&lock->holder, thread_current ());
+    set_lock_chain(lock->holder, thread_current ());
     // attempt to acquire the lock
     sema_down (&lock->semaphore);
     lock->holder = thread_current ();
@@ -214,18 +214,21 @@ void
 set_lock_chain(struct thread *holder, struct thread *receive_from)
 {
   // Add holder to receive_from's donated_to_list
-  list_push_back(&receive_from->donated_to_list, &holder);
+  list_push_back(&receive_from->donated_to_list, holder);
   // Add receive_from to holder's donated_from_list
-  list_push_back(&holder->donated_from_list, &receive_from);
+  list_push_back(&holder->donated_from_list, receive_from);
   // Set holder's highest_priority
-  if (&holder->highest_priority < &receive_from->highest_priority) {
+  if (holder->highest_priority < receive_from->highest_priority) {
     holder->highest_priority = &receive_from->highest_priority;
   }
   // Recursively call set_lock_chain
+  if (list_empty (&holder->donated_to_list)){
+    return;
+  }
   struct list_elem *temp, *e = list_begin (&holder->donated_to_list);
   while(e != list_end (&holder->donated_to_list)){
     struct thread *t = list_entry (e, struct thread, elem);
-    set_lock_chain(t, &holder);
+    set_lock_chain(&t, &holder);
     temp = e;
     e = list_next(e);
   }
