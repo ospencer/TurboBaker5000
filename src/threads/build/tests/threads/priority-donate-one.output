@@ -1,4 +1,4 @@
-qemu -hda /tmp/fCc9S0HATr.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/9cTJUWC8v6.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run priority-donate-one
@@ -9,6 +9,8 @@ Calibrating timer...  523,468,800 loops/s.
 Boot complete.
 Executing 'priority-donate-one':
 (priority-donate-one) begin
+(priority-donate-one) ABOUT TO ATTEMPT TO ACQUIRE LOCK
+(priority-donate-one) LOCK HAS BEEN ACQUIRED SUCCESSFULLY
 (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
 (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
 (priority-donate-one) acquire2, acquire1 must already have finished, in that order.
@@ -17,6 +19,6 @@ Executing 'priority-donate-one':
 Execution of 'priority-donate-one' complete.
 Timer: 26 ticks
 Thread: 0 idle ticks, 26 kernel ticks, 0 user ticks
-Console: 737 characters output
+Console: 850 characters output
 Keyboard: 0 keys pressed
 Powering off...

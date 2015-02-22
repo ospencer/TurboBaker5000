@@ -20,6 +20,8 @@ Differences in `diff -u' format:
 - (priority-donate-one) acquire2: done
 - (priority-donate-one) acquire1: got the lock
 - (priority-donate-one) acquire1: done
++ (priority-donate-one) ABOUT TO ATTEMPT TO ACQUIRE LOCK
++ (priority-donate-one) LOCK HAS BEEN ACQUIRED SUCCESSFULLY
 + (priority-donate-one) This thread should have priority 32.  Actual priority: 31.
 + (priority-donate-one) This thread should have priority 33.  Actual priority: 31.
   (priority-donate-one) acquire2, acquire1 must already have finished, in that order.

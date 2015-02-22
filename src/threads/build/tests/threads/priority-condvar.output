@@ -1,4 +1,4 @@
-qemu -hda /tmp/t2KNqebGCS.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/k0LXQ9JCRL.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run priority-condvar
