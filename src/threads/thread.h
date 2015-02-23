@@ -89,8 +89,16 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
-    struct list donated_from_list;	/* List of threads this thread has
-                                           received priorities from */
+
+    struct thread * donated_from1;
+    struct thread * donated_from2;
+    struct thread * donated_from3;
+    struct thread * donated_from4;
+    struct thread * donated_from5;
+    struct thread * donated_from6;
+    struct thread * donated_from7;
+    struct thread * donated_from8;
+
     int highest_priority;		/* Highest of priority and all
 					   donated priorities */
     struct thread * donated_to;		/* Threads this thread has
@@ -119,6 +127,10 @@ struct thread
    Controlled by kernel command-line option "-o mlfqs". */
 extern bool thread_mlfqs;
 
+
+static struct list ready_list;		/* List of processes in THREAD_READY
+					   state, that is, processes that are
+                	                   ready to run but not actually running */
 void thread_init (void);
 void thread_start (void);
 

@@ -106,7 +106,6 @@ thread_init (void)
   list_init (&ready_list);
   list_init (&sleeping_list);
   list_init (&all_list);
-  //sort (&sleeping_list, &less_by_wake_time, NULL);
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
   init_thread (initial_thread, "main", PRI_DEFAULT);
@@ -149,37 +148,7 @@ thread_tick (void)
 #endif
   else
     kernel_ticks++;
-/*
-  if (t != idle_thread) t->recent_cpu += f;
- 
-  if (timer_ticks () % TIMER_FREQ == 0)
-  {
-    if (t == idle_thread) load_avg = (59/60)*load_avg + (1/60)*f*list_size (&ready_list);
-    else load_avg = (59/60)*load_avg + (1/60)*f*(list_size (&ready_list) + 1);
-    const struct list_elem *e = list_begin (&all_list);
-    int coeff = ((int64_t) (2*load_avg))*f/(2*load_avg + f);
-    while (e != list_end(&all_list))
-    {
-      struct thread *a = list_entry (e, struct thread, elem);
-      a->recent_cpu = ((int64_t) coeff)*a->recent_cpu/f + a->nice*f;
-      e = list_next(e);
-    }
-  }
-  
-  if (timer_ticks () % 4 == 0)
-  {
-    const struct list_elem *i = list_begin (&all_list);
-    while (i != list_end(&all_list))
-    {
-      struct thread *ti = list_entry (i, struct thread, elem);
-      int pri_temp = PRI_MAX - (ti->recent_cpu/4)/f - (ti->nice*2);
-      if (pri_temp >= PRI_MIN && pri_temp <= PRI_MAX) ti->priority = pri_temp;
-      else ti->priority = PRI_MIN;
-      i = list_next(i);
-    }
-    thread_set_priority (running_thread ()->priority);
-  }
-*/
+
   /* Enforce preemption. */
   if (++thread_ticks >= TIME_SLICE)
     intr_yield_on_return ();
@@ -431,8 +400,38 @@ void
 thread_set_priority (int new_priority) 
 {
   struct thread *cur = thread_current ();
+  if(cur->priority < cur->highest_priority && new_priority > cur->highest_priority){
+    cur->highest_priority = new_priority;
+  }
+  if(cur->priority = cur->highest_priority) cur->highest_priority = new_priority;
   cur->priority = new_priority;
-  //TODO set highest_priority here based on received_from_list and new_priority
+  bool change_back_to = intr_get_level ();
+  intr_disable ();
+  if(cur->donated_from1 != NULL 
+         && cur->donated_from1->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from1->highest_priority;
+  if(cur->donated_from2 != NULL 
+         && cur->donated_from2->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from2->highest_priority;
+  if(cur->donated_from3 != NULL 
+         && cur->donated_from3->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from3->highest_priority;
+  if(cur->donated_from4 != NULL 
+         && cur->donated_from4->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from4->highest_priority;
+  if(cur->donated_from5 != NULL 
+         && cur->donated_from5->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from5->highest_priority;
+  if(cur->donated_from6 != NULL 
+         && cur->donated_from6->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from6->highest_priority;
+  if(cur->donated_from7 != NULL 
+         && cur->donated_from7->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from7->highest_priority;
+  if(cur->donated_from8 != NULL 
+         && cur->donated_from8->highest_priority > cur->highest_priority)
+      cur->highest_priority = cur->donated_from8->highest_priority;
+  if(change_back_to) intr_enable ();
   if (new_priority < list_entry( list_begin (&ready_list), struct thread, elem)->priority)
   {
     enum intr_level old_level = intr_disable ();
@@ -529,7 +528,7 @@ kernel_thread (thread_func *function, void *aux)
   function (aux);       /* Execute the thread function. */
   thread_exit ();       /* If function() returns, kill the thread. */
 }
-
+
 /* Returns the running thread. */
 struct thread *
 running_thread (void) 
@@ -569,6 +568,14 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->highest_priority = priority;
+  t->donated_from1 = NULL;
+  t->donated_from2 = NULL;
+  t->donated_from3 = NULL;
+  t->donated_from4 = NULL;
+  t->donated_from5 = NULL;
+  t->donated_from6 = NULL;
+  t->donated_from7 = NULL;
+  t->donated_from8 = NULL;
   t->donated_to = NULL;
   t->magic = THREAD_MAGIC;
   if (t != initial_thread) 
@@ -581,9 +588,7 @@ init_thread (struct thread *t, const char *name, int priority)
     t->nice = 0;
     t->recent_cpu = 0;
   }
-
-  list_init(&t->donated_from_list);
-   
+ 
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);
@@ -660,11 +665,6 @@ thread_schedule_tail (struct thread *prev)
       ASSERT (prev != cur);
       palloc_free_page (prev);
     }
-  else if (prev != NULL && prev->status != THREAD_DYING && prev != initial_thread)
-  {
-  //  update_list_insert_ordered (&ready_list, &prev->elem, &more_by_priority, NULL);
-  
-  }
 }
 
 /* Schedules a new process.  At entry, interrupts must be off and
@@ -684,7 +684,6 @@ schedule (void)
 
   ASSERT (intr_get_level () == INTR_OFF);
   ASSERT (cur->status != THREAD_RUNNING);
-  //ASSERT (is_sorted (list_begin (&sleeping_list), list_end (&sleeping_list), &less_by_wake_time, NULL));
   while(e != list_end (&sleeping_list)){
     struct thread *t = list_entry (e, struct thread, elem);
 
@@ -693,7 +692,7 @@ schedule (void)
       temp = e;
       e = list_next(e);
       list_remove(temp);/* Remove this thread from sleeping_list */
-      //list_push_front (&ready_list, &t->elem);/* Wake this thread up! */  
+      /* Wake this thread up! */
       list_insert_ordered (&ready_list, &t->elem, &more_by_priority, NULL);
   }
     else break; /* Since sleeping_list is ordered there are no more threads
@@ -706,8 +705,6 @@ schedule (void)
   strlcpy(message, next->name, sizeof message);
   if (cur != next)
   {  
-    //msg ("About to switch to %s...", next->name);
-    
     prev = switch_threads (cur, next);
   }
   thread_schedule_tail (prev);
@@ -718,16 +715,6 @@ void
 update_list_insert_ordered (struct list *l, const struct list_elem *e, list_less_func *func, void *aux)
 {
   list_insert_ordered (l, e, func, NULL);
-  /*struct thread *t = list_entry (e, struct thread, elem);
-  
-struct thread *cur = running_thread ();
-  struct thread *prev = NULL;
-  struct thread *next = next_thread_to_run ();
-  ASSERT (is_thread(next));
- 
-  if (cur != next)
-    prev = switch_threads (cur, next);
-  thread_schedule_tail (prev);*/
 }
 
 /* Returns a tid to use for a new thread. */
@@ -743,7 +730,7 @@ allocate_tid (void)
 
   return tid;
 }
-
+
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
 
