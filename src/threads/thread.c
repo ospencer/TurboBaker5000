@@ -583,12 +583,7 @@ init_thread (struct thread *t, const char *name, int priority)
   }
 
   list_init(&t->donated_from_list);
-<<<<<<< HEAD
-
-=======
-  list_init(&t->donated_to_list);
-  
->>>>>>> 49f2afde51e9e38f1e4d9bc677b2af772be5cedb
+   
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);
