@@ -1,0 +1,292 @@
+
+			| PROJECT 1: THREADS |
+			|   DESIGN DOCUMENT  |
+			+--------------------+
+				   
+---- GROUP ----
+
+Oscar Spencer <spencer.o@husky.neu.edu>
+Nikolai Wotton <wotton.n@husky.neu.edu>
+
+---- PRELIMINARIES ----
+
+No other outside resources used besides the help from our peers on
+Piazza.
+
+			     ALARM CLOCK
+			     ===========
+
+---- DATA STRUCTURES ----
+
+>> thread.c
+
+static struct list sleeping_list;
+A list to contain all of the threads that are currently in a
+sleeping state.
+
+static int load_avg;
+An integer value containing the amount of load that has been on the
+processor recently.
+
+static const int f;
+An integer value containing the conversion factor from ints to fake
+17.14 floating point numbers.
+
+>> thread.h
+
+enum thread_status -> THREAD_SLEEPING
+A state for threads that are currently sleeping.
+
+struct thread -> int nice;
+An integer value to store how nice the thread is (to other threads).
+
+struct thread -> int recent_cpu;
+An integer value to store how much CPU time the thread has gotten
+recently.
+
+---- ALGORITHMS ----
+
+>> A2: Briefly describe what happens in a call to timer_sleep(),
+>> including the effects of the timer interrupt handler.
+
+The only thing that timer_sleep does is call thread_sleep. That
+function then sets the status of that thread to THREAD_SLEEPING.
+It schedules a wake-up time for the thread, based on how long the
+thread wishes to sleep for. Once that is complete, it adds the
+thread to a list of sleeping threads. It does this is O(log(n))
+time, because we insert it into that list, keeping the order of
+the list the same (by wake-up time). Then a call to schedule()
+is made to allow another thread to take its place on the CPU.
+
+The schedule() function is what will interrupt a running thread
+to wake up a sleeping one. It checks the sleeping threads to see if
+any of them need to be woken up. If one does, it simply changes the
+status of the thread to THREAD_READY and puts it back into the 
+ready_list to allow it to be scheduled again for CPU time. 
+
+>> A3: What steps are taken to minimize the amount of time spent in
+>> the timer interrupt handler?
+
+For optimization purposes, we keep all of our sleeping threads in
+sleeping_list sorted by wake_up time. Unfortunately, this means that
+we can't have a thread begin sleeping in O(1) time. Insertion into
+this list takes O(log(n)) time, which is still pretty good. Besides,
+this thread wanted to sleep anyway so it isn't missing out on much.
+
+What this does give us, however, is the ability to speed up our
+schedule() function. We no longer need to do an O(n) check on all
+of the threads that are sleeping to figure out which ones are ready
+to be woken up. Since our list is ordered, we can just check the 
+first thread in the list to see if any thread needs to be woken up
+at all. If that first thread isn't ready to wake up, then none of
+the other ones are either.
+
+This implementation still only gives us an O(n) runtime in the worst
+case. But in the average case, it's O(k), where k is the number of
+threads that need to be woken up. And that's quite good! 
+
+---- SYNCHRONIZATION ----
+
+>> A4: How are race conditions avoided when multiple threads call
+>> timer_sleep() simultaneously?
+
+Only the active thread can call timer_sleep(). Because of this, we 
+sort of just avoid the problem entirely. As many threads can call
+timer_sleep as they want, but only one runs at a time. As the first
+call to timer_sleep begins finishing, the thread is put to sleep and
+another is running in its place. That thread may have been ready to
+call timer_sleep, but it wasn't running yet to call it.
+
+As far as multiple threads sleeping simultaneously goes, we stopped
+letting timer_sleep busy-wait. In the old implementation, if
+multiple threads called timer_sleep, the entire system would slow
+down. The active thread would be busy-waiting for its sleep amount,
+and then wake back up and maybe allow the next thread to get CPU
+time, and then that thread would just busy-wait and waste all of the
+CPU time.
+
+Our implementation has the thread yield its CPU time while it's
+sleeping. This allows for other threads to say that they want to
+sleep as well, so the threads that actually want to run get to run.
+
+And then, of course, schedule() takes care of waking up threads. (It
+will wake up multiple threads at once, if they all were ready at the
+same time, leading to further syncronization.)
+
+>> A5: How are race conditions avoided when a timer interrupt occurs
+>> during a call to timer_sleep()?
+
+We just have interrupts turned off for that very short period of
+time. It's such a short period of time that we figured we could get
+away with just having no process interrupt. Our other option was to
+have the thread quit trying to sleep and then try to sleep again
+when it got more processor time. The issue with this, is that we 
+end up having much less accurate timing on timer_sleep. We felt
+that could interfere with time critical taks, so it would be better
+to just not allow the thread to be interrupted while calling
+timer_sleep.
+
+Also, after timer_sleep has been called, none of our sleeping
+threads are actively running, so they could not be interrupted
+while doing something because they simply aren't doing anything.
+
+---- RATIONALE ----
+
+>> A6: Why did you choose this design?  In what ways is it superior to
+>> another design you considered?
+
+We chose this design because we figured it would be the most
+efficient use of CPU time. There is no sense of having a thread
+running on the CPU, wasting its resources, while other threads are
+out there starving for just a fraction of time just because it wants
+to wait a couple of seconds before blinking the cursor on the screen.
+We believe that we made the right decision in this aspect.
+
+It is superior to busy-waiting in the sense that it still allows
+other threads to take cobtrol of the CPU time the current thread
+doesn't need. Nothing is wasted, so the entire system is faster as a
+whole. Also, our implementation is just a lot faster because it does
+not have to check every single thread in existence to see if it needs
+to be woken up from a nap. 
+
+			 PRIORITY SCHEDULING
+			 ===================
+
+---- DATA STRUCTURES ----
+
+>> B1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+>> thread.h
+
+struct thread -> struct list donated_from_list;
+A list of threads that this thread has received donations from
+
+struct thread -> int highest_priority;
+An integer value of the highest priority, either default or donated.
+
+>> B2: Explain the data structure used to track priority donation.
+>> Use ASCII art to diagram a nested donation.  (Alternately, submit a
+>> .png file.)
+
+We use a beautifully non-complex system of 8 pointers. If a thread
+wants to donate priority to another thread, it just uses one of the
+pointers to keep track of its donation. This forms a chain if the 
+donations need to go down deeper levels.
+
+The good news is that threads can donate their boosted priorities
+to other threads, which makes it easier to chain priority donation.
+
+The bad news is that it's hard to keep track of how much donation
+you have received once someone wants to stop donating to you,
+because you want to go back to your lower priority, but you may
+have been given more priority by another thread, but you can't
+forget what your original priority was.
+
+That's where the pointers come in. Each thread can point to the
+threads it is donating to.
+
+
+
+H ---> M ---> L          H = high priority
+|             ^          M = medium priority
+--------------|          L = low priority
+
+In this particular case, M holds a lock that H needs, and L holds
+a lock that M needs. Because of this, M donates to L, and H donates
+to both M and L.
+
+---- ALGORITHMS ----
+
+>> B3: How do you ensure that the highest priority thread waiting for
+>> a lock, semaphore, or condition variable wakes up first?
+
+We keep our ready list sorted by priority. This makes it so that
+the next thread to wake is always the one with the highest priority
+(or donated priority). We always make sure to insert threads into
+our lists in a manner that keeps the list sorted.
+
+>> B4: Describe the sequence of events when a call to lock_acquire()
+>> causes a priority donation.  How is nested donation handled?
+
+lock_aquire gets called. If you're busy waiting on the lock to
+become ready, you donate your priority to the thread that is holding
+that lock. That part is pretty simple.
+
+As for nested donation, you donate your priority to a thread that
+has control of a lock that you need. That thread just so happens
+to hold another lock that you don't particularly care about.
+
+Still, you donate your priority to the thread that holds the lock
+that you need. That thread recieves notice that it has boosted
+priority. But that thread also is still waiting on another thread
+that holds a lock. It will then donate its boosted priority to
+that next thread to allow it to finish with its lock quickly.
+
+>> B5: Describe the sequence of events when lock_release() is called
+>> on a lock that a higher-priority thread is waiting for.
+
+This high priority thread is probably sitting on a lock_acquire
+waiting for the lock. In that moment that lock_release() is called,
+this high priority thread simply achieves lock. It's the highest
+priority thread that's been waiting that lock. Therefore, it is the
+first to wake up from our list, and the first to finish executing
+lock_acquire(). 
+
+---- SYNCHRONIZATION ----
+
+>> B6: Describe a potential race in thread_set_priority() and explain
+>> how your implementation avoids it.  Can you use a lock to avoid
+>> this race?
+
+Many threads may just want to ramp up their priorities so they can
+receive all of the CPU time. Our implementation of the scheduling
+doesn't use multi-level scheduling, so this is actually quite
+possible. One thing that our code does is use the disabling of
+interrupts effectively. Threads have the option of disabling
+interrupts to allow them to continue to get something done even
+if another thread comes along and demands CPU time becase it just
+raised its priority.
+
+We could in fact use a lock to avoid this race. Threads could
+acquire a priority change lock which won't allow other threads to
+change priority. This could have many useful applications.
+
+---- RATIONALE ----
+
+>> B7: Why did you choose this design?  In what ways is it superior to
+>> another design you considered?
+
+We chose this design because our design with an actual data structure
+wasn't working out. We found it to be easier to implement.
+
+We considered a recursive implementation, but with that implementation
+we ran into things like stack overflows.
+
+This implementation is all iterative, and thus avoids ever running
+into that sort of issue.
+
+			   SURVEY QUESTIONS
+			   ================
+
+Answering these questions is optional, but it will help us improve the
+course in future quarters.  Feel free to tell us anything you
+want--these questions are just to spur your thoughts.  You may also
+choose to respond anonymously in the course evaluations at the end of
+the quarter.
+
+>> In your opinion, was this assignment, or any one of the three problems
+>> in it, too easy or too hard?  Did it take too long or too little time?
+
+>> Did you find that working on a particular part of the assignment gave
+>> you greater insight into some aspect of OS design?
+
+>> Is there some particular fact or hint we should give students in
+>> future quarters to help them solve the problems?  Conversely, did you
+>> find any of our guidance to be misleading?
+
+>> Do you have any suggestions for the TAs to more effectively assist
+>> students, either for future quarters or the remaining projects?
+
+>> Any other comments?

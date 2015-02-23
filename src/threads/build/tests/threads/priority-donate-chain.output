@@ -1,4 +1,4 @@
-qemu -hda /tmp/cQ8s200X0D.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/qhfzeElyOF.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run priority-donate-chain
