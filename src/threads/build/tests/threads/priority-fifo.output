@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 qemu -hda /tmp/sTAadNiwQl.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/aQ_KiQPcvF.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> ca33eb743c952d50a067195497e97f5f5c7d9efb
 PiLo hda1
-Loading.........
+Loading..........
 Kernel command line: -q run priority-fifo
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 Boot complete.
 Executing 'priority-fifo':
 (priority-fifo) begin
@@ -29,8 +33,8 @@ Executing 'priority-fifo':
 (priority-fifo) iteration: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 (priority-fifo) end
 Execution of 'priority-fifo' complete.
-Timer: 28 ticks
-Thread: 0 idle ticks, 28 kernel ticks, 0 user ticks
+Timer: 29 ticks
+Thread: 0 idle ticks, 29 kernel ticks, 0 user ticks
 Console: 1557 characters output
 Keyboard: 0 keys pressed
 Powering off...

@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 qemu -hda /tmp/PLhri4uen8.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/VT87njgM73.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> ca33eb743c952d50a067195497e97f5f5c7d9efb
 PiLo hda1
-Loading.........
+Loading..........
 Kernel command line: -q run alarm-single
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.

@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 qemu -hda /tmp/luq7GYw__A.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/Ws8uP6rZpi.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> ca33eb743c952d50a067195497e97f5f5c7d9efb
 PiLo hda1
-Loading.........
+Loading..........
 Kernel command line: -q run alarm-simultaneous
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 Boot complete.
 Executing 'alarm-simultaneous':
 (alarm-simultaneous) begin
