@@ -1,5 +1,5 @@
 Copying tests/userprog/args-none to scratch partition...
-qemu -hda /tmp/LlKXx7Xlhm.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/5bE1z0WIxQ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run args-none
@@ -20,22 +20,33 @@ Putting 'args-none' into the file system...
 Erasing ustar archive...
 Executing 'args-none':
 system call!
-Page fault at 0xc0463580: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002b87e
- cr2=c0463580 error=00000000
- eax=c010af68 ebx=bfffff4c ecx=c010af68 edx=c010af68
- esi=00000000 edi=0804be2e esp=00200034 ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=af68
+system call!
+Page fault at 0: not present error reading page in user context.
+args-none: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480e1
+ cr2=00000000 error=00000004
+ eax=0804be20 ebx=00000000 ecx=00000010 edx=00000001
+ esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
+ cs=001b ds=0023 es=0023 ss=0023
+args-none: exit(-1)
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480e1
+ cr2=00000000 error=00000004
+ eax=0804be20 ebx=00000000 ecx=00000010 edx=00000001
+ esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
+ cs=001b ds=0023 es=0023 ss=0023
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc002b87e.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 147 ticks
-Thread: 1 idle ticks, 145 kernel ticks, 1 user ticks
+Call stack: 0xc00285fe 0x80480e1Page fault at 0xbfffffd0: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026007
+ cr2=bfffffd0 error=00000000
+ eax=0000000a ebx=bfffffd0 ecx=000007a0 edx=c010ae68
+ esi=00000065 edi=c0030b5b esp=c003021c ebp=c010af04
+ cs=0008 ds=0010 es=0010 ss=80e1
+Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+Timer: 211 ticks
+Thread: 1 idle ticks, 210 kernel ticks, 0 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 1405 characters output
+Console: 1935 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 2 page faults
 Powering off...
