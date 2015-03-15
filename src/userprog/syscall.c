@@ -38,6 +38,7 @@ syscall_handler (struct intr_frame *f UNUSED)
 {
   printf ("system call!\n");
   uint32_t *esp = f->esp;
+  uint32_t *call = esp;
   if(*esp == NULL || is_kernel_vaddr(esp) ||
      !pagedir_is_mapped(thread_current()->pagedir, esp))
   {
@@ -47,83 +48,81 @@ syscall_handler (struct intr_frame *f UNUSED)
   int fd;
   int status;
   unsigned size;
+  unsigned position;
   const char *cmd;
   void *buffer;
-  switch (*esp)
+  pid_t pid;
+  bool moreargs = true;
+  if (esp += 4 > PHYS_BASE) moreargs = false;
+  switch (*call)
   {
   case SYS_HALT:
     halt ();
     break;
   case SYS_EXIT:
-    esp += 4;
-    status = &esp;
+    status = (int) &esp;
     exit (status);
     break;
   case SYS_EXEC:
-    esp += 4;
-    cmd = esp;
+    cmd = (const char *) esp;
     exec (cmd);
     break;
   case SYS_WAIT:
-    esp += 4;
-    pid_t pid = &esp;
+    pid = (pid_t) &esp;
     wait (pid);
     break;
   case SYS_CREATE:
+    file = (const char *) esp;
     esp += 4;
-    file = esp;
-    esp += 4;
-    size = &esp;
+    size = (unsigned) &esp;
     create (file, size);
     break;
   case SYS_REMOVE:
-    esp += 4;
-    file = esp;
+    file = (const char *) esp;
     remove (file);
     break;
   case SYS_OPEN:
-    esp += 4;
-    file = esp;
+    file = (const char *) esp;
     open (file);
     break;
   case SYS_FILESIZE:
-    esp += 4;
-    fd = &esp;
+    fd = (int) &esp;
     filesize (fd);
     break;
   case SYS_READ:
+    fd = (int) &esp;
     esp += 4;
-    fd = &esp;
+    buffer = (void *) &esp;
     esp += 4;
-    buffer = &esp;
-    esp += 4;
-    size = &esp;
+    size = (unsigned) &esp;
     read (fd, buffer, size);
     break;
   case SYS_WRITE: 
+    if (moreargs) fd = (int) &esp;
+    else
+    {
+      fd = 1;
+      write (fd, NULL, NULL);
+      break;
+    }
     esp += 4;
-    fd = &esp;
+    buffer = (void *) &esp;
     esp += 4;
-    buffer = &esp;
-    esp += 4;
-    size = &esp;
+    size = (int) &esp;
     write (fd, buffer, size);
     break;
   case SYS_SEEK:
+    fd = (int) &esp;
     esp += 4;
-    fd = &esp;
-    esp += 4;
-    unsigned position = &esp;
+    position = (unsigned) &esp;
     seek (fd, position);
     break;
   case SYS_TELL:
-    esp += 4;
-    fd = &esp;
+    fd = (int) &esp;
     tell (fd);
     break;
   case SYS_CLOSE:
-    esp += 4;
-    fd = &esp;
+    fd = (int) &esp;
     close (fd);
     break;
   }
