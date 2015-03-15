@@ -1,11 +1,5 @@
 FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0x80480e1
+Kernel panic in run: PANIC at ../../threads/palloc.c:123 in palloc_free_multiple(): assertion `pg_ofs (pages) == 0' failed.
+Call stack: 0xc00285fe
 Translation of call stack:
-In kernel.o:
 0xc00285fe: debug_panic (.../../lib/kernel/debug.c:38)
-In tests/userprog/args-none:
-0x080480e1: main (.../tests/userprog/args.c:18)
-Translations of user virtual addresses above are based on a guess at
-the binary to use.  If this guess is incorrect, then those
-translations will be misleading.

@@ -1,21 +1,40 @@
 Copying tests/userprog/args-dbl-space to scratch partition...
-qemu -hda /tmp/wVwsCBoC9i.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Sq29dPtPmJ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-dbl-space two  spaces!'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-Kernel PANIC at ../../threads/interrupt.c:91 in intr_enable(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028bde.
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 91 sectors (45 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'args-dbl-space' into the file system...
+Erasing ustar archive...
+Executing 'args-dbl-space two  spaces!':
+Page fault at 0xc00309e2: rights violation error writing page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027cc5
+ cr2=c00309e2 error=00000003
+ eax=c00309e2 ebx=c00309e2 ecx=fffffffe edx=00000000
+ esi=00000000 edi=00000000 esp=c00309e2 ebp=00000001
+ cs=0008 ds=0010 es=0010 ss=03aa
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc00285fe 0xc0027cc5.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 42 ticks
-Thread: 15 idle ticks, 27 kernel ticks, 0 user ticks
-Console: 632 characters output
+Timer: 59 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
+hda2 (filesys): 26 reads, 186 writes
+hda3 (scratch): 90 reads, 2 writes
+Console: 1438 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

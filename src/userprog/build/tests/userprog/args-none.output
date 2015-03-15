@@ -1,12 +1,12 @@
 Copying tests/userprog/args-none to scratch partition...
-qemu -hda /tmp/5bE1z0WIxQ.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/gIzXmqBMsJ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run args-none
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -19,34 +19,17 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-none' into the file system...
 Erasing ustar archive...
 Executing 'args-none':
-system call!
-system call!
-Page fault at 0: not present error reading page in user context.
-args-none: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480e1
- cr2=00000000 error=00000004
- eax=0804be20 ebx=00000000 ecx=00000010 edx=00000001
- esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
- cs=001b ds=0023 es=0023 ss=0023
-args-none: exit(-1)
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480e1
- cr2=00000000 error=00000004
- eax=0804be20 ebx=00000000 ecx=00000010 edx=00000001
- esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
- cs=001b ds=0023 es=0023 ss=0023
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0x80480e1Page fault at 0xbfffffd0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026007
- cr2=bfffffd0 error=00000000
- eax=0000000a ebx=bfffffd0 ecx=000007a0 edx=c010ae68
- esi=00000065 edi=c0030b5b esp=c003021c ebp=c010af04
- cs=0008 ds=0010 es=0010 ss=80e1
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 211 ticks
-Thread: 1 idle ticks, 210 kernel ticks, 0 user ticks
-hda2 (filesys): 63 reads, 186 writes
+load: : open failed
+Kernel PANIC at ../../threads/palloc.c:123 in palloc_free_multiple(): assertion `pg_ofs (pages) == 0' failed.
+Call stack: 0xc00285fe.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 131 ticks
+Thread: 1 idle ticks, 130 kernel ticks, 0 user ticks
+hda2 (filesys): 43 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 1935 characters output
+Console: 1105 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

@@ -1,12 +1,12 @@
 Copying tests/userprog/args-single to scratch partition...
-qemu -hda /tmp/G66qwD3noI.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/nfcgAtubNK.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-single onearg'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  443,187,200 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -19,6 +19,22 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-single' into the file system...
 Erasing ustar archive...
 Executing 'args-single onearg':
-load: args-single onearg: open failed
-
-TIMEOUT after 60 seconds of host CPU time
+Page fault at 0xc00309e2: rights violation error writing page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027cc5
+ cr2=c00309e2 error=00000003
+ eax=c00309e2 ebx=c00309e2 ecx=fffffffe edx=00000000
+ esi=00000000 edi=00000000 esp=c00309e2 ebp=00000001
+ cs=0008 ds=0010 es=0010 ss=03aa
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc00285fe 0xc0027cc5.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 59 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
+hda2 (filesys): 26 reads, 186 writes
+hda3 (scratch): 90 reads, 2 writes
+Console: 1417 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...
