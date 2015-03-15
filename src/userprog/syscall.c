@@ -37,11 +37,12 @@ static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
   printf ("system call!\n");
-  uint32_t *esp = f->esp;
-  uint32_t *call = esp;
-  if(*esp == NULL || is_kernel_vaddr(esp) ||
+  int **esp = f->esp;
+  int **call = esp;
+  if(esp == NULL || is_kernel_vaddr(esp) ||
      !pagedir_is_mapped(thread_current()->pagedir, esp))
   {
+    printf("I exited cause I'm a jerk");
     exit (-1);
   }
   const char *file;
@@ -53,76 +54,76 @@ syscall_handler (struct intr_frame *f UNUSED)
   void *buffer;
   pid_t pid;
   bool moreargs = true;
-  if (esp += 4 > PHYS_BASE) moreargs = false;
-  switch (*call)
+  if (!is_kernel_vaddr(esp += 1)) moreargs = false;
+  switch ((int) *call)
   {
   case SYS_HALT:
     halt ();
     break;
   case SYS_EXIT:
-    status = (int) &esp;
+    status = (int) *esp;
     exit (status);
     break;
   case SYS_EXEC:
-    cmd = (const char *) esp;
+    cmd = (const char *) *esp;
     exec (cmd);
     break;
   case SYS_WAIT:
-    pid = (pid_t) &esp;
+    pid = (pid_t) *esp;
     wait (pid);
     break;
   case SYS_CREATE:
-    file = (const char *) esp;
-    esp += 4;
-    size = (unsigned) &esp;
+    file = (const char *) *esp;
+    esp += 1;
+    size = (unsigned) *esp;
     create (file, size);
     break;
   case SYS_REMOVE:
-    file = (const char *) esp;
+    file = (const char *) *esp;
     remove (file);
     break;
   case SYS_OPEN:
-    file = (const char *) esp;
+    file = (const char *) *esp;
     open (file);
     break;
   case SYS_FILESIZE:
-    fd = (int) &esp;
+    fd = (int) *esp;
     filesize (fd);
     break;
   case SYS_READ:
-    fd = (int) &esp;
-    esp += 4;
-    buffer = (void *) &esp;
-    esp += 4;
-    size = (unsigned) &esp;
+    fd = (int) *esp;
+    esp += 1;
+    buffer = (void *) *esp;
+    esp += 1;
+    size = (unsigned) *esp;
     read (fd, buffer, size);
     break;
   case SYS_WRITE: 
-    if (moreargs) fd = (int) &esp;
+    if (moreargs) fd = (int) *esp;
     else
     {
       fd = 1;
       write (fd, NULL, NULL);
       break;
     }
-    esp += 4;
-    buffer = (void *) &esp;
-    esp += 4;
-    size = (int) &esp;
+    esp += 1;
+    buffer = (void *) *esp;
+    esp += 1;
+    size = (int) *esp;
     write (fd, buffer, size);
     break;
   case SYS_SEEK:
-    fd = (int) &esp;
-    esp += 4;
-    position = (unsigned) &esp;
+    fd = (int) *esp;
+    esp += 1;
+    position = (unsigned) *esp;
     seek (fd, position);
     break;
   case SYS_TELL:
-    fd = (int) &esp;
+    fd = (int) *esp;
     tell (fd);
     break;
   case SYS_CLOSE:
-    fd = (int) &esp;
+    fd = (int) *esp;
     close (fd);
     break;
   }
@@ -146,6 +147,7 @@ exec (const char *cmd_line)
 {
   char *save_ptr;
   return process_execute (strtok_r (cmd_line, " ", save_ptr));
+  //return process_execute (cmd_line);
 }
 
 int

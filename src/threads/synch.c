@@ -113,12 +113,11 @@ sema_up (struct semaphore *sema)
   ASSERT (sema != NULL);
 
   old_level = intr_disable ();
-  if (!list_empty (&sema->waiters))
+  if (!list_empty (&sema->waiters)) 
     thread_unblock (list_entry (list_pop_front (&sema->waiters),
                                 struct thread, elem));
   sema->value++;
   intr_set_level (old_level);
-  thread_set_priority(thread_current ()->priority);
 }
 
 static void sema_test_helper (void *sema_);
@@ -157,7 +156,7 @@ sema_test_helper (void *sema_)
       sema_up (&sema[1]);
     }
 }
-
+
 /* Initializes LOCK.  A lock can be held by at most a single
    thread at any given time.  Our locks are not "recursive", that
    is, it is an error for the thread currently holding a lock to
@@ -196,43 +195,9 @@ lock_acquire (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (!intr_context ());
   ASSERT (!lock_held_by_current_thread (lock));
-  if (lock->holder == NULL){
-    sema_down (&lock->semaphore);
-    lock->holder = thread_current ();
-  } else {
-    
-    struct thread *a = thread_current ();
-    struct thread *b = lock->holder;
-    while(b != NULL){
-      bool contains = false;
-      if (&b->donated_from1 == &a || &b->donated_from2 == &a
-          || &b->donated_from3 == &a || &b->donated_from4 == &a
-          || &b->donated_from5 == &a || &b->donated_from6 == &a
-          || &b->donated_from7 == &a || &b->donated_from8 == &a){
-        contains = true;
-      }
-      if(contains == false){
-        if(&b->donated_from1 == NULL) b->donated_from1 = &a;
-        else if(&b->donated_from2 == NULL) b->donated_from2 = &a;
-        else if(&b->donated_from3 == NULL) b->donated_from3 = &a;
-        else if(&b->donated_from4 == NULL) b->donated_from4 = &a;
-        else if(&b->donated_from5 == NULL) b->donated_from5 = &a;
-        else if(&b->donated_from6 == NULL) b->donated_from6 = &a;
-        else if(&b->donated_from7 == NULL) b->donated_from7 = &a;
-        else if(&b->donated_from8 == NULL) b->donated_from8 = &a;
-      }
-      a->donated_to = b;
-      if(a->highest_priority > b->highest_priority){
-	b->highest_priority = a->highest_priority;
-      }
-      a = b;
-      b = b->donated_to;
-    }
-    // attempt to acquire the lock
-    sema_down (&lock->semaphore);
-    lock->holder = thread_current ();
-    thread_current ()->donated_to = NULL;
-  }
+
+  sema_down (&lock->semaphore);
+  lock->holder = thread_current ();
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -266,17 +231,6 @@ lock_release (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
 
-  thread_current ()->donated_from1 = NULL;
-  thread_current ()->donated_from2 = NULL;
-  thread_current ()->donated_from3 = NULL;
-  thread_current ()->donated_from4 = NULL;
-  thread_current ()->donated_from5 = NULL;
-  thread_current ()->donated_from6 = NULL;
-  thread_current ()->donated_from7 = NULL;
-  thread_current ()->donated_from8 = NULL;
-
-  thread_set_priority(thread_current ()->priority);
-
   lock->holder = NULL;
   sema_up (&lock->semaphore);
 }
@@ -291,7 +245,7 @@ lock_held_by_current_thread (const struct lock *lock)
 
   return lock->holder == thread_current ();
 }
-
+
 /* One semaphore in a list. */
 struct semaphore_elem 
   {

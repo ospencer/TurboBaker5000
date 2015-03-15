@@ -10,7 +10,6 @@ enum thread_status
   {
     THREAD_RUNNING,     /* Running thread. */
     THREAD_READY,       /* Not running but ready to run. */
-    THREAD_SLEEPING,    /* New State for Sleeping Threads. */
     THREAD_BLOCKED,     /* Waiting for an event to trigger. */
     THREAD_DYING        /* About to be destroyed. */
   };
@@ -89,23 +88,7 @@ struct thread
     char name[16];                      /* Name (for debugging purposes). */
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
-
-    struct thread * donated_from1;
-    struct thread * donated_from2;
-    struct thread * donated_from3;
-    struct thread * donated_from4;
-    struct thread * donated_from5;
-    struct thread * donated_from6;
-    struct thread * donated_from7;
-    struct thread * donated_from8;
-
-    int highest_priority;		/* Highest of priority and all
-					   donated priorities */
-    struct thread * donated_to;		/* Threads this thread has
-					   donated priority to */
     struct list_elem allelem;           /* List element for all threads list. */
-    int nice;
-    int recent_cpu;
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
@@ -117,9 +100,6 @@ struct thread
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
-
-    /* Owned by thread.c. */
-    int64_t wake_time;                  /* Time at which to wake thread */
   };
 
 /* If false (default), use round-robin scheduler.
@@ -127,10 +107,6 @@ struct thread
    Controlled by kernel command-line option "-o mlfqs". */
 extern bool thread_mlfqs;
 
-
-static struct list ready_list;		/* List of processes in THREAD_READY
-					   state, that is, processes that are
-                	                   ready to run but not actually running */
 void thread_init (void);
 void thread_start (void);
 
@@ -149,8 +125,6 @@ const char *thread_name (void);
 
 void thread_exit (void) NO_RETURN;
 void thread_yield (void);
-
-bool more_by_priority(const struct list_elem *, const struct list_elem *, void *aux);
 
 /* Performs some operation on thread t, given auxiliary data AUX. */
 typedef void thread_action_func (struct thread *t, void *aux);
