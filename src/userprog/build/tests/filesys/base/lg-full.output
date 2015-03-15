@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-full to scratch partition...
-qemu -hda /tmp/GBEw6TDuvR.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Kt7TYM7rIB.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-full

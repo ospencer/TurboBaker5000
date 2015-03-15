@@ -1,5 +1,5 @@
 Copying tests/userprog/create-null to scratch partition...
-qemu -hda /tmp/a_OeKX1F6o.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/0I2ACw80L3.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-null

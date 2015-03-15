@@ -1,21 +1,24 @@
 Copying tests/userprog/args-single to scratch partition...
-qemu -hda /tmp/UEX7Dj7ZCl.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/G66qwD3noI.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-single onearg'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  443,187,200 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-Kernel PANIC at ../../threads/interrupt.c:91 in intr_enable(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028bde.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 41 ticks
-Thread: 15 idle ticks, 26 kernel ticks, 0 user ticks
-Console: 623 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 91 sectors (45 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'args-single' into the file system...
+Erasing ustar archive...
+Executing 'args-single onearg':
+load: args-single onearg: open failed
+
+TIMEOUT after 60 seconds of host CPU time

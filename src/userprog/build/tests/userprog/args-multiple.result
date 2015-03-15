@@ -1,5 +1,2 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/interrupt.c:91 in intr_enable(): assertion `!intr_context ()' failed.
-Call stack: 0xc0028bde
-Translation of call stack:
-0xc0028bde: debug_panic (.../../lib/kernel/debug.c:38)
+run: TIMEOUT after 60 seconds of host CPU time
