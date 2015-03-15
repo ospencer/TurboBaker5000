@@ -7,6 +7,7 @@
 #include "userprog/process.h"
 #include "lib/string.h"
 #include "lib/syscall-nr.h"
+#include "filesys/file.h"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -22,6 +23,7 @@ int write (int, const void *, unsigned);
 void seek (int, unsigned);
 unsigned tell (int);
 void close (int);
+struct file * fds[128];
 
 void
 syscall_init (void) 
@@ -161,13 +163,23 @@ remove (const char *file)
 int
 open (const char *file)
 {
-  
+  int index = 0;
+  while(index < sizeof(fds))
+  {
+    if(fds[index] == NULL)
+    {
+      fds[index] = filesys_open(file);
+      return index;
+    }
+    index++;
+  }
+  return -1;
 }
 
 int
 filesize (int fd)
 {
-  
+  return file_length(fds[fd]);
 }
 
 int
@@ -178,7 +190,7 @@ read (int fd, void *buffer, unsigned size)
     strlcpy(buffer, input_getc() , size);
   }else
   {
-    
+    return file_read(fds[fd], buffer, size);
   }
 }
 
@@ -190,24 +202,25 @@ write (int fd, const void *buffer, unsigned size)
     putbuf(buffer, size);
   }else
   {
-    
+    return file_write(fds[fd], buffer, size);
   }
 }
 
 void
 seek (int fd, unsigned position)
 {
-  
+  file_seek(fds[fd], position);
 }
 
 unsigned 
 tell (int fd)
 {
-  
+  return file_tell(fds[fd]);
 }
 
 void
 close (int fd)
 {
-  
+  file_close(fds[fd]);
+  fds[fd] = NULL;
 }

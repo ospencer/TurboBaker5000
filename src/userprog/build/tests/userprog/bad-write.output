@@ -1,5 +1,5 @@
 Copying tests/userprog/bad-write to scratch partition...
-qemu -hda /tmp/EoNtQHUJS3.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/jZyORPXvso.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run bad-write

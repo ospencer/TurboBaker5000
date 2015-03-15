@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-qemu -hda /tmp/eRk6qQl32T.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/qEqP3bT5u_.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-create

@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-seq-block to scratch partition...
-qemu -hda /tmp/C9hws7Wd08.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/uj4MkQckvQ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-block
@@ -13,8 +13,8 @@ Call stack: 0xc0028bde.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 41 ticks
-Thread: 15 idle ticks, 26 kernel ticks, 0 user ticks
+Timer: 40 ticks
+Thread: 15 idle ticks, 25 kernel ticks, 0 user ticks
 Console: 615 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults

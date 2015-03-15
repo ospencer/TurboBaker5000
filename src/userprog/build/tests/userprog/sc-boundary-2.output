@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-boundary-2 to scratch partition...
-qemu -hda /tmp/HGLtKHL2YU.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/_x1Ar4AVxl.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sc-boundary-2
