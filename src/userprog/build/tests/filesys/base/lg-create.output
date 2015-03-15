@@ -1,12 +1,12 @@
 Copying tests/filesys/base/lg-create to scratch partition...
-qemu -hda /tmp/qpbtb74PPM.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/ZVKGS_xsLf.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-create
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 Kernel PANIC at ../../threads/interrupt.c:91 in intr_enable(): assertion `!intr_context ()' failed.
 Call stack: 0xc0028bde.

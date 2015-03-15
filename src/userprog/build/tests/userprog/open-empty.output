@@ -1,5 +1,5 @@
 Copying tests/userprog/open-empty to scratch partition...
-qemu -hda /tmp/8sMZIZJs1v.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/7EUQOTsU87.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-empty

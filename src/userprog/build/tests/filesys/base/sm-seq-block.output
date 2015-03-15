@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-seq-block to scratch partition...
-qemu -hda /tmp/u7W7B264xt.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/hPXY1SSpT7.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-block

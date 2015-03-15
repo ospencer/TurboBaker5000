@@ -1,5 +1,5 @@
 Copying tests/userprog/bad-write to scratch partition...
-qemu -hda /tmp/yvxtX6IM9J.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/40Cd2S6rG8.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run bad-write
@@ -13,8 +13,8 @@ Call stack: 0xc0028bde.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 41 ticks
-Thread: 15 idle ticks, 26 kernel ticks, 0 user ticks
+Timer: 42 ticks
+Thread: 15 idle ticks, 27 kernel ticks, 0 user ticks
 Console: 612 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults

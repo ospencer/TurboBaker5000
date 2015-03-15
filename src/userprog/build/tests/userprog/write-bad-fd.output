@@ -1,5 +1,5 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
-qemu -hda /tmp/dPdHpLLSYt.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/xGyWNFaQNK.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-fd
