@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-seq-random to scratch partition...
-qemu -hda /tmp/V5Wmqu8h4k.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Els145tTNg.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-seq-random

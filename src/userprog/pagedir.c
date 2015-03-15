@@ -261,3 +261,10 @@ invalidate_pagedir (uint32_t *pd)
       pagedir_activate (pd);
     } 
 }
+
+// Checks if virtual address VADDR is mapped in page directory PD
+bool pagedir_is_mapped (uint32_t *pd, const void *vaddr)
+{
+  if(lookup_page(pd, vaddr, false) == NULL) return false;
+  return true;
+}

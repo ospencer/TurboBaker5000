@@ -1,5 +1,5 @@
 Copying tests/userprog/create-exists to scratch partition...
-qemu -hda /tmp/64lPV3PvxM.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/wuNB0x9wGJ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-exists

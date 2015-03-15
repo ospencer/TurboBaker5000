@@ -8,6 +8,8 @@
 #include "lib/string.h"
 #include "lib/syscall-nr.h"
 #include "filesys/file.h"
+#include "threads/vaddr.h"
+#include "userprog/pagedir.h"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -36,6 +38,11 @@ syscall_handler (struct intr_frame *f UNUSED)
 {
   printf ("system call!\n");
   uint32_t *esp = f->esp;
+  if(*esp == NULL || is_kernel_vaddr(esp) ||
+     !pagedir_is_mapped(thread_current()->pagedir, esp))
+  {
+    exit (-1);
+  }
   const char *file;
   int fd;
   int status;
@@ -224,3 +231,4 @@ close (int fd)
   file_close(fds[fd]);
   fds[fd] = NULL;
 }
+

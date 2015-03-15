@@ -1,5 +1,5 @@
 Copying tests/userprog/read-stdout to scratch partition...
-qemu -hda /tmp/mUnIfjKF1o.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/d5PL4heReQ.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-stdout

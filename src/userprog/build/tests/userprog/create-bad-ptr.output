@@ -1,5 +1,5 @@
 Copying tests/userprog/create-bad-ptr to scratch partition...
-qemu -hda /tmp/RAVMKlpTXo.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/GdLRN7Paxc.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-bad-ptr
