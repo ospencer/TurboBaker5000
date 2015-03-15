@@ -25,7 +25,7 @@ int write (int, const void *, unsigned);
 void seek (int, unsigned);
 unsigned tell (int);
 void close (int);
-struct file * fds[128];
+struct file *fds[128];
 
 void
 syscall_init (void) 
@@ -170,7 +170,7 @@ remove (const char *file)
 int
 open (const char *file)
 {
-  int index = 0;
+  int index = 2;
   while(index < sizeof(fds))
   {
     if(fds[index] == NULL)
@@ -207,6 +207,7 @@ write (int fd, const void *buffer, unsigned size)
   if(fd == 1)
   {
     putbuf(buffer, size);
+    return size;
   }else
   {
     return file_write(fds[fd], buffer, size);
