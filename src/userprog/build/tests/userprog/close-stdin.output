@@ -1,5 +1,5 @@
 Copying tests/userprog/close-stdin to scratch partition...
-qemu -hda /tmp/C47UK6NcpA.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/9uzpuuAqw6.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-stdin

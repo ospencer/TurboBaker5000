@@ -33,20 +33,26 @@ static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
   printf ("system call!\n");
-  void *esp = f->esp;
-  switch (&esp)
+  uint32_t *esp = f->esp;
+  const char *file;
+  int fd;
+  int status;
+  unsigned size;
+  const char *cmd;
+  void *buffer;
+  switch (*esp)
   {
   case SYS_HALT:
     halt ();
     break;
   case SYS_EXIT:
     esp += 4;
-    int status = &esp;
+    status = &esp;
     exit (status);
     break;
   case SYS_EXEC:
     esp += 4;
-    const char *cmd = esp;
+    cmd = esp;
     exec (cmd);
     break;
   case SYS_WAIT:
@@ -56,59 +62,59 @@ syscall_handler (struct intr_frame *f UNUSED)
     break;
   case SYS_CREATE:
     esp += 4;
-    const char *file = esp;
+    file = esp;
     esp += 4;
-    unsigned size = &esp;
+    size = &esp;
     create (file, size);
     break;
   case SYS_REMOVE:
     esp += 4;
-    const char *file = esp;
+    file = esp;
     remove (file);
     break;
   case SYS_OPEN:
     esp += 4;
-    const char *file = esp;
+    file = esp;
     open (file);
     break;
   case SYS_FILESIZE:
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     filesize (fd);
     break;
   case SYS_READ:
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     esp += 4;
-    void *buffer = &esp;
+    buffer = &esp;
     esp += 4;
-    unsigned size = &esp;
+    size = &esp;
     read (fd, buffer, size);
     break;
   case SYS_WRITE: 
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     esp += 4;
-    void *buffer = &esp;
+    buffer = &esp;
     esp += 4;
-    unsigned size = &esp;
+    size = &esp;
     write (fd, buffer, size);
     break;
   case SYS_SEEK:
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     esp += 4;
     unsigned position = &esp;
     seek (fd, position);
     break;
   case SYS_TELL:
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     tell (fd);
     break;
   case SYS_CLOSE:
     esp += 4;
-    int fd = &esp;
+    fd = &esp;
     close (fd);
     break;
   }
@@ -123,6 +129,7 @@ halt (void)
 void
 exit (int status)
 {
+  printf("%s: exit(%d)\n", thread_name(), status);
   process_exit ();
 }
 
@@ -142,53 +149,65 @@ wait (pid_t pid)
 bool
 create (const char *file, unsigned size)
 {
-
+  return filesys_create (file, size);
 }
 
 bool
 remove (const char *file)
 {
-
+  return filesys_remove (file);
 }
 
 int
 open (const char *file)
 {
-
+  
 }
 
 int
 filesize (int fd)
 {
-
+  
 }
 
 int
 read (int fd, void *buffer, unsigned size)
 {
-
+  if(fd == 0)
+  {
+    strlcpy(buffer, input_getc() , size);
+  }else
+  {
+    
+  }
 }
 
 int
 write (int fd, const void *buffer, unsigned size)
 {
-
+  if(fd == 1)
+  {
+    putbuf(buffer, size);
+  }else
+  {
+    
+  }
 }
 
 void
 seek (int fd, unsigned position)
 {
-
+  
 }
 
 unsigned 
 tell (int fd)
 {
-
+  
 }
 
 void
 close (int fd)
 {
-
+  
 }

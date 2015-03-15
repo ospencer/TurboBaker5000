@@ -1,21 +1,21 @@
 Copying tests/userprog/write-bad-ptr to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu -hda /tmp/nWl9BA0P9Z.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/HrJd3BDaYU.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-ptr
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 Kernel PANIC at ../../threads/interrupt.c:91 in intr_enable(): assertion `!intr_context ()' failed.
 Call stack: 0xc0028bde.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 42 ticks
-Thread: 15 idle ticks, 27 kernel ticks, 0 user ticks
+Timer: 40 ticks
+Thread: 15 idle ticks, 25 kernel ticks, 0 user ticks
 Console: 616 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults

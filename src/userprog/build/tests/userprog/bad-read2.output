@@ -1,5 +1,5 @@
 Copying tests/userprog/bad-read2 to scratch partition...
-qemu -hda /tmp/tClEJCJugV.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/kRbX4f9d3Q.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run bad-read2

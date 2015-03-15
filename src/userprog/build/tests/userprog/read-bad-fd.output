@@ -1,5 +1,5 @@
 Copying tests/userprog/read-bad-fd to scratch partition...
-qemu -hda /tmp/JE5z6ORgsO.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/k7g1g77GTv.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-bad-fd
