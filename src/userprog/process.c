@@ -47,7 +47,6 @@ process_execute (const char *input)//used to be file_name
     strlcat(fi_copy, " ", sizeof(fi_copy));
     strlcat(fi_copy, token, sizeof(fi_copy));
   }
-  tid = thread_create (input, PRI_DEFAULT, start_process, fn_copy);
   printf ("Arguments: ");
   printf (fn_copy);
   printf ("\n");
