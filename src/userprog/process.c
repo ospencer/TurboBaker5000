@@ -47,14 +47,11 @@ process_execute (const char *input)//used to be file_name
     strlcat(fi_copy, " ", sizeof(fi_copy));
     strlcat(fi_copy, token, sizeof(fi_copy));
   }
-<<<<<<< HEAD
   tid = thread_create (input, PRI_DEFAULT, start_process, fn_copy);
-=======
   printf ("Arguments: ");
   printf (fn_copy);
   printf ("\n");
   tid = thread_create (fn_copy, PRI_DEFAULT, start_process, fn_copy);
->>>>>>> ee02dcef435eb49dfa77f3478416a21804492a0c
   if (tid == TID_ERROR)
   {
     printf ("TID ERROR\n");
