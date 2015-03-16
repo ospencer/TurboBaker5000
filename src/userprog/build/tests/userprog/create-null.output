@@ -1,5 +1,5 @@
 Copying tests/userprog/create-null to scratch partition...
-qemu -hda /tmp/v4pvFUojD_.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/6DYlmAviQe.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-null
@@ -26,7 +26,7 @@ The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 130 ticks
-Thread: 2 idle ticks, 128 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 129 kernel ticks, 0 user ticks
 hda2 (filesys): 43 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 1111 characters output

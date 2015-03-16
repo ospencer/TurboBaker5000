@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-qemu -hda /tmp/wLfyZ_6_Cg.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/4qq2cIDnwy.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-create
@@ -26,7 +26,7 @@ The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 130 ticks
-Thread: 0 idle ticks, 130 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 129 kernel ticks, 0 user ticks
 hda2 (filesys): 43 reads, 194 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1105 characters output
