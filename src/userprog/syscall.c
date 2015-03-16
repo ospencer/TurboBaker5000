@@ -58,39 +58,54 @@ syscall_handler (struct intr_frame *f UNUSED)
   switch ((int) *call)
   {
   case SYS_HALT:
+    printf ("HALT CALLED\n");
     halt ();
     break;
   case SYS_EXIT:
-    status = (int) *esp;
+    printf ("EXIT CALLED\n");
+    if (moreargs) status = (int) *esp;
+    else status = 0;
     exit (status);
     break;
   case SYS_EXEC:
-    cmd = (const char *) *esp;
+    printf ("EXEC CALLED\n");
+    if (moreargs) cmd = (const char *) *esp;
+    else 
+    {
+      printf ("No name to execute executable file.");
+      exit (-1);
+    }
     exec (cmd);
     break;
   case SYS_WAIT:
+    printf ("WAIT CALLED\n");
     pid = (pid_t) *esp;
     wait (pid);
     break;
   case SYS_CREATE:
+    printf ("CREATE CALLED\n");
     file = (const char *) *esp;
     esp += 1;
     size = (unsigned) *esp;
     create (file, size);
     break;
   case SYS_REMOVE:
+    printf ("REMOVE CALLED\n");
     file = (const char *) *esp;
     remove (file);
     break;
   case SYS_OPEN:
+    printf ("OPEN CALLED\n");
     file = (const char *) *esp;
     open (file);
     break;
   case SYS_FILESIZE:
+    printf ("FILESIZE CALLED\n");
     fd = (int) *esp;
     filesize (fd);
     break;
   case SYS_READ:
+    printf ("READ CALLED\n");
     fd = (int) *esp;
     esp += 1;
     buffer = (void *) *esp;
@@ -99,9 +114,11 @@ syscall_handler (struct intr_frame *f UNUSED)
     read (fd, buffer, size);
     break;
   case SYS_WRITE: 
+    printf ("WRITE CALLED\n");
     if (moreargs) fd = (int) *esp;
     else
     {
+      printf ("Writing to console!\n");
       fd = 1;
       write (fd, NULL, NULL);
       break;
@@ -113,16 +130,19 @@ syscall_handler (struct intr_frame *f UNUSED)
     write (fd, buffer, size);
     break;
   case SYS_SEEK:
+    printf ("SEEK CALLED\n");
     fd = (int) *esp;
     esp += 1;
     position = (unsigned) *esp;
     seek (fd, position);
     break;
   case SYS_TELL:
+    printf ("TELL CALLED\n");
     fd = (int) *esp;
     tell (fd);
     break;
   case SYS_CLOSE:
+    printf ("CLOSE CALLED\n");
     fd = (int) *esp;
     close (fd);
     break;
@@ -146,8 +166,8 @@ pid_t
 exec (const char *cmd_line)
 {
   char *save_ptr;
-  return process_execute (strtok_r (cmd_line, " ", save_ptr));
-  //return process_execute (cmd_line);
+  //return process_execute (strtok_r (cmd_line, " ", save_ptr));
+  return process_execute (cmd_line);
 }
 
 int

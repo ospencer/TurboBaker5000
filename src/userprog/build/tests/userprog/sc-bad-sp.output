@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-bad-sp to scratch partition...
-qemu -hda /tmp/sD1x2aSmOS.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/2PnJ6qxixB.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sc-bad-sp
@@ -25,8 +25,8 @@ Call stack: 0xc00285fe.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 129 ticks
-Thread: 0 idle ticks, 129 kernel ticks, 0 user ticks
+Timer: 130 ticks
+Thread: 1 idle ticks, 129 kernel ticks, 0 user ticks
 hda2 (filesys): 43 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 1105 characters output

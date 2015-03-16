@@ -1,6 +1,6 @@
 Copying tests/userprog/write-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu -hda /tmp/TQ07eb8Ju2.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/JvAw6MR45h.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-boundary
@@ -27,8 +27,8 @@ Call stack: 0xc00285fe.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 131 ticks
-Thread: 1 idle ticks, 130 kernel ticks, 0 user ticks
+Timer: 130 ticks
+Thread: 1 idle ticks, 129 kernel ticks, 0 user ticks
 hda2 (filesys): 68 reads, 200 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 1165 characters output

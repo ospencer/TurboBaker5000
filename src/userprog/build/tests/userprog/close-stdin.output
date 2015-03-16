@@ -1,5 +1,5 @@
 Copying tests/userprog/close-stdin to scratch partition...
-qemu -hda /tmp/5imb64I2pf.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/PrvV96Ttn9.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-stdin
@@ -26,7 +26,7 @@ The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 130 ticks
-Thread: 2 idle ticks, 128 kernel ticks, 0 user ticks
+Thread: 0 idle ticks, 130 kernel ticks, 0 user ticks
 hda2 (filesys): 43 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 1111 characters output

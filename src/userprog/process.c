@@ -28,6 +28,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp);
 tid_t
 process_execute (const char *input)//used to be file_name 
 {
+  printf ("Process executing.\n");
   char *fn_copy;  // function name copy
   char *fi_copy = "";  // function inputs copy
   tid_t tid;
@@ -38,14 +39,23 @@ process_execute (const char *input)//used to be file_name
   if (fn_copy == NULL)
     return TID_ERROR;
   strlcpy (fn_copy, token, PGSIZE);
+  printf ("Process name: ");
+  printf(fn_copy);
+  printf ("\n");
   for(token = strtok_r (NULL, " ", &save_ptr); token != NULL;
       token = strtok_r (NULL, " ", &save_ptr)){
-    strlcat(fi_copy, " ", 1);
-    strlcat(fi_copy, token, sizeof(token));
+    strlcat(fi_copy, " ", sizeof(fi_copy));
+    strlcat(fi_copy, token, sizeof(fi_copy));
   }
-  tid = thread_create (fn_copy, PRI_DEFAULT, start_process, fi_copy);
+  printf ("Arguments: ");
+  printf (fn_copy);
+  printf ("\n");
+  tid = thread_create (fn_copy, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
+  {
+    printf ("TID ERROR\n");
     palloc_free_page (fn_copy);
+  }
   return tid;
 
 
@@ -241,6 +251,9 @@ load (const char *file_name, void (**eip) (void), void **esp)
   process_activate ();
 
   /* Open executable file. */
+  printf ("Attempting to open file: ");
+  printf (file_name);
+  printf ("\n");
   file = filesys_open (file_name);
   if (file == NULL) 
     {

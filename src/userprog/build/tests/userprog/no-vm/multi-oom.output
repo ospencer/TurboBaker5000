@@ -1,5 +1,5 @@
 Copying tests/userprog/no-vm/multi-oom to scratch partition...
-qemu -hda /tmp/r9LmNjec54.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/h2iPP5FvMs.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run multi-oom
