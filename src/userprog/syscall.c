@@ -42,7 +42,6 @@ syscall_handler (struct intr_frame *f UNUSED)
   if(esp == NULL || is_kernel_vaddr(esp) ||
      !pagedir_is_mapped(thread_current()->pagedir, esp))
   {
-    printf("I exited cause I'm a jerk");
     exit (-1);
   }
   const char *file;
