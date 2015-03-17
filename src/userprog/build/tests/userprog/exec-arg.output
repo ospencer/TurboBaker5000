@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
-qemu -hda /tmp/lT6xyJskGB.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/fF2_NVRUiY.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-arg
@@ -26,7 +26,7 @@ Page fault at 0x804a8d2: rights violation error writing page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027a40
  cr2=0804a8d2 error=00000003
  eax=00000020 ebx=0804a8d1 ecx=00000020 edx=00000020
- esi=0804a8c8 edi=c00305aa esp=c00305aa ebp=00000020
+ esi=0804a8c8 edi=c003058a esp=c003058a ebp=00000020
  cs=0008 ds=0010 es=0010 ss=0020
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc0027a40.

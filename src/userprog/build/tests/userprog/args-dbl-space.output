@@ -1,5 +1,5 @@
 Copying tests/userprog/args-dbl-space to scratch partition...
-qemu -hda /tmp/xBeqqC5vL6.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/HrvMmBERq2.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-dbl-space two  spaces!'
@@ -20,17 +20,19 @@ Putting 'args-dbl-space' into the file system...
 Erasing ustar archive...
 Executing 'args-dbl-space two  spaces!':
 (args) begin
-(args) argc = 1
+(args) argc = 3
 (args) argv[0] = 'args-dbl-space'
-(args) argv[1] = null
+(args) argv[1] = 'two'
+(args) argv[2] = 'spaces!'
+(args) argv[3] = null
 (args) end
 args-dbl-space: exit(0)
 Execution of 'args-dbl-space' complete.
-Timer: 60 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 0 user ticks
+Timer: 61 ticks
+Thread: 0 idle ticks, 60 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 998 characters output
+Console: 1048 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

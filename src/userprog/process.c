@@ -28,17 +28,20 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp, const ch
 tid_t
 process_execute (const char *input)
 {
+  //printf ("process_execute input: %s\n", input);
   //printf ("Process executing.\n");
-  char *fn_copy;  // function name copy
-  char *fi_copy = "";  // function inputs copy
+  //char *fn_copy;  // function name copy
+  //char *fi_copy = "";  // function inputs copy
   tid_t tid;
-
+  char *input_cpy = palloc_get_page (0);
+  if (input_cpy == NULL) return TID_ERROR;
+  strlcpy (input_cpy, input, PGSIZE);
   char *token, *save_ptr;
   token = strtok_r (input, " ", &save_ptr);
-  fn_copy = palloc_get_page (0);
-  if (fn_copy == NULL)
-    return TID_ERROR;
-  strlcpy (fn_copy, token, PGSIZE);
+  //fn_copy = palloc_get_page (0);
+  //if (fn_copy == NULL)
+  //  return TID_ERROR;
+  //strlcpy (fn_copy, token, PGSIZE);
   //printf ("Process name: ");
   //printf(fn_copy);
   //printf ("\n");
@@ -50,11 +53,11 @@ process_execute (const char *input)
   //printf ("Arguments: ");
   //printf (input);
   //printf ("\n");
-  tid = thread_create (fn_copy, PRI_DEFAULT, start_process, input);
+  tid = thread_create (input, PRI_DEFAULT, start_process, input_cpy);
   if (tid == TID_ERROR)
   {
     printf ("TID ERROR\n");
-    palloc_free_page (fn_copy);
+    palloc_free_page (input_cpy);
   }
   return tid;
 
@@ -78,15 +81,18 @@ process_execute (const char *input)
 static void
 start_process (void *input)
 {
+  //printf ("start_process input: %s\n", input);
   //printf ("Starting process.\n");
+  //char *token, *save_ptr;
+  //token = strtok_r (input, " ", &save_ptr);
+  //printf ("Made name token.\n");
+  char *input_cpy;
+  input_cpy = palloc_get_page (0);
+  if (input_cpy == NULL)
+    return TID_ERROR;
+  strlcpy(input_cpy, input, PGSIZE);
   char *token, *save_ptr;
   token = strtok_r (input, " ", &save_ptr);
-  //printf ("Made name token.\n");
-  char *file_name;
-  file_name = palloc_get_page (0);
-  if (file_name == NULL)
-    return TID_ERROR;
-  strlcpy(file_name, token, PGSIZE);
   //printf ("Error in start_process?\n");
   struct intr_frame if_;
   bool success;
@@ -98,12 +104,12 @@ start_process (void *input)
   if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
   if_.cs = SEL_UCSEG;
   if_.eflags = FLAG_IF | FLAG_MBS;
-  success = load (file_name, &if_.eip, &if_.esp, input);
+  success = load (token, &if_.eip, &if_.esp, input_cpy);
 
   //printf("INITIALIZED INTERRUPTS\n");
 
   /* If load failed, quit. */
-  palloc_free_page (file_name);
+  palloc_free_page (input_cpy);
   if (!success) 
     thread_exit ();
   //printf("PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY\n");
@@ -514,6 +520,8 @@ setup_stack (void **esp, const char *input)
   uint8_t *kp = kpage;
   kp = PHYS_BASE;
   //printf ("kp at %#010x\n", kp);
+  
+  //printf ("Input: %s\n", input);
   for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
     //printf ("Strok_red\n");

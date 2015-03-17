@@ -1,13 +1,13 @@
 Copying tests/filesys/base/syn-write to scratch partition...
 Copying tests/filesys/base/child-syn-wrt to scratch partition...
-qemu -hda /tmp/HcGnfY81uu.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/ZqKAcN4sO1.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-write
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -37,25 +37,21 @@ Thread was null.
 (syn-write) wait for child 1 of 10 returned 134529184 (expected 0)
 (syn-write) wait for child 1 of 10 returned 134529184 (expected 0): FAILED
 syn-write: exit(1)
-Page fault at 0xbffffea0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc00279fc
- cr2=bffffea0 error=00000000
- eax=c010ffa4 ebx=c002a740 ecx=00000009 edx=00000000
- esi=bffffea0 edi=c00305aa esp=00000000 ebp=bffffea0
- cs=0008 ds=0010 es=0010 ss=0000
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc00279fcPage fault at 0xbffffea0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
- cr2=bffffea0 error=00000000
- eax=0000000b ebx=bffffea0 ecx=000007a1 edx=c010faf8
- esi=00000065 edi=c0030e17 esp=c00304bc ebp=c010fb94
- cs=0008 ds=0010 es=0010 ss=79fc
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+Execution of 'syn-write' complete.
 Timer: 65 ticks
-Thread: 2 idle ticks, 61 kernel ticks, 2 user ticks
+Thread: 2 idle ticks, 62 kernel ticks, 1 user ticks
 hda2 (filesys): 105 reads, 418 writes
 hda3 (scratch): 198 reads, 2 writes
-Console: 2381 characters output
+Console: 1902 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

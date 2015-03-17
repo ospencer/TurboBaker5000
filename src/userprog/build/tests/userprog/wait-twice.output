@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-twice to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu -hda /tmp/GqAMK2WNBi.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/MxRLR93Nvm.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run wait-twice
@@ -27,25 +27,12 @@ Thread was null.
 (wait-twice) wait(exec()) = 134528544
 (wait-twice) end
 wait-twice: exit(0)
-Page fault at 0x804a8f8: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc00279fc
- cr2=0804a8f8 error=00000000
- eax=c010ffa4 ebx=c002a740 ecx=00000009 edx=00000000
- esi=0804a8f8 edi=c00305aa esp=00000000 ebp=0804a8f8
- cs=0008 ds=0010 es=0010 ss=0000
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc00279fcPage fault at 0x804a8f8: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
- cr2=0804a8f8 error=00000000
- eax=0000000b ebx=0804a8f8 ecx=000007a1 edx=c010faf8
- esi=00000065 edi=c0030e17 esp=c00304bc ebp=c010fb94
- cs=0008 ds=0010 es=0010 ss=79fc
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 63 ticks
-Thread: 0 idle ticks, 63 kernel ticks, 0 user ticks
+Execution of 'wait-twice' complete.
+Timer: 61 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 0 user ticks
 hda2 (filesys): 88 reads, 368 writes
 hda3 (scratch): 180 reads, 2 writes
-Console: 1799 characters output
+Console: 1026 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

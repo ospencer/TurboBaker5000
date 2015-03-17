@@ -1,13 +1,13 @@
 Copying tests/userprog/read-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu -hda /tmp/Yz9oKZ40iy.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/uIHvgUuYuo.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-boundary
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,18 +24,18 @@ Executing 'read-boundary':
 (read-boundary) begin
 (read-boundary) open "sample.txt"
 Page fault at 0xe016f9c0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba91
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba71
  cr2=e016f9c0 error=00000000
  eax=0804e060 ebx=000000ef ecx=00000000 edx=00000008
  esi=0804cf88 edi=00000000 esp=0804a9ea ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=cf88
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba91 0x804a4f3.
+Call stack: 0xc002867e 0xc002ba71 0x804a4f3.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 60 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 95 reads, 200 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 1513 characters output

@@ -1,12 +1,12 @@
 Copying tests/userprog/multi-recurse to scratch partition...
-qemu -hda /tmp/5ovYQ3yfKd.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Rzi7ybfPrp.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'multi-recurse 15'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -19,18 +19,17 @@ Extracting ustar archive from scratch device into file system...
 Putting 'multi-recurse' into the file system...
 Erasing ustar archive...
 Executing 'multi-recurse 15':
-User process ABORT at ../../lib/stdlib.c:15 in atoi(): assertion `s != NULL' failed.
-Call stack: 0x804a76c.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(multi-recurse) begin 15
+(multi-recurse) exec("multi-recurse 14")
+Thread was null.
+(multi-recurse) wait(exec("multi-recurse")) returned 134529728: FAILED
 multi-recurse: exit(1)
 Execution of 'multi-recurse' complete.
-Timer: 60 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 60 kernel ticks, 0 user ticks
 hda2 (filesys): 61 reads, 210 writes
 hda3 (scratch): 102 reads, 2 writes
-Console: 1141 characters output
+Console: 1033 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

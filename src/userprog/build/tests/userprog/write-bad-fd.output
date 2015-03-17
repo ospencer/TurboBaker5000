@@ -1,5 +1,5 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
-qemu -hda /tmp/aws77MLB3l.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/pbt_gAbcf1.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-fd
@@ -21,13 +21,13 @@ Erasing ustar archive...
 Executing 'write-bad-fd':
 (write-bad-fd) begin
 Page fault at 0xc4080548: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bad9
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bab9
  cr2=c4080548 error=00000000
  eax=01012342 ebx=00000001 ecx=00000000 edx=bfffff8f
  esi=c0285f5c edi=00000000 esp=0804be60 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=ff8f
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bad9 0x804a49a.
+Call stack: 0xc002867e 0xc002bab9 0x804a49a.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.

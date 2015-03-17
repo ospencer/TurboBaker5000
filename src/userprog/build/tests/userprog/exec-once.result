@@ -1,6 +1,16 @@
 FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc00279fc
-Translation of call stack:
-0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc00279fc: strtok_r (...ld/../../lib/string.c:249)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-once) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (exec-once) end
+  exec-once: exit(0)
+Differences in `diff -u' format:
+  (exec-once) begin
+- (child-simple) run
+- child-simple: exit(81)
++ Thread was null.
+  (exec-once) end
+  exec-once: exit(0)
