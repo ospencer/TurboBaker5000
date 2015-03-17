@@ -78,11 +78,16 @@ process_execute (const char *input)//used to be file_name
 static void
 start_process (void *input)
 {
+  printf ("Starting process.\n");
   char *token, *save_ptr;
   token = strtok_r (input, " ", &save_ptr);
-  char *file_name = "";
-  strlcpy(file_name, token, sizeof(file_name));
-  printf ("Error in start_process?");
+  printf ("Made name token.\n");
+  char *file_name;
+  file_name = palloc_get_page (0);
+  if (file_name == NULL)
+    return TID_ERROR;
+  strlcpy(file_name, token, PGSIZE);
+  printf ("Error in start_process?\n");
   struct intr_frame if_;
   bool success;
 
@@ -348,6 +353,7 @@ load (const char *file_name, void (**eip) (void), void **esp, const char *input)
 
  done:
   /* We arrive here whether the load is successful or not. */
+  printf ("The stack has been setup.\n");
   file_close (file);
   return success;
 }
@@ -465,6 +471,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 static bool
 setup_stack (void **esp, const char *input) 
 {
+  printf ("Setting up the stack!\n");
   uint8_t *kpage;
   bool success = false;
 
@@ -484,7 +491,9 @@ setup_stack (void **esp, const char *input)
   {
     esp = (char *) esp - sizeof(token);
     pointers[count] = esp; 
+    printf ("Attempting to write to stack...\n");
     strlcpy (*(char **)esp, token, sizeof(esp));
+    printf ("Wrote to stack\n");
     count++;
   }
   esp = (char **) esp - 1;
