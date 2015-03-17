@@ -146,6 +146,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     close (fd);
     break;
   }
+  printf("END OF SYSTEM CALL\n");
 }
 
 void
