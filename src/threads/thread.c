@@ -277,11 +277,7 @@ get_thread (tid_t tid)
        e = list_next (e))
   {
     struct thread *t = list_entry (e, struct thread, allelem);
-<<<<<<< HEAD
-    if (thread_tid () == tid)
-=======
     if (t->tid == tid)
->>>>>>> 0644a03282bcdc5844b4e0be3054c3c9d9af9332
     {
       intr_set_level (intr_state);
       return t;
@@ -314,11 +310,12 @@ thread_exit (void)
      when it calls thread_schedule_tail(). */
   intr_disable ();
   list_remove (&thread_current()->allelem);
-  thread_current ()->status = THREAD_DYING;
+  //thread_current ()->status = THREAD_DYING;
   if (thread_current ()->waiting_thread != NULL)
   {
     thread_unblock (get_thread (thread_current ()->waiting_thread));
   }
+  thread_current ()->status = THREAD_DYING;
   schedule ();
   NOT_REACHED ();
 }

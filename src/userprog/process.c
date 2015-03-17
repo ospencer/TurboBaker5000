@@ -138,10 +138,17 @@ process_wait (tid_t child_tid UNUSED)
   {
     t->waiting_thread = thread_tid ();
     printf ("2x no page fault!\n");
+    intr_disable ();
     thread_block ();
-    return thread_current ()->child_exit_status;
+    printf ("Calling thread_current in wait\n");
+    t = thread_current ();
+    return t->child_exit_status;
   }
-  else return -1;
+  else 
+  {
+    printf ("Thread was null.\n");
+    return -1;
+  }
 }
 
 /* Free the current process's resources. */
