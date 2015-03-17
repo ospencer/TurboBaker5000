@@ -271,20 +271,19 @@ thread_current (void)
 struct thread *
 get_thread (tid_t tid)
 {
-  bool intr_state = intr_context ();
-  intr_disable ();
+  enum intr_level intr_state = intr_disable ();
   struct list_elem *e;
   for (e = list_begin (&all_list); e != list_end (&all_list);
        e = list_next (e))
   {
     struct thread *t = list_entry (e, struct thread, allelem);
-    if (thread_tid (t) == tid)
+    if (t->tid == tid)
     {
-      if (intr_state) intr_enable ();
+      intr_set_level (intr_state);
       return t;
     }
   }
-  if (intr_state) intr_enable ();
+  intr_set_level (intr_state);
   return NULL;
 }
 
