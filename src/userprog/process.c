@@ -132,9 +132,16 @@ process_wait (tid_t child_tid UNUSED)
   printf ("process_wait called\n");
   if (thread_current ()->wait_called) return -1;
   thread_current ()->wait_called = true;
-  get_thread (child_tid)->waiting_thread = thread_tid ();
-  thread_block ();
-  return thread_current ()->child_exit_status;
+  printf ("No page fault!\n");
+  struct thread *t = get_thread (child_tid);
+  if (t != NULL) 
+  {
+    t->waiting_thread = thread_tid ();
+    printf ("2x no page fault!\n");
+    thread_block ();
+    return thread_current ()->child_exit_status;
+  }
+  else return -1;
 }
 
 /* Free the current process's resources. */

@@ -1,12 +1,12 @@
 Copying tests/userprog/args-multiple to scratch partition...
-qemu -hda /tmp/14dtOCIW5v.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/0p0b2nr7f9.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-multiple some arguments for you!'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,69 +22,23 @@ Executing 'args-multiple some arguments for you!':
 Process executing.
 Process name: args-multiple
 Arguments: args-multiple
-Starting process.
-Made name token.
-Error in start_process?
-STARTING PROCESS
-Attempting to open file: args-multiple
-Setting up the stack!
-Making pointer array
-Tokenizing
-kp at 0xc0000000
-Strok_red
-kp at 0xbffffff2
-Attempting to write to stack, pointer is 0xbffffff2
-Writing 'args-multiple' to stack
-Wrote args-multiple to stack
-kp for last arg at 0xbfffffee
-kp for pointers to things on stack at 0xbfffffea
-Actual value: 0xbffffff2
-Number of args = 1
-Pointer to return = 0xbfffffde
-The stack has been setup.
-INITIALIZED INTERRUPTS
-PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY
-system call!
-WRITE CALLED
-(args) begin
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argc = 1
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argv[0] = 'args-multiple'
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argv[1] = null
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) end
-END OF SYSTEM CALL
-system call!
-EXIT CALLED
-args-multiple: exit(0)
-EXEC CALLED
-Process executing.
-Page fault at 0xcccccccc: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002797c
- cr2=cccccccc error=00000000
- eax=c010af28 ebx=bfffff9a ecx=00000780 edx=00000001
- esi=cccccccc edi=c003078a esp=0000000a ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=cccc
+process_wait called
+Page fault at 0x2c: not present error writing page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002a72b
+ cr2=0000002c error=00000002
+ eax=00000001 ebx=00000000 ecx=00000780 edx=00000001
+ esi=c002dde0 edi=c0007d4c esp=00000003 ebp=c000eff8
+ cs=0008 ds=0010 es=0010 ss=ef84
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc002797c.
+Call stack: 0xc002869e 0xc002a72b.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 214 ticks
-Thread: 0 idle ticks, 212 kernel ticks, 2 user ticks
-hda2 (filesys): 63 reads, 186 writes
+Timer: 59 ticks
+Thread: 2 idle ticks, 57 kernel ticks, 0 user ticks
+hda2 (filesys): 26 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 2493 characters output
+Console: 1538 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

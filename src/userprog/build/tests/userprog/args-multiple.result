@@ -1,6 +1,6 @@
 FAIL
 Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc002797c
+Call stack: 0xc002869e 0xc002a72b
 Translation of call stack:
-0xc00285fe: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002797c: strtok_r (...ld/../../lib/string.c:249)
+0xc002869e: debug_panic (.../../lib/kernel/debug.c:38)
+0xc002a72b: process_wait (...../userprog/process.c:135)
