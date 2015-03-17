@@ -271,7 +271,21 @@ thread_current (void)
 struct thread *
 get_thread (tid_t tid)
 {
-  struct list_elem *e = 
+  bool intr_state = intr_context ();
+  intr_disable ();
+  struct list_elem *e;
+  for (e = list_begin (&all_list); e != list_end (&all_list);
+       e = list_next (e))
+  {
+    struct thread *t = list_entry (e, struct thread, allelem);
+    if (thread_tid (t) == tid)
+    {
+      if (intr_state) intr_enable ();
+      return t;
+    }
+  }
+  if (intr_state) intr_enable ();
+  return NULL;
 }
 
 /* Returns the running thread's tid. */
@@ -584,7 +598,7 @@ allocate_tid (void)
 
   return tid;
 }
-
+
 /* Offset of `stack' member within `struct thread'.
    Used by switch.S, which can't figure it out on its own. */
 uint32_t thread_stack_ofs = offsetof (struct thread, stack);
