@@ -489,14 +489,19 @@ setup_stack (void **esp, const char *input)
         palloc_free_page (kpage);
     }
   int count = 0;
+  printf ("Making pointer array\n");
   int pointers[128];
   char *token, *save_ptr;
-  for (token = strtok_r(input, " ", sizeof(token)); token != NULL; token = strtok_r(NULL, " ", sizeof(token)))
+  printf ("Tokenizing\n");
+  for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
+    printf ("Strok_red\n");
     esp = (char *) esp - sizeof(token);
     pointers[count] = esp; 
     printf ("Attempting to write to stack...\n");
-    strlcpy (*(char **)esp, token, sizeof(esp));
+    *(char **) esp = palloc_get_page (0);
+    printf ("Got page for stack write.\n");
+    strlcpy (*(char **)esp, token, sizeof(*esp));
     printf ("Wrote to stack\n");
     count++;
   }
