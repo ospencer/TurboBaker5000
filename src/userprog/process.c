@@ -501,24 +501,31 @@ setup_stack (void **esp, const char *input)
     printf ("Strok_red\n");
     kp = (char *) kp - (strlen(token) + 1);
     printf ("kp at %#010x\n", kp);
-    pointers[count] = kp; 
-    printf ("Attempting to write to stack...\n");
+    pointers[count] = (int) kp; 
+    printf ("Attempting to write to stack, pointer is %#10x\n", pointers[count]);
     //*(char **) kp = palloc_get_page (0);
-    printf ("Got page for stack write.\n");
+    printf ("Writing '");
+    printf (token);
+    printf ("' to stack\n");
     //*(char *)kp = "";
     strlcpy ((char *)kp, token, PGSIZE);
-    printf ("Wrote to stack\n");
+    printf ("Wrote ");
+    printf ((char *) kp);
+    printf (" to stack\n");
     count++;
   }
-  kp = (char *) kp - 1;
+  kp = (char *) kp - 4;
   printf ("kp for last arg at %#010x\n", kp);
   *((char **) kp) = NULL;
   int i;
   for (i = count; i > 0; i--)
   {
     kp = (char *) kp - 4;
-    *((char **) kp) = pointers[i];
-    printf ("kp at %#010x\n", kp);
+    *((int *) kp) = pointers[i-1];
+    printf ("kp for pointers to things on stack at %#010x\n", kp);
+    printf ("Actual value: %#10x\n", pointers[i-1]);
+    //printf ((char *) kp);
+    //printf ("\n");
   }
   char * tmp = (char *) kp;
   kp = (char *) kp - 4;
