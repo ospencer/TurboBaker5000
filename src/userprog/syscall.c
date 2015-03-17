@@ -10,7 +10,6 @@
 #include "filesys/file.h"
 #include "threads/vaddr.h"
 #include "userprog/pagedir.h"
-//#include "userprog/pagedir.c"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -185,6 +184,10 @@ wait (pid_t pid)
 bool
 create (const char *file, unsigned size)
 {
+  if(file == NULL || file>=PHYS_BASE || 
+     pagedir_is_mapped(thread_current()->pagedir, file)==0 || file[0]=='\0')
+       exit(-1);
+  if(strlen(file)>14) return 0;
   return filesys_create (file, size);
 }
 

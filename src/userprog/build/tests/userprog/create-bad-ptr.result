@@ -1,6 +1,1 @@
-FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002cb34
-Translation of call stack:
-0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002cb34: dir_add (..../filesys/directory.c:152)
+PASS

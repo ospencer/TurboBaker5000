@@ -1,12 +1,12 @@
 Copying tests/userprog/multi-recurse to scratch partition...
-qemu -hda /tmp/Rzi7ybfPrp.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/GFsdhTY6Nk.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'multi-recurse 15'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,8 +25,8 @@ Thread was null.
 (multi-recurse) wait(exec("multi-recurse")) returned 134529728: FAILED
 multi-recurse: exit(1)
 Execution of 'multi-recurse' complete.
-Timer: 61 ticks
-Thread: 1 idle ticks, 60 kernel ticks, 0 user ticks
+Timer: 59 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
 hda2 (filesys): 61 reads, 210 writes
 hda3 (scratch): 102 reads, 2 writes
 Console: 1033 characters output

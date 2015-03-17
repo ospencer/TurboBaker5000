@@ -1,12 +1,12 @@
 Copying tests/userprog/create-null to scratch partition...
-qemu -hda /tmp/p6U084zjjc.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/jlt5s6k3In.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-null
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -20,16 +20,13 @@ Putting 'create-null' into the file system...
 Erasing ustar archive...
 Executing 'create-null':
 (create-null) begin
-Kernel PANIC at ../../filesys/directory.c:149 in dir_add(): assertion `name != NULL' failed.
-Call stack: 0xc002867e.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 60 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
-hda2 (filesys): 64 reads, 191 writes
+create-null: exit(-1)
+Execution of 'create-null' complete.
+Timer: 58 ticks
+Thread: 2 idle ticks, 55 kernel ticks, 1 user ticks
+hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
-Console: 1092 characters output
+Console: 880 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

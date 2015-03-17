@@ -1,5 +1,5 @@
 Copying tests/filesys/base/syn-remove to scratch partition...
-qemu -hda /tmp/klFGnwiSTI.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Z5uMPB7irq.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-remove
@@ -24,19 +24,19 @@ Executing 'syn-remove':
 (syn-remove) open "deleteme"
 (syn-remove) remove "deleteme"
 (syn-remove) write "deleteme"
-Page fault at 0xe0167d40: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bab9
- cr2=e0167d40 error=00000000
+Page fault at 0xe0167d60: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
+ cr2=e0167d60 error=00000000
  eax=0804c140 ebx=000004d2 ecx=00000000 edx=0804c660
  esi=c0286f5c edi=00000000 esp=0804c140 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=c660
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bab9 0x804a6ea.
+Call stack: 0xc002867e 0xc002bb08 0x804a6ea.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 60 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 2 user ticks
+Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 87 reads, 204 writes
 hda3 (scratch): 95 reads, 2 writes
 Console: 1543 characters output

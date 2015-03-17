@@ -1,10 +1,10 @@
 FAIL
 Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bab9 0x804a56a
+Call stack: 0xc002867e 0xc002bb08 0x804a56a
 Translation of call stack:
 In kernel.o:
 0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002bab9: write (...../userprog/syscall.c:240)
+0xc002bb08: write (...../userprog/syscall.c:243)
 In tests/filesys/base/sm-seq-block:
 0x0804a56a: write (...../lib/user/syscall.c:123)
 Translations of user virtual addresses above are based on a guess at

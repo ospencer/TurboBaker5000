@@ -1,12 +1,12 @@
 Copying tests/filesys/base/sm-seq-random to scratch partition...
-qemu -hda /tmp/TPzAqq6eoe.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Fvrz260Oby.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-random
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -23,22 +23,22 @@ Executing 'sm-seq-random':
 (sm-seq-random) create "nibble"
 (sm-seq-random) open "nibble"
 (sm-seq-random) writing "nibble"
-Page fault at 0xe01621e0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bab9
- cr2=e01621e0 error=00000000
+Page fault at 0xe0162200: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
+ cr2=e0162200 error=00000000
  eax=0804aa68 ebx=0000029b ecx=00000000 edx=0804bfa0
  esi=c0286f2c edi=0804aa68 esp=0804d600 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=bfa0
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bab9 0x804a59aPage fault at 0x162e: not present error reading page in kernel context.
+Call stack: 0xc002867e 0xc002bb08 0x804a59aPage fault at 0x162e: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
  cr2=0000162e error=00000000
  eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030df7 esp=c003049c ebp=c010ae48
+ esi=00000065 edi=c0030e37 esp=c00304dc ebp=c010ae48
  cs=0008 ds=0010 es=0010 ss=a59a
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 62 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 3 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 3 user ticks
 hda2 (filesys): 89 reads, 210 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1741 characters output

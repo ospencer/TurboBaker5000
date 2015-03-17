@@ -1,10 +1,10 @@
 FAIL
 Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba71 0x804a523
+Call stack: 0xc002867e 0xc002bac0 0x804a523
 Translation of call stack:
 In kernel.o:
 0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002ba71: read (...../userprog/syscall.c:227)
+0xc002bac0: read (...../userprog/syscall.c:230)
 In tests/userprog/rox-multichild:
 0x0804a523: read (...../lib/user/syscall.c:117)
 Translations of user virtual addresses above are based on a guess at

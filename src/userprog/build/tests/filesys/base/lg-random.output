@@ -1,12 +1,12 @@
 Copying tests/filesys/base/lg-random to scratch partition...
-qemu -hda /tmp/nZL423PyUM.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/eYcKhbtDe1.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-random
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -23,19 +23,19 @@ Executing 'lg-random':
 (lg-random) create "bazzle"
 (lg-random) open "bazzle"
 (lg-random) write "bazzle" in random order
-Page fault at 0xe0167fc0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002badc
- cr2=e0167fc0 error=00000000
+Page fault at 0xe0167fe0: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb2b
+ cr2=e0167fe0 error=00000000
  eax=0804c1e0 ebx=bffffd50 ecx=00000000 edx=0000000a
  esi=c0298d50 edi=00001800 esp=0804c1e0 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=1800
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002badc 0x804a75c.
+Call stack: 0xc002867e 0xc002bb2b 0x804a75c.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 63 ticks
-Thread: 4 idle ticks, 58 kernel ticks, 1 user ticks
+Timer: 60 ticks
+Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 83 reads, 352 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 1515 characters output

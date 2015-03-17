@@ -1,13 +1,13 @@
 Copying tests/userprog/rox-multichild to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-qemu -hda /tmp/AziRXif1ba.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/pAgW9JVtPw.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-multichild
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,19 +24,19 @@ Executing 'rox-multichild':
 (rox-multichild) begin
 (rox-multichild) open "child-rox"
 (rox-multichild) read "child-rox"
-Page fault at 0xe01675c0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba71
- cr2=e01675c0 error=00000000
+Page fault at 0xe01675e0: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bac0
+ cr2=e01675e0 error=00000000
  eax=0804bf60 ebx=00000010 ecx=00000000 edx=00000008
  esi=bfffff80 edi=00000000 esp=0804bf60 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=ff80
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba71 0x804a523.
+Call stack: 0xc002867e 0xc002bac0 0x804a523.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 63 ticks
-Thread: 2 idle ticks, 60 kernel ticks, 1 user ticks
+Timer: 62 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 1 user ticks
 hda2 (filesys): 94 reads, 396 writes
 hda3 (scratch): 194 reads, 2 writes
 Console: 1552 characters output

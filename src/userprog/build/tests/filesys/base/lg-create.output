@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-create to scratch partition...
-qemu -hda /tmp/pVxKF951sg.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/U4FoFVh6Z7.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-create
@@ -23,22 +23,22 @@ Executing 'lg-create':
 (lg-create) create "blargle"
 (lg-create) open "blargle" for verification
 FILESIZE CALLED
-Page fault at 0xe01b1540: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba24
- cr2=e01b1540 error=00000000
+Page fault at 0xe01b1560: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba73
+ cr2=e01b1560 error=00000000
  eax=0805e740 ebx=bffffd04 ecx=00000780 edx=00000001
  esi=c0297d04 edi=00000000 esp=0804aa58 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=fd04
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba24 0x804a55cPage fault at 0x1279e: not present error reading page in kernel context.
+Call stack: 0xc002867e 0xc002ba73 0x804a55cPage fault at 0x1279e: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
  cr2=0001279e error=00000000
  eax=0000000a ebx=0001279e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030df7 esp=c003049c ebp=c010ae48
+ esi=00000065 edi=c0030e37 esp=c00304dc ebp=c010ae48
  cs=0008 ds=0010 es=0010 ss=a55c
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 62 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 3 user ticks
+Timer: 61 ticks
+Thread: 0 idle ticks, 57 kernel ticks, 4 user ticks
 hda2 (filesys): 89 reads, 346 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1720 characters output

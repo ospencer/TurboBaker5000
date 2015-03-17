@@ -1,12 +1,12 @@
 Copying tests/userprog/exec-missing to scratch partition...
-qemu -hda /tmp/xAk2zxM7q5.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/dQEeXvoKqE.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-missing
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  497,254,400 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,8 +24,8 @@ Executing 'exec-missing':
 (exec-missing) end
 exec-missing: exit(0)
 Execution of 'exec-missing' complete.
-Timer: 60 ticks
-Thread: 2 idle ticks, 58 kernel ticks, 0 user ticks
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 945 characters output
