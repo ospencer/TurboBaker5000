@@ -37,7 +37,7 @@ syscall_init (void)
 static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
-  printf ("system call!\n");
+  //printf ("system call!\n");
   int **sp = f->esp;
   int **call = sp;
   if(sp == NULL || is_kernel_vaddr(sp) ||
@@ -59,11 +59,11 @@ syscall_handler (struct intr_frame *f UNUSED)
   switch ((int) *call)
   {
   case SYS_HALT:
-    printf ("HALT CALLED\n");
+    //printf ("HALT CALLED\n");
     halt ();
     break;
   case SYS_EXIT:
-    printf ("EXIT CALLED\n");
+    //printf ("EXIT CALLED\n");
     if (moreargs)
     {
        status = (int) *esp;
@@ -73,7 +73,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     //exit (status);
     break;
   case SYS_EXEC:
-    printf ("EXEC CALLED\n");
+    //printf ("EXEC CALLED\n");
     if (moreargs) cmd = (const char *) *esp;
     else 
     {
@@ -83,24 +83,24 @@ syscall_handler (struct intr_frame *f UNUSED)
     exec (cmd);
     break;
   case SYS_WAIT:
-    printf ("WAIT CALLED\n");
+    //printf ("WAIT CALLED\n");
     pid = (pid_t) *esp;
     wait (pid);
     break;
   case SYS_CREATE:
-    printf ("CREATE CALLED\n");
+    //printf ("CREATE CALLED\n");
     file = (const char *) *esp;
     esp += 1;
     size = (unsigned) *esp;
     create (file, size);
     break;
   case SYS_REMOVE:
-    printf ("REMOVE CALLED\n");
+    //printf ("REMOVE CALLED\n");
     file = (const char *) *esp;
     remove (file);
     break;
   case SYS_OPEN:
-    printf ("OPEN CALLED\n");
+    //printf ("OPEN CALLED\n");
     file = (const char *) *esp;
     open (file);
     break;
@@ -110,7 +110,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     filesize (fd);
     break;
   case SYS_READ:
-    printf ("READ CALLED\n");
+    //printf ("READ CALLED\n");
     fd = (int) *esp;
     esp += 1;
     buffer = (void *) *esp;
@@ -119,7 +119,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     read (fd, buffer, size);
     break;
   case SYS_WRITE: 
-    printf ("WRITE CALLED\n");
+    //printf ("WRITE CALLED\n");
     if (moreargs) fd = (int) *esp;
     else
     {
@@ -135,24 +135,24 @@ syscall_handler (struct intr_frame *f UNUSED)
     write (fd, buffer, size);
     break;
   case SYS_SEEK:
-    printf ("SEEK CALLED\n");
+    //printf ("SEEK CALLED\n");
     fd = (int) *esp;
     esp += 1;
     position = (unsigned) *esp;
     seek (fd, position);
     break;
   case SYS_TELL:
-    printf ("TELL CALLED\n");
+    //printf ("TELL CALLED\n");
     fd = (int) *esp;
     tell (fd);
     break;
   case SYS_CLOSE:
-    printf ("CLOSE CALLED\n");
+    //printf ("CLOSE CALLED\n");
     fd = (int) *esp;
     close (fd);
     break;
   }
-  printf("END OF SYSTEM CALL\n");
+  //printf("END OF SYSTEM CALL\n");
 }
 
 void

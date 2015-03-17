@@ -1,0 +1,44 @@
+Copying tests/userprog/write-boundary to scratch partition...
+Copying ../../tests/userprog/sample.txt to scratch partition...
+qemu -hda /tmp/rgzV2zYFQP.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run write-boundary
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  523,468,800 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 97 sectors (48 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'write-boundary' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'write-boundary':
+(write-boundary) begin
+(write-boundary) open "sample.txt"
+Page fault at 0xe016f7c0: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bad9
+ cr2=e016f7c0 error=00000000
+ eax=0804dfe0 ebx=000000ef ecx=00000000 edx=0804cf89
+ esi=c0287f6c edi=00000000 esp=0804a9aa ebp=c010afe8
+ cs=0008 ds=0010 es=0010 ss=cf89
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002bad9 0x804a4ca.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 60 ticks
+Thread: 0 idle ticks, 59 kernel ticks, 1 user ticks
+hda2 (filesys): 94 reads, 200 writes
+hda3 (scratch): 96 reads, 2 writes
+Console: 1518 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...

@@ -1,0 +1,44 @@
+Copying tests/userprog/write-zero to scratch partition...
+Copying ../../tests/userprog/sample.txt to scratch partition...
+qemu -hda /tmp/fjlMXI4p5b.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run write-zero
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  471,040,000 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 94 sectors (47 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'write-zero' into the file system...
+Putting 'sample.txt' into the file system...
+Erasing ustar archive...
+Executing 'write-zero':
+(write-zero) begin
+(write-zero) open "sample.txt"
+Page fault at 0xe0167140: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bad9
+ cr2=e0167140 error=00000000
+ eax=0804be40 ebx=00000000 ecx=00000000 edx=bfffff8f
+ esi=c0285f5c edi=00000000 esp=0804a91a ebp=c010afe8
+ cs=0008 ds=0010 es=0010 ss=ff8f
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002bad9 0x804a43a.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 61 ticks
+Thread: 3 idle ticks, 57 kernel ticks, 1 user ticks
+hda2 (filesys): 93 reads, 194 writes
+hda3 (scratch): 93 reads, 2 writes
+Console: 1498 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...

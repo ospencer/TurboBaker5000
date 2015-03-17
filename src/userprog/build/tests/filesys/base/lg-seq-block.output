@@ -1,0 +1,47 @@
+Copying tests/filesys/base/lg-seq-block to scratch partition...
+qemu -hda /tmp/QAhOyNwZdR.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run lg-seq-block
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  523,468,800 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 95 sectors (47 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'lg-seq-block' into the file system...
+Erasing ustar archive...
+Executing 'lg-seq-block':
+(lg-seq-block) begin
+(lg-seq-block) create "noodle"
+(lg-seq-block) open "noodle"
+(lg-seq-block) writing "noodle"
+Page fault at 0xe0162120: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bad9
+ cr2=e0162120 error=00000000
+ eax=0804aa38 ebx=00000201 ecx=00000000 edx=0804bf60
+ esi=c0297f2c edi=0804aa38 esp=0805e720 ebp=c010afe8
+ cs=0008 ds=0010 es=0010 ss=bf60
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002bad9 0x804a56aPage fault at 0x1279e: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
+ cr2=0001279e error=00000000
+ eax=0000000a ebx=0001279e ecx=000007ab edx=c010adac
+ esi=00000065 edi=c0030e17 esp=c00304bc ebp=c010ae48
+ cs=0008 ds=0010 es=0010 ss=a56a
+Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+Timer: 62 ticks
+Thread: 4 idle ticks, 57 kernel ticks, 1 user ticks
+hda2 (filesys): 89 reads, 346 writes
+hda3 (scratch): 94 reads, 2 writes
+Console: 1735 characters output
+Keyboard: 0 keys pressed
+Exception: 2 page faults
+Powering off...

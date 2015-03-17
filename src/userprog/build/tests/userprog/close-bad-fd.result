@@ -1,0 +1,12 @@
+FAIL
+Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002bb31 0x804a414
+Translation of call stack:
+In kernel.o:
+0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
+0xc002bb31: close (...../userprog/syscall.c:259)
+In tests/userprog/close-bad-fd:
+0x0804a414: close (...../lib/user/syscall.c:141)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.

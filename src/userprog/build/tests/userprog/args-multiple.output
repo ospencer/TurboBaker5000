@@ -1,5 +1,5 @@
 Copying tests/userprog/args-multiple to scratch partition...
-qemu -hda /tmp/0p0b2nr7f9.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/sXubgAVz85.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-multiple some arguments for you!'
@@ -19,26 +19,18 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-multiple' into the file system...
 Erasing ustar archive...
 Executing 'args-multiple some arguments for you!':
-Process executing.
-Process name: args-multiple
-Arguments: args-multiple
-process_wait called
-Page fault at 0x2c: not present error writing page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002a72b
- cr2=0000002c error=00000002
- eax=00000001 ebx=00000000 ecx=00000780 edx=00000001
- esi=c002dde0 edi=c0007d4c esp=00000003 ebp=c000eff8
- cs=0008 ds=0010 es=0010 ss=ef84
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002869e 0xc002a72b.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(args) begin
+(args) argc = 1
+(args) argv[0] = 'args-multiple'
+(args) argv[1] = null
+(args) end
+args-multiple: exit(0)
+Execution of 'args-multiple' complete.
 Timer: 59 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 0 user ticks
-hda2 (filesys): 26 reads, 186 writes
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
+hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 1538 characters output
+Console: 1014 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

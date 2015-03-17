@@ -1,0 +1,46 @@
+Copying tests/filesys/base/syn-read to scratch partition...
+Copying tests/filesys/base/child-syn-read to scratch partition...
+qemu -hda /tmp/AQ1Rps3TBL.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run syn-read
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  523,468,800 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 200 sectors (100 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'syn-read' into the file system...
+Putting 'child-syn-read' into the file system...
+Erasing ustar archive...
+Executing 'syn-read':
+(syn-read) begin
+(syn-read) create "data"
+(syn-read) open "data"
+(syn-read) write "data"
+Page fault at 0xe0168a40: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bad9
+ cr2=e0168a40 error=00000000
+ eax=0804c480 ebx=00000400 ecx=00000000 edx=0804c060
+ esi=c0285f3c edi=00000000 esp=0804c480 ebp=c010afe8
+ cs=0008 ds=0010 es=0010 ss=c060
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002bad9 0x804a64a.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 63 ticks
+Thread: 0 idle ticks, 61 kernel ticks, 2 user ticks
+hda2 (filesys): 110 reads, 412 writes
+hda3 (scratch): 199 reads, 2 writes
+Console: 1539 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...

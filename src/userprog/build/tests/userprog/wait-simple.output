@@ -1,0 +1,50 @@
+Copying tests/userprog/wait-simple to scratch partition...
+Copying tests/userprog/child-simple to scratch partition...
+qemu -hda /tmp/mc7ZUg8inK.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run wait-simple
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  523,468,800 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 181 sectors (90 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'wait-simple' into the file system...
+Putting 'child-simple' into the file system...
+Erasing ustar archive...
+Executing 'wait-simple':
+(wait-simple) begin
+Thread was null.
+(wait-simple) wait(exec()) = 256
+(wait-simple) end
+wait-simple: exit(0)
+Page fault at 0x804a8d8: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc00279fc
+ cr2=0804a8d8 error=00000000
+ eax=c010ffa4 ebx=c002a740 ecx=00000009 edx=00000000
+ esi=0804a8d8 edi=c00305aa esp=00000000 ebp=0804a8d8
+ cs=0008 ds=0010 es=0010 ss=0000
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc00279fcPage fault at 0x804a8d8: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
+ cr2=0804a8d8 error=00000000
+ eax=0000000b ebx=0804a8d8 ecx=000007a1 edx=c010faf8
+ esi=00000065 edi=c0030e17 esp=c00304bc ebp=c010fb94
+ cs=0008 ds=0010 es=0010 ss=79fc
+Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+Timer: 63 ticks
+Thread: 1 idle ticks, 62 kernel ticks, 0 user ticks
+hda2 (filesys): 88 reads, 368 writes
+hda3 (scratch): 180 reads, 2 writes
+Console: 1768 characters output
+Keyboard: 0 keys pressed
+Exception: 2 page faults
+Powering off...

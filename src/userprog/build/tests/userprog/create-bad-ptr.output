@@ -1,0 +1,44 @@
+Copying tests/userprog/create-bad-ptr to scratch partition...
+qemu -hda /tmp/RzIv9EHXZ1.dsk -m 4 -net none -nographic -monitor null
+PiLo hda1
+Loading..........
+Kernel command line: -q -f extract run create-bad-ptr
+Pintos booting with 4,088 kB RAM...
+382 pages available in kernel pool.
+382 pages available in user pool.
+Calibrating timer...  523,468,800 loops/s.
+hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
+hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda2: 4,096 sectors (2 MB), Pintos file system (21)
+hda3: 92 sectors (46 kB), Pintos scratch (22)
+filesys: using hda2
+scratch: using hda3
+Formatting file system...done.
+Boot complete.
+Extracting ustar archive from scratch device into file system...
+Putting 'create-bad-ptr' into the file system...
+Erasing ustar archive...
+Executing 'create-bad-ptr':
+(create-bad-ptr) begin
+Page fault at 0x20101234: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002cb54
+ cr2=20101234 error=00000000
+ eax=00000000 ebx=c010705c ecx=c0037158 edx=00000001
+ esi=c010705c edi=00000000 esp=00000000 ebp=20101234
+ cs=0008 ds=0010 es=0010 ss=0001
+Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002867e 0xc002cb54Page fault at 0x20101234: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
+ cr2=20101234 error=00000000
+ eax=0000000b ebx=20101234 ecx=000007a1 edx=c010ad1c
+ esi=00000065 edi=c0030e17 esp=c00304bc ebp=c010adb8
+ cs=0008 ds=0010 es=0010 ss=cb54
+Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+Timer: 60 ticks
+Thread: 3 idle ticks, 56 kernel ticks, 1 user ticks
+hda2 (filesys): 64 reads, 191 writes
+hda3 (scratch): 91 reads, 2 writes
+Console: 1644 characters output
+Keyboard: 0 keys pressed
+Exception: 2 page faults
+Powering off...

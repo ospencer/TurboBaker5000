@@ -28,7 +28,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp, const ch
 tid_t
 process_execute (const char *input)
 {
-  printf ("Process executing.\n");
+  //printf ("Process executing.\n");
   char *fn_copy;  // function name copy
   char *fi_copy = "";  // function inputs copy
   tid_t tid;
@@ -39,17 +39,17 @@ process_execute (const char *input)
   if (fn_copy == NULL)
     return TID_ERROR;
   strlcpy (fn_copy, token, PGSIZE);
-  printf ("Process name: ");
-  printf(fn_copy);
-  printf ("\n");
+  //printf ("Process name: ");
+  //printf(fn_copy);
+  //printf ("\n");
   /*for(token = strtok_r (NULL, " ", &save_ptr); token != NULL;
       token = strtok_r (NULL, " ", &save_ptr)){
     strlcat(fi_copy, " ", sizeof(fi_copy));
     strlcat(fi_copy, token, sizeof(fi_copy));
   }*/
-  printf ("Arguments: ");
-  printf (input);
-  printf ("\n");
+  //printf ("Arguments: ");
+  //printf (input);
+  //printf ("\n");
   tid = thread_create (fn_copy, PRI_DEFAULT, start_process, input);
   if (tid == TID_ERROR)
   {
@@ -78,20 +78,20 @@ process_execute (const char *input)
 static void
 start_process (void *input)
 {
-  printf ("Starting process.\n");
+  //printf ("Starting process.\n");
   char *token, *save_ptr;
   token = strtok_r (input, " ", &save_ptr);
-  printf ("Made name token.\n");
+  //printf ("Made name token.\n");
   char *file_name;
   file_name = palloc_get_page (0);
   if (file_name == NULL)
     return TID_ERROR;
   strlcpy(file_name, token, PGSIZE);
-  printf ("Error in start_process?\n");
+  //printf ("Error in start_process?\n");
   struct intr_frame if_;
   bool success;
 
-  printf("STARTING PROCESS\n");
+  //printf("STARTING PROCESS\n");
 
   /* Initialize interrupt frame and load executable. */
   memset (&if_, 0, sizeof if_);
@@ -100,13 +100,13 @@ start_process (void *input)
   if_.eflags = FLAG_IF | FLAG_MBS;
   success = load (file_name, &if_.eip, &if_.esp, input);
 
-  printf("INITIALIZED INTERRUPTS\n");
+  //printf("INITIALIZED INTERRUPTS\n");
 
   /* If load failed, quit. */
   palloc_free_page (file_name);
   if (!success) 
     thread_exit ();
-  printf("PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY\n");
+  //printf("PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY\n");
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
      threads/intr-stubs.S).  Because intr_exit takes all of its
@@ -129,18 +129,18 @@ start_process (void *input)
 int
 process_wait (tid_t child_tid UNUSED) 
 {
-  printf ("process_wait called\n");
+  //printf ("process_wait called\n");
   if (thread_current ()->wait_called) return -1;
   thread_current ()->wait_called = true;
-  printf ("No page fault!\n");
+  //printf ("No page fault!\n");
   struct thread *t = get_thread (child_tid);
   if (t != NULL) 
   {
     t->waiting_thread = thread_tid ();
-    printf ("2x no page fault!\n");
+    //printf ("2x no page fault!\n");
     intr_disable ();
     thread_block ();
-    printf ("Calling thread_current in wait\n");
+    //printf ("Calling thread_current in wait\n");
     t = thread_current ();
     return t->child_exit_status;
   }
@@ -282,9 +282,9 @@ load (const char *file_name, void (**eip) (void), void **esp, const char *input)
   process_activate ();
 
   /* Open executable file. */
-  printf ("Attempting to open file: ");
-  printf (file_name);
-  printf ("\n");
+  //printf ("Attempting to open file: ");
+  //printf (file_name);
+  //printf ("\n");
   file = filesys_open (file_name);
   if (file == NULL) 
     {
@@ -375,7 +375,7 @@ load (const char *file_name, void (**eip) (void), void **esp, const char *input)
 
  done:
   /* We arrive here whether the load is successful or not. */
-  printf ("The stack has been setup.\n");
+  //printf ("The stack has been setup.\n");
   file_close (file);
   return success;
 }
@@ -493,7 +493,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
 static bool
 setup_stack (void **esp, const char *input) 
 {
-  printf ("Setting up the stack!\n");
+  //printf ("Setting up the stack!\n");
   uint8_t *kpage;
   bool success = false;
 
@@ -507,41 +507,41 @@ setup_stack (void **esp, const char *input)
         palloc_free_page (kpage);
     }
   int count = 0;
-  printf ("Making pointer array\n");
+  //printf ("Making pointer array\n");
   int pointers[128];
   char *token, *save_ptr;
-  printf ("Tokenizing\n");
+  //printf ("Tokenizing\n");
   uint8_t *kp = kpage;
   kp = PHYS_BASE;
-  printf ("kp at %#010x\n", kp);
+  //printf ("kp at %#010x\n", kp);
   for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
-    printf ("Strok_red\n");
+    //printf ("Strok_red\n");
     kp = (char *) kp - (strlen(token) + 1);
-    printf ("kp at %#010x\n", kp);
+    //printf ("kp at %#010x\n", kp);
     pointers[count] = (int) kp; 
-    printf ("Attempting to write to stack, pointer is %#10x\n", pointers[count]);
+    //printf ("Attempting to write to stack, pointer is %#10x\n", pointers[count]);
     //*(char **) kp = palloc_get_page (0);
-    printf ("Writing '");
-    printf (token);
-    printf ("' to stack\n");
+    //printf ("Writing '");
+    //printf (token);
+    //printf ("' to stack\n");
     //*(char *)kp = "";
     strlcpy ((char *)kp, token, PGSIZE);
-    printf ("Wrote ");
-    printf ((char *) kp);
-    printf (" to stack\n");
+    //printf ("Wrote ");
+    //printf ((char *) kp);
+    //printf (" to stack\n");
     count++;
   }
   kp = (char *) kp - 4;
-  printf ("kp for last arg at %#010x\n", kp);
+  //printf ("kp for last arg at %#010x\n", kp);
   *((char **) kp) = NULL;
   int i;
   for (i = count; i > 0; i--)
   {
     kp = (char *) kp - 4;
     *((int *) kp) = pointers[i-1];
-    printf ("kp for pointers to things on stack at %#010x\n", kp);
-    printf ("Actual value: %#10x\n", pointers[i-1]);
+    //printf ("kp for pointers to things on stack at %#010x\n", kp);
+    //printf ("Actual value: %#10x\n", pointers[i-1]);
     //printf ((char *) kp);
     //printf ("\n");
   }
@@ -552,8 +552,8 @@ setup_stack (void **esp, const char *input)
   *((int *) kp) = count;
   kp = (char *) kp - 4;
   *((int *) kp) = 0;
-  printf ("Number of args = %d\n", count);
-  printf ("Pointer to return = %#010x\n", kp);
+  //printf ("Number of args = %d\n", count);
+  //printf ("Pointer to return = %#010x\n", kp);
   *esp = kp;
   return success;
 }
