@@ -312,6 +312,10 @@ thread_exit (void)
   intr_disable ();
   list_remove (&thread_current()->allelem);
   thread_current ()->status = THREAD_DYING;
+  if (thread_current ()->waiting_thread != NULL)
+  {
+    thread_unblock (get_thread (thread_current ()->waiting_thread));
+  }
   schedule ();
   NOT_REACHED ();
 }
@@ -484,6 +488,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->magic = THREAD_MAGIC;
   t->wait_called = false;
+  t->child_exit_status = 0;
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);
