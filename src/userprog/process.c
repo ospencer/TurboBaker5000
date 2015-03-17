@@ -26,7 +26,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp, const ch
    before process_execute() returns.  Returns the new process's
    thread id, or TID_ERROR if the thread cannot be created. */
 tid_t
-process_execute (const char *input)//used to be file_name 
+process_execute (const char *input)
 {
   printf ("Process executing.\n");
   char *fn_copy;  // function name copy
@@ -91,6 +91,8 @@ start_process (void *input)
   struct intr_frame if_;
   bool success;
 
+  printf("STARTING PROCESS\n");
+
   /* Initialize interrupt frame and load executable. */
   memset (&if_, 0, sizeof if_);
   if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
@@ -98,11 +100,13 @@ start_process (void *input)
   if_.eflags = FLAG_IF | FLAG_MBS;
   success = load (file_name, &if_.eip, &if_.esp, input);
 
+  printf("INITIALIZED INTERRUPTS\n");
+
   /* If load failed, quit. */
   palloc_free_page (file_name);
   if (!success) 
     thread_exit ();
-
+  printf("PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY\n");
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
      threads/intr-stubs.S).  Because intr_exit takes all of its
