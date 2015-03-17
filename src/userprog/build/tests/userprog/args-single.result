@@ -1,6 +1,7 @@
 FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc0027cc5
+Kernel panic in run: PANIC at ../../lib/string.c:331 in strlcpy(): assertion `src != NULL' failed.
+Call stack: 0xc00285fe 0x6e69732d
 Translation of call stack:
+In kernel.o:
 0xc00285fe: debug_panic (.../../lib/kernel/debug.c:38)
-0xc0027cc5: strlcat (...ld/../../lib/string.c:371)
+0x6e69732d: (unknown)

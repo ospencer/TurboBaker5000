@@ -1,5 +1,5 @@
 Copying tests/userprog/args-none to scratch partition...
-qemu -hda /tmp/kaLvwpoBmz.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/XlO5Yo5WN2.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run args-none
@@ -19,17 +19,22 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-none' into the file system...
 Erasing ustar archive...
 Executing 'args-none':
-load: : open failed
-Kernel PANIC at ../../threads/palloc.c:123 in palloc_free_multiple(): assertion `pg_ofs (pages) == 0' failed.
-Call stack: 0xc00285fe.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 130 ticks
-Thread: 2 idle ticks, 128 kernel ticks, 0 user ticks
-hda2 (filesys): 43 reads, 186 writes
+Process executing.
+Process name: 
+Arguments: args-none
+Kernel PANIC at ../../lib/string.c:331 in strlcpy(): assertion `src != NULL' failed.
+Call stack: 0xc00285fe 0x6e6f6e2dPage fault at 0x73677261: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026007
+ cr2=73677261 error=00000000
+ eax=0000000b ebx=73677261 ecx=000007a1 edx=c010abd4
+ esi=0000014b edi=c003058b esp=c00303dc ebp=c010ac70
+ cs=0008 ds=0010 es=0010 ss=6e2d
+Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+Timer: 62 ticks
+Thread: 1 idle ticks, 61 kernel ticks, 0 user ticks
+hda2 (filesys): 26 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 1105 characters output
+Console: 1340 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

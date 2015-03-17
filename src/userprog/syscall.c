@@ -123,10 +123,10 @@ syscall_handler (struct intr_frame *f UNUSED)
       break;
     }
     esp += 1;
-    buffer = (void *) *esp;
+    //buffer = (void *) *esp;
     esp += 1;
-    size = (int) *esp;
-    write (fd, buffer, size);
+    //size = (int) *esp;
+    //write (fd, buffer, size);
     break;
   case SYS_SEEK:
     printf ("SEEK CALLED\n");

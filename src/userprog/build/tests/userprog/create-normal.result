@@ -1,5 +1,0 @@
-FAIL
-Kernel panic in run: PANIC at ../../threads/palloc.c:123 in palloc_free_multiple(): assertion `pg_ofs (pages) == 0' failed.
-Call stack: 0xc00285fe
-Translation of call stack:
-0xc00285fe: debug_panic (.../../lib/kernel/debug.c:38)
