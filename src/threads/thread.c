@@ -278,7 +278,7 @@ get_thread (tid_t tid)
        e = list_next (e))
   {
     struct thread *t = list_entry (e, struct thread, allelem);
-    if (thread_tid (t) == tid)
+    if (thread_tid () == tid)
     {
       if (intr_state) intr_enable ();
       return t;
