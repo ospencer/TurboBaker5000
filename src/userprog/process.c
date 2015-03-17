@@ -130,8 +130,11 @@ int
 process_wait (tid_t child_tid UNUSED) 
 {
   printf ("process_wait called\n");
-  while(true){}
-  return -1;
+  if (thread_current ()->wait_called) return -1;
+  thread_current ()->wait_called = true;
+  get_thread (child_tid)->waiting_thread = thread_tid ();
+  thread_block ();
+  return thread_current ()->child_exit_status;
 }
 
 /* Free the current process's resources. */
