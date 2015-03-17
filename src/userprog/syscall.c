@@ -10,6 +10,7 @@
 #include "filesys/file.h"
 #include "threads/vaddr.h"
 #include "userprog/pagedir.h"
+//#include "userprog/pagedir.c"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -37,13 +38,14 @@ static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
   printf ("system call!\n");
-  int **esp = f->esp;
-  int **call = esp;
-  if(esp == NULL || is_kernel_vaddr(esp) ||
-     !pagedir_is_mapped(thread_current()->pagedir, esp))
+  int **sp = f->esp;
+  int **call = sp;
+  if(sp == NULL || is_kernel_vaddr(sp) ||
+     !pagedir_is_mapped(thread_current()->pagedir, sp))
   {
     exit (-1);
   }
+  int **esp = pagedir_get_page (thread_current()->pagedir, sp);
   const char *file;
   int fd;
   int status;
@@ -123,10 +125,10 @@ syscall_handler (struct intr_frame *f UNUSED)
       break;
     }
     esp += 1;
-    //buffer = (void *) *esp;
+    buffer = (void *) *esp;
     esp += 1;
-    //size = (int) *esp;
-    //write (fd, buffer, size);
+    size = (int) *esp;
+    write (fd, buffer, size);
     break;
   case SYS_SEEK:
     printf ("SEEK CALLED\n");

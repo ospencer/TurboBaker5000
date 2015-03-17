@@ -493,35 +493,43 @@ setup_stack (void **esp, const char *input)
   int pointers[128];
   char *token, *save_ptr;
   printf ("Tokenizing\n");
-  uint8_t *kp = *kpage;
-  kp = kp + PGSIZE;
+  uint8_t *kp = kpage;
+  kp = PHYS_BASE;
+  printf ("kp at %#010x\n", kp);
   for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
     printf ("Strok_red\n");
     kp = (char *) kp - (strlen(token) + 1);
+    printf ("kp at %#010x\n", kp);
     pointers[count] = kp; 
     printf ("Attempting to write to stack...\n");
     //*(char **) kp = palloc_get_page (0);
-    //printf ("Got page for stack write.\n");
+    printf ("Got page for stack write.\n");
+    //*(char *)kp = "";
     strlcpy ((char *)kp, token, PGSIZE);
     printf ("Wrote to stack\n");
     count++;
   }
-  kp = (char **) kp - 1;
+  kp = (char *) kp - 1;
+  printf ("kp for last arg at %#010x\n", kp);
   *((char **) kp) = NULL;
   int i;
-  for (i = count; i >= 0; i--)
+  for (i = count; i > 0; i--)
   {
-    kp = (char **) kp - 1;
+    kp = (char *) kp - 4;
     *((char **) kp) = pointers[i];
+    printf ("kp at %#010x\n", kp);
   }
   char * tmp = (char *) kp;
-  kp = (char **) kp - 1;
+  kp = (char *) kp - 4;
   *((char **) kp) = tmp;
-  kp = (int *) kp - 1;
+  kp = (char *) kp - 4;
   *((int *) kp) = count;
-  kp = (char **) kp - 1;
-  *((void **) kp) = NULL;
+  kp = (char *) kp - 4;
+  *((int *) kp) = 0;
+  printf ("Number of args = %d\n", count);
+  printf ("Pointer to return = %#010x\n", kp);
+  *esp = kp;
   return success;
 }
 
