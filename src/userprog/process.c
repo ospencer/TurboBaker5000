@@ -129,6 +129,7 @@ start_process (void *input)
 int
 process_wait (tid_t child_tid UNUSED) 
 {
+  printf ("process_wait called\n");
   while(true){}
   return -1;
 }

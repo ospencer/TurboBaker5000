@@ -165,7 +165,7 @@ void
 exit (int status)
 {
   printf("%s: exit(%d)\n", thread_name(), status);
-  process_exit ();
+  thread_exit ();
 }
 
 pid_t

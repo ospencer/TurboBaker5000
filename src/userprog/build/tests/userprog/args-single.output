@@ -1,5 +1,5 @@
 Copying tests/userprog/args-single to scratch partition...
-qemu -hda /tmp/4J34gJYED2.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/OEf96FU8ke.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-single onearg'
@@ -22,69 +22,12 @@ Executing 'args-single onearg':
 Process executing.
 Process name: args-single
 Arguments: args-single
-Starting process.
-Made name token.
-Error in start_process?
-STARTING PROCESS
-Attempting to open file: args-single
-Setting up the stack!
-Making pointer array
-Tokenizing
-kp at 0xc0000000
-Strok_red
-kp at 0xbffffff4
-Attempting to write to stack, pointer is 0xbffffff4
-Writing 'args-single' to stack
-Wrote args-single to stack
-kp for last arg at 0xbffffff0
-kp for pointers to things on stack at 0xbfffffec
-Actual value: 0xbffffff4
-Number of args = 1
-Pointer to return = 0xbfffffe0
-The stack has been setup.
-INITIALIZED INTERRUPTS
-PALLOC_FREE_PAGE WAS RUN SUCCESSFULLY
-system call!
-WRITE CALLED
-(args) begin
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argc = 1
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argv[0] = 'args-single'
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) argv[1] = null
-END OF SYSTEM CALL
-system call!
-WRITE CALLED
-(args) end
-END OF SYSTEM CALL
-system call!
-EXIT CALLED
-args-single: exit(0)
-EXEC CALLED
-Process executing.
-Page fault at 0xcccccccc: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002797c
- cr2=cccccccc error=00000000
- eax=c010af28 ebx=bfffff9c ecx=00000780 edx=00000001
- esi=cccccccc edi=c003078a esp=0000000a ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=cccc
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc002797c.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 212 ticks
-Thread: 1 idle ticks, 209 kernel ticks, 2 user ticks
-hda2 (filesys): 63 reads, 186 writes
+Execution of 'args-single' complete.
+Timer: 59 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
+hda2 (filesys): 26 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 2439 characters output
+Console: 922 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

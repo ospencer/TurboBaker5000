@@ -268,6 +268,12 @@ thread_current (void)
   return t;
 }
 
+struct thread *
+get_thread (tid_t tid)
+{
+  struct list_elem *e = 
+}
+
 /* Returns the running thread's tid. */
 tid_t
 thread_tid (void) 
@@ -463,7 +469,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->magic = THREAD_MAGIC;
-
+  t->wait_called = false;
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);

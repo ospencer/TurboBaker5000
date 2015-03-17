@@ -1,6 +1,20 @@
 FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00285fe 0xc002797c
-Translation of call stack:
-0xc00285fe: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002797c: strtok_r (...ld/../../lib/string.c:249)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (args) begin
+  (args) argc = 1
+  (args) argv[0] = 'args-none'
+  (args) argv[1] = null
+  (args) end
+  args-none: exit(0)
+Differences in `diff -u' format:
+- (args) begin
+- (args) argc = 1
+- (args) argv[0] = 'args-none'
+- (args) argv[1] = null
+- (args) end
+- args-none: exit(0)
++ Process executing.
++ Process name: args-none
++ Arguments: args-none
