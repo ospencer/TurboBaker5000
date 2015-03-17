@@ -1,8 +1,8 @@
-Copying tests/userprog/args-none to scratch partition...
-qemu -hda /tmp/q5eerT6YRT.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/args-many to scratch partition...
+qemu -hda /tmp/EHQwYPeZt4.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
-Kernel command line: -q -f extract run args-none
+Kernel command line: -q -f extract run 'args-many a b c d e f g h i j k l m n o p q r s t u v'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
@@ -16,17 +16,17 @@ scratch: using hda3
 Formatting file system...done.
 Boot complete.
 Extracting ustar archive from scratch device into file system...
-Putting 'args-none' into the file system...
+Putting 'args-many' into the file system...
 Erasing ustar archive...
-Executing 'args-none':
+Executing 'args-many a b c d e f g h i j k l m n o p q r s t u v':
 Process executing.
-Process name: args-none
-Arguments: args-none
+Process name: args-many
+Arguments: args-many
 Starting process.
 Made name token.
 Error in start_process?
 STARTING PROCESS
-Attempting to open file: args-none
+Attempting to open file: args-many
 Setting up the stack!
 Making pointer array
 Tokenizing
@@ -34,8 +34,8 @@ kp at 0xc0000000
 Strok_red
 kp at 0xbffffff6
 Attempting to write to stack, pointer is 0xbffffff6
-Writing 'args-none' to stack
-Wrote args-none to stack
+Writing 'args-many' to stack
+Wrote args-many to stack
 kp for last arg at 0xbffffff2
 kp for pointers to things on stack at 0xbfffffee
 Actual value: 0xbffffff6
@@ -54,7 +54,7 @@ WRITE CALLED
 END OF SYSTEM CALL
 system call!
 WRITE CALLED
-(args) argv[0] = 'args-none'
+(args) argv[0] = 'args-many'
 END OF SYSTEM CALL
 system call!
 WRITE CALLED
@@ -66,7 +66,7 @@ WRITE CALLED
 END OF SYSTEM CALL
 system call!
 EXIT CALLED
-args-none: exit(0)
+args-many: exit(0)
 EXEC CALLED
 Process executing.
 Page fault at 0xcccccccc: not present error reading page in kernel context.
@@ -80,11 +80,11 @@ Call stack: 0xc00285fe 0xc002797c.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 194 ticks
-Thread: 1 idle ticks, 191 kernel ticks, 2 user ticks
+Timer: 197 ticks
+Thread: 1 idle ticks, 194 kernel ticks, 2 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 2403 characters output
+Console: 2493 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

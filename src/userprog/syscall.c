@@ -64,9 +64,13 @@ syscall_handler (struct intr_frame *f UNUSED)
     break;
   case SYS_EXIT:
     printf ("EXIT CALLED\n");
-    if (moreargs) status = (int) *esp;
-    else status = 0;
-    exit (status);
+    if (moreargs)
+    {
+       status = (int) *esp;
+       exit(status);
+    }
+    else exit(-1);
+    //exit (status);
     break;
   case SYS_EXEC:
     printf ("EXEC CALLED\n");
@@ -167,7 +171,7 @@ exit (int status)
 pid_t
 exec (const char *cmd_line)
 {
-  char *save_ptr;
+  //char *save_ptr;
   //return process_execute (strtok_r (cmd_line, " ", save_ptr));
   return process_execute (cmd_line);
 }
