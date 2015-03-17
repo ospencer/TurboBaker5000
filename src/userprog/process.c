@@ -496,7 +496,7 @@ setup_stack (void **esp, const char *input)
   for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
     printf ("Strok_red\n");
-    esp = (char *) esp - sizeof(token);
+    esp = (char *) esp - (strlen(token) + 1);
     pointers[count] = esp; 
     printf ("Attempting to write to stack...\n");
     *(char **) esp = palloc_get_page (0);
