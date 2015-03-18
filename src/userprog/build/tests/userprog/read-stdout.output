@@ -1,5 +1,9 @@
 Copying tests/userprog/read-stdout to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/IbNf3CPPW3.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/1YL7OwsT04.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-stdout
@@ -21,18 +25,31 @@ Erasing ustar archive...
 Executing 'read-stdout':
 (read-stdout) begin
 Page fault at 0x4: not present error reading page in kernel context.
+<<<<<<< HEAD
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002c61f
+=======
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002c62f
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
  cr2=00000004 error=00000000
  eax=00000000 ebx=00000000 ecx=00000000 edx=00000008
  esi=bfffff8f edi=c010afb0 esp=464c457f ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=ff5c
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+<<<<<<< HEAD
 Call stack: 0xc002867e 0xc002c61f 0x804a3e3.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 60 ticks
 Thread: 1 idle ticks, 59 kernel ticks, 0 user ticks
+=======
+Call stack: 0xc002867e 0xc002c62f 0x804a3e3.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 1419 characters output

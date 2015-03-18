@@ -1,5 +1,9 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/3CyhLRvrFZ.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/9TY84_ESUc.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-fd
@@ -31,8 +35,13 @@ Call stack: 0xc002867e 0xc002bb12 0x804a49a.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
+<<<<<<< HEAD
 Timer: 61 ticks
 Thread: 0 idle ticks, 60 kernel ticks, 1 user ticks
+=======
+Timer: 60 ticks
+Thread: 3 idle ticks, 57 kernel ticks, 0 user ticks
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 hda2 (filesys): 65 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 1430 characters output

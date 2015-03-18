@@ -1,6 +1,10 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/QbNBMHXVrW.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/nJBLdt27KL.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-arg
@@ -33,8 +37,13 @@ Call stack: 0xc002867e 0xc0027a40.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
+<<<<<<< HEAD
 Timer: 63 ticks
 Thread: 2 idle ticks, 60 kernel ticks, 1 user ticks
+=======
+Timer: 62 ticks
+Thread: 2 idle ticks, 59 kernel ticks, 1 user ticks
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 hda2 (filesys): 88 reads, 366 writes
 hda3 (scratch): 179 reads, 2 writes
 Console: 1455 characters output

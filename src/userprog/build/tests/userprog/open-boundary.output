@@ -1,6 +1,10 @@
 Copying tests/userprog/open-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/NLbmWw3MIJ.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/5FS88WOWWL.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-boundary

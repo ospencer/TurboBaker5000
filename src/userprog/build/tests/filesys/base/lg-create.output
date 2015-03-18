@@ -1,12 +1,16 @@
 Copying tests/filesys/base/lg-create to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/ixlPQJS_JB.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/rRTl0s2CIL.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-create
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -28,8 +32,13 @@ FILESIZE CALLED
 (lg-create) end
 lg-create: exit(0)
 Execution of 'lg-create' complete.
+<<<<<<< HEAD
 Timer: 63 ticks
 Thread: 2 idle ticks, 58 kernel ticks, 3 user ticks
+=======
+Timer: 61 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 2 user ticks
+>>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 hda2 (filesys): 237 reads, 346 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1044 characters output
