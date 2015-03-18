@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-twice to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu -hda /tmp/pRot1cOoXK.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Aqn48Zq200.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run wait-twice
@@ -22,13 +22,18 @@ Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'wait-twice':
 (wait-twice) begin
-wait-twice: exit(-1)
+(child-simple) run
+child-simple: exit(81)
+(wait-twice) wait(exec()) = 81
+(wait-twice) wait(exec()) = -1
+(wait-twice) end
+wait-twice: exit(0)
 Execution of 'wait-twice' complete.
-Timer: 60 ticks
-Thread: 3 idle ticks, 57 kernel ticks, 0 user ticks
-hda2 (filesys): 88 reads, 368 writes
+Timer: 62 ticks
+Thread: 1 idle ticks, 60 kernel ticks, 1 user ticks
+hda2 (filesys): 129 reads, 368 writes
 hda3 (scratch): 180 reads, 2 writes
-Console: 923 characters output
+Console: 1044 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -174,15 +174,16 @@ pid_t
 exec (const char *cmd_line)
 {
   if(cmd_line == NULL || cmd_line >= PHYS_BASE
-     || !pagedir_is_mapped(thread_current ()->pagedir, cmd_line)) exit(-1);
+     || !pagedir_is_mapped(thread_current ()->pagedir, cmd_line)
+     || cmd_line[0] == '\0') exit(-1);
   char *save_ptr;
   char * cmd_copy = palloc_get_page (0);
   if (cmd_copy == NULL) return TID_ERROR;
   strlcpy (cmd_copy, cmd_line, PGSIZE);
-  int temp = open(strtok_r (cmd_copy, " ", &save_ptr));
+  int temp = filesys_open(strtok_r (cmd_copy, " ", &save_ptr));
   //int temp = open(cmd_line);
-  if(temp == -1) return -1;
-  close(temp);
+  if(temp == NULL || temp == -1) return -1;
+//  close(temp);
   return process_execute (cmd_line);
 }
 
@@ -219,7 +220,7 @@ open (const char *file)
   if(file == NULL)
     return -1;
   if(file >= PHYS_BASE || !pagedir_is_mapped(thread_current()->pagedir, file))
-       exit(-1);
+    exit(-1);
   if(file[0] == '\0')
     return -1;
 
