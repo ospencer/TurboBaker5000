@@ -1,12 +1,18 @@
 FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba73 0x804a3cc
-Translation of call stack:
-In kernel.o:
-0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002ba73: filesize (...../userprog/syscall.c:219)
-In tests/userprog/read-normal:
-0x0804a3cc: filesize (...../lib/user/syscall.c:111)
-Translations of user virtual addresses above are based on a guess at
-the binary to use.  If this guess is incorrect, then those
-translations will be misleading.
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (read-normal) begin
+  (read-normal) open "sample.txt" for verification
+  (read-normal) verified contents of "sample.txt"
+  (read-normal) close "sample.txt"
+  (read-normal) end
+  read-normal: exit(0)
+Differences in `diff -u' format:
+  (read-normal) begin
+  (read-normal) open "sample.txt" for verification
++ FILESIZE CALLED
+  (read-normal) verified contents of "sample.txt"
+  (read-normal) close "sample.txt"
+  (read-normal) end
+  read-normal: exit(0)

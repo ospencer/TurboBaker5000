@@ -1,17 +1,13 @@
 Copying tests/userprog/read-zero to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/lMrBme2X2o.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/3qnoHF3DAC.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/DK13I7ovRH.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-zero
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -27,26 +23,14 @@ Erasing ustar archive...
 Executing 'read-zero':
 (read-zero) begin
 (read-zero) open "sample.txt"
-Page fault at 0xe01671e0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bac0
- cr2=e01671e0 error=00000000
- eax=0804be60 ebx=00000000 ecx=00000000 edx=00000008
- esi=bfffff8f edi=c010afb0 esp=0804a92a ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=ff8f
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bac0 0x804a433.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(read-zero) end
+read-zero: exit(0)
+Execution of 'read-zero' complete.
 Timer: 60 ticks
-<<<<<<< HEAD
-Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
-=======
-Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+Thread: 1 idle ticks, 59 kernel ticks, 0 user ticks
 hda2 (filesys): 94 reads, 194 writes
 hda3 (scratch): 93 reads, 2 writes
-Console: 1493 characters output
+Console: 958 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

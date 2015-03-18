@@ -1,9 +1,5 @@
 Copying tests/userprog/args-dbl-space to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/un57vBbBm2.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/2IIWbO_ZB_.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/_NOjpqLB0r.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-dbl-space two  spaces!'

@@ -15,17 +15,15 @@ Acceptable output:
   exec-multiple: exit(0)
 Differences in `diff -u' format:
   (exec-multiple) begin
+  (child-simple) run
+  child-simple: exit(81)
 - (child-simple) run
 - child-simple: exit(81)
 - (child-simple) run
 - child-simple: exit(81)
 - (child-simple) run
 - child-simple: exit(81)
-- (child-simple) run
-- child-simple: exit(81)
-+ Thread was null.
   (exec-multiple) end
   exec-multiple: exit(0)
-+ load: child-simple: open failed
 + load: child-simple: open failed
 + load: child-simple: open failed

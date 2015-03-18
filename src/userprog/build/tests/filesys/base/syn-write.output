@@ -1,17 +1,13 @@
 Copying tests/filesys/base/syn-write to scratch partition...
 Copying tests/filesys/base/child-syn-wrt to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/aq4FQeUaSf.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/6h9VHiqWIL.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/MElusHBjgc.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-write
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -37,30 +33,26 @@ Executing 'syn-write':
 (syn-write) exec child 8 of 10: "child-syn-wrt 7"
 (syn-write) exec child 9 of 10: "child-syn-wrt 8"
 (syn-write) exec child 10 of 10: "child-syn-wrt 9"
-Thread was null.
-(syn-write) wait for child 1 of 10 returned 134529184 (expected 0)
-(syn-write) wait for child 1 of 10 returned 134529184 (expected 0): FAILED
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+load: child-syn-wrt: open failed
+child-syn-wrt: exit(0)
+(syn-write) wait for child 1 of 10 returned 0 (expected 0)
+(syn-write) wait for child 2 of 10 returned -1 (expected 1)
+(syn-write) wait for child 2 of 10 returned -1 (expected 1): FAILED
 syn-write: exit(1)
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
-load: child-syn-wrt: open failed
 Execution of 'syn-write' complete.
-<<<<<<< HEAD
-Timer: 63 ticks
-Thread: 4 idle ticks, 57 kernel ticks, 2 user ticks
-=======
-Timer: 64 ticks
-Thread: 3 idle ticks, 59 kernel ticks, 2 user ticks
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
-hda2 (filesys): 105 reads, 418 writes
+Timer: 66 ticks
+Thread: 4 idle ticks, 58 kernel ticks, 4 user ticks
+hda2 (filesys): 148 reads, 419 writes
 hda3 (scratch): 198 reads, 2 writes
-Console: 1902 characters output
+Console: 1953 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

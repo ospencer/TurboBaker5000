@@ -104,7 +104,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     f->eax = open (file);
     break;
   case SYS_FILESIZE:
-    printf ("FILESIZE CALLED\n");
+    //printf ("FILESIZE CALLED\n");
     fd = (int) *esp;
     f->eax = filesize (fd);
     break;
