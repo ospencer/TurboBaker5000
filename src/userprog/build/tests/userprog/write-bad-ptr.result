@@ -1,10 +1,1 @@
-<<<<<<< HEAD
-FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002869e 0xc0027549
-Translation of call stack:
-0xc002869e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc0027549: memcpy (...ild/../../lib/string.c:16)
-=======
 PASS
->>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
