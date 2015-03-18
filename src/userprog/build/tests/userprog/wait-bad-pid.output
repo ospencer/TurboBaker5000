@@ -1,12 +1,20 @@
 Copying tests/userprog/wait-bad-pid to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/r1NxNuDkSt.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/W0tuDL9P6h.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run wait-bad-pid
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
+<<<<<<< HEAD
 Calibrating timer...  471,040,000 loops/s.
+=======
+Calibrating timer...  419,020,800 loops/s.
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,8 +32,13 @@ Thread was null.
 (wait-bad-pid) end
 wait-bad-pid: exit(0)
 Execution of 'wait-bad-pid' complete.
+<<<<<<< HEAD
 Timer: 60 ticks
 Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
+=======
+Timer: 55 ticks
+Thread: 1 idle ticks, 53 kernel ticks, 1 user ticks
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 921 characters output

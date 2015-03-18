@@ -1,5 +1,9 @@
 Copying tests/filesys/base/sm-seq-block to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/E9w9WCnFS7.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/43iFRdYXUB.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-block
@@ -27,18 +31,22 @@ Page fault at 0xe0162140: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
  cr2=e0162140 error=00000000
  eax=0804aa38 ebx=00000201 ecx=00000000 edx=0804bf60
- esi=c0286f2c edi=0804aa38 esp=0804d5c0 ebp=c010afe8
+ esi=c0286f2c edi=c010afb0 esp=0804d5c0 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=bf60
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002bb08 0x804a56aPage fault at 0x162e: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
  cr2=0000162e error=00000000
  eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030e37 esp=c00304dc ebp=c010ae48
+ esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010ae48
  cs=0008 ds=0010 es=0010 ss=a56a
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
 Timer: 60 ticks
+<<<<<<< HEAD
 Thread: 1 idle ticks, 57 kernel ticks, 2 user ticks
+=======
+Thread: 1 idle ticks, 56 kernel ticks, 3 user ticks
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda2 (filesys): 89 reads, 210 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1734 characters output

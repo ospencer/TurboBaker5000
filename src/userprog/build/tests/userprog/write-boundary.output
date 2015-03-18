@@ -1,6 +1,10 @@
 Copying tests/userprog/write-boundary to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/4uLoZvisMz.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/zUICILNjBL.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-boundary
@@ -27,7 +31,7 @@ Page fault at 0xe016f7e0: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
  cr2=e016f7e0 error=00000000
  eax=0804dfe0 ebx=000000ef ecx=00000000 edx=0804cf89
- esi=c0287f6c edi=00000000 esp=0804a9aa ebp=c010afe8
+ esi=c0287f6c edi=c010afb0 esp=0804a9aa ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=cf89
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002bb08 0x804a4ca.

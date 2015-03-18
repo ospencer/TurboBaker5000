@@ -1,5 +1,9 @@
 Copying tests/userprog/close-stdout to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/h5l8Xw9hC2.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/NoiXy3rw6g.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-stdout
@@ -24,7 +28,11 @@ Executing 'close-stdout':
 close-stdout: exit(0)
 Execution of 'close-stdout' complete.
 Timer: 58 ticks
+<<<<<<< HEAD
 Thread: 0 idle ticks, 57 kernel ticks, 1 user ticks
+=======
+Thread: 1 idle ticks, 56 kernel ticks, 1 user ticks
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 904 characters output

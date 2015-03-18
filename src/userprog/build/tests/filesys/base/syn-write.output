@@ -1,6 +1,10 @@
 Copying tests/filesys/base/syn-write to scratch partition...
 Copying tests/filesys/base/child-syn-wrt to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/aq4FQeUaSf.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/6h9VHiqWIL.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-write
@@ -47,8 +51,13 @@ load: child-syn-wrt: open failed
 load: child-syn-wrt: open failed
 load: child-syn-wrt: open failed
 Execution of 'syn-write' complete.
+<<<<<<< HEAD
 Timer: 63 ticks
 Thread: 4 idle ticks, 57 kernel ticks, 2 user ticks
+=======
+Timer: 64 ticks
+Thread: 3 idle ticks, 59 kernel ticks, 2 user ticks
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda2 (filesys): 105 reads, 418 writes
 hda3 (scratch): 198 reads, 2 writes
 Console: 1902 characters output

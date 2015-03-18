@@ -1,7 +1,11 @@
 Copying tests/userprog/multi-child-fd to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
 Copying tests/userprog/child-close to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/nyYn9231rm.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/I_sW0EhPdT.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run multi-child-fd
@@ -32,7 +36,7 @@ Page fault at 0xe0167660: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba73
  cr2=e0167660 error=00000000
  eax=0804bf80 ebx=bffffca4 ecx=00000780 edx=00000001
- esi=c0285ca4 edi=00000000 esp=0804bf80 ebp=c010afe8
+ esi=c0285ca4 edi=c010afb0 esp=0804bf80 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=fca4
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002ba73 0x804a44c.
@@ -40,7 +44,11 @@ The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 64 ticks
+<<<<<<< HEAD
 Thread: 3 idle ticks, 60 kernel ticks, 1 user ticks
+=======
+Thread: 1 idle ticks, 62 kernel ticks, 1 user ticks
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 hda2 (filesys): 121 reads, 398 writes
 hda3 (scratch): 194 reads, 2 writes
 Console: 1635 characters output

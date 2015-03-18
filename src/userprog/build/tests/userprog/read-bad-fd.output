@@ -1,5 +1,9 @@
 Copying tests/userprog/read-bad-fd to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/GueGHPupY4.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/Jr2s16Fkl7.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-bad-fd
@@ -24,7 +28,7 @@ Page fault at 0x4043c130: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bac0
  cr2=4043c130 error=00000000
  eax=20101234 ebx=00000001 ecx=00000000 edx=00000008
- esi=bfffff8f edi=00000000 esp=0804be60 ebp=c010afe8
+ esi=bfffff8f edi=c010afb0 esp=0804be60 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=ff8f
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002bac0 0x804a483.

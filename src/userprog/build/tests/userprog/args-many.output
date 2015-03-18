@@ -1,5 +1,9 @@
 Copying tests/userprog/args-many to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/i5Yr_HZ5dN.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/M4sX_OI5g_.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-many a b c d e f g h i j k l m n o p q r s t u v'

@@ -1,5 +1,9 @@
 Copying tests/userprog/create-exists to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/C80Tg4rukX.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/KIjkSK5gdd.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-exists
@@ -23,14 +27,16 @@ Executing 'create-exists':
 (create-exists) create quux.dat
 (create-exists) create warble.dat
 (create-exists) try to re-create quux.dat
-(create-exists) try to re-create quux.dat: FAILED
-create-exists: exit(1)
+(create-exists) create baffle.dat
+(create-exists) try to re-create quux.dat
+(create-exists) end
+create-exists: exit(0)
 Execution of 'create-exists' complete.
-Timer: 61 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 2 user ticks
-hda2 (filesys): 109 reads, 200 writes
+Timer: 59 ticks
+Thread: 2 idle ticks, 55 kernel ticks, 2 user ticks
+hda2 (filesys): 135 reads, 208 writes
 hda3 (scratch): 91 reads, 2 writes
-Console: 1050 characters output
+Console: 1096 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
