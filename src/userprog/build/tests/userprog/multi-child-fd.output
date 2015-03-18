@@ -1,7 +1,11 @@
 Copying tests/userprog/multi-child-fd to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
 Copying tests/userprog/child-close to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/YgSv2rRBHR.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/cBEt5hEBVu.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run multi-child-fd
@@ -34,8 +38,13 @@ Call stack: 0xc002869e 0x804a44c.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
+<<<<<<< HEAD
 Timer: 65 ticks
 Thread: 4 idle ticks, 61 kernel ticks, 0 user ticks
+=======
+Timer: 66 ticks
+Thread: 1 idle ticks, 63 kernel ticks, 2 user ticks
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 hda2 (filesys): 156 reads, 398 writes
 hda3 (scratch): 194 reads, 2 writes
 Console: 1335 characters output

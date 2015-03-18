@@ -1,6 +1,10 @@
 Copying tests/userprog/wait-killed to scratch partition...
 Copying tests/userprog/child-bad to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/1jSuWRNV8c.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/WI139C2k8O.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run wait-killed
@@ -28,8 +32,13 @@ child-bad: exit(-1)
 (wait-killed) end
 wait-killed: exit(0)
 Execution of 'wait-killed' complete.
+<<<<<<< HEAD
 Timer: 65 ticks
 Thread: 3 idle ticks, 61 kernel ticks, 1 user ticks
+=======
+Timer: 64 ticks
+Thread: 3 idle ticks, 60 kernel ticks, 1 user ticks
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 hda2 (filesys): 126 reads, 368 writes
 hda3 (scratch): 180 reads, 2 writes
 Console: 1014 characters output

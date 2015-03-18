@@ -1,2 +1,6 @@
 FAIL
-run: wait returned -1.: FAILED
+Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc002869e 0xc002754d
+Translation of call stack:
+0xc002869e: debug_panic (.../../lib/kernel/debug.c:38)
+0xc002754d: memcpy (...ild/../../lib/string.c:16)

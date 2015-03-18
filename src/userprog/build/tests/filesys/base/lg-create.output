@@ -1,5 +1,9 @@
 Copying tests/filesys/base/lg-create to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/PPBOI3M4LE.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/BAnawMhIOD.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-create
@@ -27,8 +31,13 @@ Executing 'lg-create':
 (lg-create) end
 lg-create: exit(0)
 Execution of 'lg-create' complete.
+<<<<<<< HEAD
 Timer: 63 ticks
 Thread: 3 idle ticks, 59 kernel ticks, 1 user ticks
+=======
+Timer: 62 ticks
+Thread: 4 idle ticks, 57 kernel ticks, 1 user ticks
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 hda2 (filesys): 237 reads, 346 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1028 characters output

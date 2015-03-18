@@ -1,5 +1,9 @@
 Copying tests/userprog/open-null to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/GAftEcEnSt.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/BeeejXkLf7.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-null
