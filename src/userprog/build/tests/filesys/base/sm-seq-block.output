@@ -1,12 +1,12 @@
 Copying tests/filesys/base/sm-seq-block to scratch partition...
-qemu -hda /tmp/G4O3N5YzM9.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/ck6Rq8Gteq.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-block
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)

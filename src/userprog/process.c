@@ -176,6 +176,13 @@ process_exit (void)
   struct thread *cur = thread_current ();
   uint32_t *pd;
 
+  int i;
+  for(i = 2; i < sizeof(cur->fds)/sizeof(cur->fds[0]); i++)
+  {
+    file_close(cur->fds[i]);
+    cur->fds[i] = NULL;
+  }
+
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
   pd = cur->pagedir;

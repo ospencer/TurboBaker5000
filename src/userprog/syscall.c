@@ -26,7 +26,7 @@ int write (int, const void *, unsigned);
 void seek (int, unsigned);
 unsigned tell (int);
 void close (int);
-struct file *fds[128];
+//struct file *fds[128];
 
 void
 syscall_init (void) 
@@ -225,13 +225,13 @@ open (const char *file)
 
   //printf ("fds size: %d\n", sizeof(fds)/sizeof(fds[0]));
   int index = 2;
-  while(index < sizeof(fds)/sizeof(fds[0]))
+  while(index < sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
   {
-    if(fds[index] == NULL)
+    if(thread_current()->fds[index] == NULL)
     {
-      fds[index] = filesys_open(file);
-      if (fds[index] == NULL) return -1;
-      thread_current ()->file_open = index;
+      thread_current()->fds[index] = filesys_open(file);
+      if (thread_current()->fds[index] == NULL) return -1;
+//      thread_current ()->file_open = index;
       return index;
     }
     index++;
@@ -242,14 +242,17 @@ open (const char *file)
 int
 filesize (int fd)
 {
-  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
-  return file_length(fds[fd]);
+  if(fd == NULL || fd < 2 ||
+     fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0])) exit(-1);
+  return file_length(thread_current()->fds[fd]);
 }
 
 int
 read (int fd, void *buffer, unsigned size)
 {
-  if(fd == NULL || fd < 0 || fd == 1 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if(fd == NULL || fd < 0 || fd == 1 ||
+     fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
+    exit(-1);
   if(buffer == NULL || buffer >= PHYS_BASE
      || !pagedir_is_mapped(thread_current()->pagedir, buffer)) exit(-1);
   if(fd == 0)
@@ -257,50 +260,58 @@ read (int fd, void *buffer, unsigned size)
     strlcpy(buffer, input_getc() , size);
   }else
   {
-    return file_read(fds[fd], buffer, size);
+    return file_read(thread_current()->fds[fd], buffer, size);
   }
 }
 
 int
 write (int fd, const void *buffer, unsigned size)
 {
-  if(fd == NULL || fd < 1 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if(fd == NULL || fd < 1 ||
+     fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
+    exit(-1);
   if(buffer == NULL || buffer >= PHYS_BASE
      || !pagedir_is_mapped(thread_current()->pagedir, buffer)) exit(-1);
   if(fd == 1)
   {
     putbuf(buffer, size);
     return size;
-  }else if(fd < 2 || fd > sizeof(fds)/sizeof(fds[0]))
+  }else if(fd < 2 || fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
   {
     exit(-1);
   }else
   {
-    return file_write(fds[fd], buffer, size);
+    return file_write(thread_current()->fds[fd], buffer, size);
   }
 }
 
 void
 seek (int fd, unsigned position)
 {
-  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
-  file_seek(fds[fd], position);
+  if(fd == NULL || fd < 2 ||
+     fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
+    exit(-1);
+  file_seek(thread_current()->fds[fd], position);
 }
 
 unsigned 
 tell (int fd)
 {
-  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
-  return file_tell(fds[fd]);
+  if(fd == NULL || fd < 2 ||
+     fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
+    exit(-1);
+  return file_tell(thread_current()->fds[fd]);
 }
 
 void
 close (int fd)
 {
-  if (fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
-  if (fd != thread_current ()->file_open) exit(-1);
-  file_close(fds[fd]);
-  fds[fd] = NULL;
-  thread_current ()->file_open = NULL;
+  if (fd == NULL || fd < 2 ||
+      fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
+    exit(-1);
+//  if (fd != thread_current ()->file_open) exit(-1);
+  file_close(thread_current()->fds[fd]);
+  thread_current()->fds[fd] = NULL;
+//  thread_current ()->file_open = NULL;
 }
 
