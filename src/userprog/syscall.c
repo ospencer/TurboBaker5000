@@ -232,6 +232,7 @@ open (const char *file)
     {
       fds[index] = filesys_open(file);
       if (fds[index] == NULL) return -1;
+      thread_current ()->file_open = index;
       return index;
     }
     index++;
@@ -297,8 +298,10 @@ tell (int fd)
 void
 close (int fd)
 {
-  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if (fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if (fd != thread_current ()->file_open) exit(-1);
   file_close(fds[fd]);
   fds[fd] = NULL;
+  thread_current ()->file_open = NULL;
 }
 
