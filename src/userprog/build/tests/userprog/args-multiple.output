@@ -1,9 +1,5 @@
 Copying tests/userprog/args-multiple to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/dK4R6T5tX9.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/dmYCBGjBZz.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/qGL11mK9ga.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'args-multiple some arguments for you!'

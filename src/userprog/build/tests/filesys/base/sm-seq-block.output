@@ -1,16 +1,12 @@
 Copying tests/filesys/base/sm-seq-block to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/E9w9WCnFS7.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/43iFRdYXUB.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/ipBs5B2o_c.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-block
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -27,29 +23,14 @@ Executing 'sm-seq-block':
 (sm-seq-block) create "noodle"
 (sm-seq-block) open "noodle"
 (sm-seq-block) writing "noodle"
-Page fault at 0xe0162140: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
- cr2=e0162140 error=00000000
- eax=0804aa38 ebx=00000201 ecx=00000000 edx=0804bf60
- esi=c0286f2c edi=c010afb0 esp=0804d5c0 ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=bf60
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bb08 0x804a56aPage fault at 0x162e: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
- cr2=0000162e error=00000000
- eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010ae48
- cs=0008 ds=0010 es=0010 ss=a56a
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+(sm-seq-block) write 513 bytes at offset 0 in "noodle" failed: FAILED
+sm-seq-block: exit(1)
+Execution of 'sm-seq-block' complete.
 Timer: 60 ticks
-<<<<<<< HEAD
 Thread: 1 idle ticks, 57 kernel ticks, 2 user ticks
-=======
-Thread: 1 idle ticks, 56 kernel ticks, 3 user ticks
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
-hda2 (filesys): 89 reads, 210 writes
+hda2 (filesys): 90 reads, 212 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 1734 characters output
+Console: 1047 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

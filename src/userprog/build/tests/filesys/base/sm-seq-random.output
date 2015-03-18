@@ -1,9 +1,5 @@
 Copying tests/filesys/base/sm-seq-random to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/5v_jicLUgd.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/xIdddy5Bsu.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/KWBLa3_cFg.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-random
@@ -27,25 +23,14 @@ Executing 'sm-seq-random':
 (sm-seq-random) create "nibble"
 (sm-seq-random) open "nibble"
 (sm-seq-random) writing "nibble"
-Page fault at 0xe0162200: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
- cr2=e0162200 error=00000000
- eax=0804aa68 ebx=0000029b ecx=00000000 edx=0804bfa0
- esi=c0286f2c edi=c010afb0 esp=0804d600 ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=bfa0
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bb08 0x804a59aPage fault at 0x162e: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
- cr2=0000162e error=00000000
- eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010ae48
- cs=0008 ds=0010 es=0010 ss=a59a
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
+(sm-seq-random) write 667 bytes at offset 0 in "nibble" failed: FAILED
+sm-seq-random: exit(1)
+Execution of 'sm-seq-random' complete.
 Timer: 61 ticks
-Thread: 0 idle ticks, 58 kernel ticks, 3 user ticks
-hda2 (filesys): 89 reads, 210 writes
+Thread: 2 idle ticks, 58 kernel ticks, 1 user ticks
+hda2 (filesys): 90 reads, 212 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 1741 characters output
+Console: 1057 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

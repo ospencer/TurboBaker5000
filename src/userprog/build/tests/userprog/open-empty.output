@@ -1,9 +1,5 @@
 Copying tests/userprog/open-empty to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/CJsmhHbSEs.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/_P1hVtfIsf.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/jwj8L2B7Mm.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-empty
@@ -24,14 +20,14 @@ Putting 'open-empty' into the file system...
 Erasing ustar archive...
 Executing 'open-empty':
 (open-empty) begin
-(open-empty) open() returned 256 instead of -1: FAILED
-open-empty: exit(1)
+(open-empty) end
+open-empty: exit(0)
 Execution of 'open-empty' complete.
-Timer: 58 ticks
-Thread: 1 idle ticks, 56 kernel ticks, 1 user ticks
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 80 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
-Console: 928 characters output
+Console: 890 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

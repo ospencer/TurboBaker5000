@@ -10,10 +10,9 @@ Acceptable output:
   wait-killed: exit(0)
 Differences in `diff -u' format:
   (wait-killed) begin
-- (child-bad) begin
-- child-bad: exit(-1)
+  (child-bad) begin
+  child-bad: exit(-1)
 - (wait-killed) wait(exec()) = -1
-+ Thread was null.
-+ (wait-killed) wait(exec()) = 256
++ (wait-killed) wait(exec()) = 0
   (wait-killed) end
   wait-killed: exit(0)

@@ -1,20 +1,12 @@
 Copying tests/userprog/exec-missing to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/VbCy_yPsee.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/o0JYxi85dA.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/daZrsxuTej.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-missing
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-<<<<<<< HEAD
-Calibrating timer...  471,040,000 loops/s.
-=======
-Calibrating timer...  444,825,600 loops/s.
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -28,20 +20,15 @@ Putting 'exec-missing' into the file system...
 Erasing ustar archive...
 Executing 'exec-missing':
 (exec-missing) begin
-(exec-missing) exec("no-such-file"): 256
+(exec-missing) exec("no-such-file"): 4
 (exec-missing) end
 exec-missing: exit(0)
 Execution of 'exec-missing' complete.
-<<<<<<< HEAD
 Timer: 59 ticks
-Thread: 0 idle ticks, 58 kernel ticks, 1 user ticks
-=======
-Timer: 61 ticks
-Thread: 2 idle ticks, 59 kernel ticks, 0 user ticks
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+Thread: 2 idle ticks, 56 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
-Console: 945 characters output
+Console: 943 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

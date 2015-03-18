@@ -1,16 +1,12 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/hERalLGl5K.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/dfhujL9QHI.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/O8nyaZ4N0A.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-create
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -27,30 +23,16 @@ Executing 'sm-create':
 (sm-create) create "blargle"
 (sm-create) open "blargle" for verification
 FILESIZE CALLED
-Page fault at 0xe016cfe0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba73
- cr2=e016cfe0 error=00000000
- eax=0804d5e0 ebx=bffffd04 ecx=00000780 edx=00000001
- esi=c0286d04 edi=c010afb0 esp=0804aa58 ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=fd04
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002ba73 0x804a55cPage fault at 0x162e: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
- cr2=0000162e error=00000000
- eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010ae48
- cs=0008 ds=0010 es=0010 ss=a55c
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-<<<<<<< HEAD
-Timer: 62 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 3 user ticks
-=======
+(sm-create) verified contents of "blargle"
+(sm-create) close "blargle"
+(sm-create) end
+sm-create: exit(0)
+Execution of 'sm-create' complete.
 Timer: 61 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 3 user ticks
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
-hda2 (filesys): 89 reads, 210 writes
+Thread: 2 idle ticks, 58 kernel ticks, 1 user ticks
+hda2 (filesys): 101 reads, 210 writes
 hda3 (scratch): 94 reads, 2 writes
-Console: 1719 characters output
+Console: 1044 characters output
 Keyboard: 0 keys pressed
-Exception: 2 page faults
+Exception: 0 page faults
 Powering off...

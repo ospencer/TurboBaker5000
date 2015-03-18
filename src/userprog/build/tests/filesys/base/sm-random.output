@@ -1,16 +1,12 @@
 Copying tests/filesys/base/sm-random to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/sDA6rH02u0.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/RI99KHU8Mm.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 1a4053f251d0b30d13aa987de9b902e7699c2323
+qemu -hda /tmp/xztQ3HjR7l.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-random
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -27,22 +23,14 @@ Executing 'sm-random':
 (sm-random) create "bazzle"
 (sm-random) open "bazzle"
 (sm-random) write "bazzle" in random order
-Page fault at 0xe0167fe0: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb2b
- cr2=e0167fe0 error=00000000
- eax=0804c1e0 ebx=bfffff30 ecx=00000000 edx=0000000a
- esi=c0285f30 edi=c010afb0 esp=0804c1e0 ebp=c010afe8
- cs=0008 ds=0010 es=0010 ss=035a
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bb2b 0x804a75c.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 61 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
-hda2 (filesys): 83 reads, 206 writes
+(sm-random) write 13 bytes at offset 858 failed: FAILED
+sm-random: exit(1)
+Execution of 'sm-random' complete.
+Timer: 60 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 2 user ticks
+hda2 (filesys): 84 reads, 207 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 1515 characters output
+Console: 1020 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...
