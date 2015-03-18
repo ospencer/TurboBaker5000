@@ -1,5 +1,5 @@
 Copying tests/userprog/exec-bad-ptr to scratch partition...
-qemu -hda /tmp/GY9JEW7HgF.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/hP9_TeUOoH.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-bad-ptr
@@ -31,11 +31,11 @@ Call stack: 0xc002867e 0xc0027c3d 0xccccccccPage fault at 0xcccccccc: not presen
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
  cr2=cccccccc error=00000000
  eax=0000000b ebx=cccccccc ecx=000007ac edx=c010ad3c
- esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010add8
+ esi=00000065 edi=c0030eb7 esp=c003055c ebp=c010add8
  cs=0008 ds=0010 es=0010 ss=cccc
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
 Timer: 61 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 2 user ticks
+Thread: 2 idle ticks, 58 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 1647 characters output

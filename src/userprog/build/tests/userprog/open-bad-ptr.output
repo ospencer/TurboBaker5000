@@ -1,5 +1,5 @@
 Copying tests/userprog/open-bad-ptr to scratch partition...
-qemu -hda /tmp/2bvSWnNnld.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/eHWDX03ho7.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-bad-ptr
@@ -21,21 +21,21 @@ Erasing ustar archive...
 Executing 'open-bad-ptr':
 (open-bad-ptr) begin
 Page fault at 0x20101234: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002770f
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002ba2e
  cr2=20101234 error=00000000
- eax=c010ae8c ebx=c010ae8c ecx=20101234 edx=20101234
- esi=c010705c edi=c010ae88 esp=c0037088 ebp=00000000
- cs=0008 ds=0010 es=0010 ss=0014
+ eax=20101234 ebx=bfffff74 ecx=00000006 edx=c0285f01
+ esi=20101234 edi=00000000 esp=0804be00 ebp=c010afe8
+ cs=0008 ds=0010 es=0010 ss=ff74
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e.
+Call stack: 0xc002867e 0xc002ba2e 0x804a3d0.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 59 ticks
 Thread: 2 idle ticks, 57 kernel ticks, 0 user ticks
-hda2 (filesys): 65 reads, 188 writes
+hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
-Console: 1409 characters output
+Console: 1430 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...
