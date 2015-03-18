@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-multiple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu -hda /tmp/bcqXnts085.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/swCWCYLeAX.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-multiple
@@ -24,16 +24,20 @@ Executing 'exec-multiple':
 (exec-multiple) begin
 (child-simple) run
 child-simple: exit(81)
-load: child-simple: open failed
-load: child-simple: open failed
+(child-simple) run
+child-simple: exit(81)
+(child-simple) run
+child-simple: exit(81)
+(child-simple) run
+child-simple: exit(81)
 (exec-multiple) end
 exec-multiple: exit(0)
 Execution of 'exec-multiple' complete.
-Timer: 62 ticks
-Thread: 2 idle ticks, 59 kernel ticks, 1 user ticks
-hda2 (filesys): 142 reads, 368 writes
+Timer: 63 ticks
+Thread: 4 idle ticks, 57 kernel ticks, 2 user ticks
+hda2 (filesys): 256 reads, 368 writes
 hda3 (scratch): 180 reads, 2 writes
-Console: 1067 characters output
+Console: 1129 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

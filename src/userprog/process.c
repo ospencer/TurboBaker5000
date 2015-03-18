@@ -65,7 +65,7 @@ process_execute (const char *input)
     printf ("TID ERROR\n");
     palloc_free_page (input_cpy);
   }
-  else palloc_free_page (input_cpy);
+  //else palloc_free_page (input_cpy);
   return tid;
 
 
@@ -309,7 +309,7 @@ load (const char *file_name, void (**eip) (void), void **esp, const char *input)
       printf ("load: %s: open failed\n", file_name);
       goto done; 
     }
-
+  //else printf ("loaded file\n");
   /* Read and verify executable header. */
   if (file_read (file, &ehdr, sizeof ehdr) != sizeof ehdr
       || memcmp (ehdr.e_ident, "\177ELF\1\1\1", 7)

@@ -1,5 +1,5 @@
 Copying tests/userprog/no-vm/multi-oom to scratch partition...
-qemu -hda /tmp/crXStdc47d.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/VfVkxPBvhS.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run multi-oom
@@ -22,8 +22,8 @@ Executing 'multi-oom':
 (multi-oom) begin
 multi-oom: exit(0)
 Execution of 'multi-oom' complete.
-Timer: 61 ticks
-Thread: 0 idle ticks, 61 kernel ticks, 0 user ticks
+Timer: 60 ticks
+Thread: 0 idle ticks, 60 kernel ticks, 0 user ticks
 hda2 (filesys): 80 reads, 218 writes
 hda3 (scratch): 106 reads, 2 writes
 Console: 869 characters output

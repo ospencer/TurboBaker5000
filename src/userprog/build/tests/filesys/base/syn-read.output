@@ -1,6 +1,6 @@
 Copying tests/filesys/base/syn-read to scratch partition...
 Copying tests/filesys/base/child-syn-read to scratch partition...
-qemu -hda /tmp/Pw6M7rUvcN.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/SVvZYraRFk.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-read
@@ -30,8 +30,8 @@ Executing 'syn-read':
 (syn-read) exec child 1 of 10: "child-syn-read 0": FAILED
 syn-read: exit(1)
 Execution of 'syn-read' complete.
-Timer: 64 ticks
-Thread: 2 idle ticks, 60 kernel ticks, 2 user ticks
+Timer: 63 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 2 user ticks
 hda2 (filesys): 127 reads, 414 writes
 hda3 (scratch): 199 reads, 2 writes
 Console: 1118 characters output
