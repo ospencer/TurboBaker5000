@@ -93,6 +93,7 @@ struct thread
     tid_t waiting_thread;
     int child_exit_status;
     int exit_status;
+    int file_open;
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
 
