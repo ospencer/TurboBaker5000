@@ -10,6 +10,7 @@
 #include "filesys/file.h"
 #include "threads/vaddr.h"
 #include "userprog/pagedir.h"
+#include "threads/palloc.h"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -174,9 +175,12 @@ exec (const char *cmd_line)
 {
   if(cmd_line == NULL || cmd_line >= PHYS_BASE
      || !pagedir_is_mapped(thread_current ()->pagedir, cmd_line)) exit(-1);
-  //char *save_ptr;
-  //return process_execute (strtok_r (cmd_line, " ", save_ptr));
-  int temp = open(cmd_line);
+  char *save_ptr;
+  char * cmd_copy = palloc_get_page (0);
+  if (cmd_copy == NULL) return TID_ERROR;
+  strlcpy (cmd_copy, cmd_line, PGSIZE);
+  int temp = open(strtok_r (cmd_copy, " ", &save_ptr));
+  //int temp = open(cmd_line);
   if(temp == -1) return -1;
   close(temp);
   return process_execute (cmd_line);

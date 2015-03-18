@@ -1,5 +1,5 @@
 Copying tests/userprog/close-bad-fd to scratch partition...
-qemu -hda /tmp/UTsejGzN5n.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/f2ClPKli2z.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-bad-fd

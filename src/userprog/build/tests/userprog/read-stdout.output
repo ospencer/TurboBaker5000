@@ -1,5 +1,5 @@
 Copying tests/userprog/read-stdout to scratch partition...
-qemu -hda /tmp/sxWfdfzjta.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/kAnPCswWNF.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-stdout
@@ -22,8 +22,8 @@ Executing 'read-stdout':
 (read-stdout) begin
 read-stdout: exit(-1)
 Execution of 'read-stdout' complete.
-Timer: 59 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
+Timer: 58 ticks
+Thread: 0 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 880 characters output

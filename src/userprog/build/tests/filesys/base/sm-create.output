@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-create to scratch partition...
-qemu -hda /tmp/sAITCyJndt.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/ALY_7xUnNO.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-create
@@ -28,7 +28,7 @@ Executing 'sm-create':
 sm-create: exit(0)
 Execution of 'sm-create' complete.
 Timer: 61 ticks
-Thread: 0 idle ticks, 59 kernel ticks, 2 user ticks
+Thread: 2 idle ticks, 57 kernel ticks, 2 user ticks
 hda2 (filesys): 101 reads, 210 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1028 characters output

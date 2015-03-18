@@ -1,5 +1,5 @@
 Copying tests/userprog/multi-recurse to scratch partition...
-qemu -hda /tmp/JuoBBE6sIR.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/C51ihhTxwb.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'multi-recurse 15'
@@ -21,14 +21,13 @@ Erasing ustar archive...
 Executing 'multi-recurse 15':
 (multi-recurse) begin 15
 (multi-recurse) exec("multi-recurse 14")
-(multi-recurse) exec("multi-recurse 14"): FAILED
-multi-recurse: exit(1)
+multi-recurse: exit(-1)
 Execution of 'multi-recurse 15' complete.
-Timer: 60 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 0 user ticks
-hda2 (filesys): 78 reads, 210 writes
+Timer: 59 ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
+hda2 (filesys): 61 reads, 210 writes
 hda3 (scratch): 102 reads, 2 writes
-Console: 997 characters output
+Console: 949 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
