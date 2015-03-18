@@ -6,28 +6,23 @@
 
 ---- GROUP ----
 
->> Fill in the names and email addresses of your group members.
-
 Oscar Spencer <spencer.o@husky.neu.edu>
 Nikolai Wotton <wotton.n@husky.neu.edu>
 
 ---- PRELIMINARIES ----
 
->> If you have any preliminary comments on your submission, notes for the
->> TAs, or extra credit, please give them here.
-
->> Please cite any offline or online sources you consulted while
->> preparing your submission, other than the Pintos documentation, course
->> text, lecture notes, and course staff.
+STACKOVERFLOW
+We have consulted StackOverflow on numerous occasions, for help with
+the syntax of the C programming language.
 
 			   ARGUMENT PASSING
 			   ================
 
 ---- DATA STRUCTURES ----
 
->> A1: Copy here the declaration of each new or changed `struct' or
->> `struct' member, global or static variable, `typedef', or
->> enumeration.  Identify the purpose of each in 25 words or less.
+No data structure changes. We added more arguments to the necessary
+functions to pass data all the way through (namely the arguments).
+We felt that this was the best solution.
 
 ---- ALGORITHMS ----
 
@@ -35,16 +30,46 @@ Nikolai Wotton <wotton.n@husky.neu.edu>
 >> you arrange for the elements of argv[] to be in the right order?
 >> How do you avoid overflowing the stack page?
 
+Command-line arguments are always separated by white space. We
+simply tokenize the input string. The first token is always the
+function name, whereas the rest of the tokens are the arguments.
+
+We do not worry about the order of argv[]. We actually push them
+onto the stack in an order that one may consider backwards. The
+first argument to the function (in our implementation) goes to the
+bottom of the stack. However, we keep a list of pointers to every
+argument that goes on the stack. We then iterate over this list
+backwards to make sure that the pointers go onto the stack in the
+correct order. This ensures that the arguments themselves are 
+pulled off the stack in the correct order.
+
+Because the stack grows towards the bottom of the page, we do a 
+simple check to ensure that our stack pointer never falls below
+PHYS_BOUND (0x00000000). If it does, we immediately exit with 
+status -1. In the next project, we will just allow this to page
+fault to have more space allocated.
+
 ---- RATIONALE ----
 
 >> A3: Why does Pintos implement strtok_r() but not strtok()?
 
+Pintos allows the use of multiple threads. strtok() has to use a
+global variable to do its work, whereas strtok_r() has a third
+argument to save where it currently is in a string. This allows
+multiple threads to access it, with a well-defined behavior. 
+Multiple threads accessing a global variable can cause undefined
+behavior (which would be really bad).
+
 >> A4: In Pintos, the kernel separates commands into a executable name
 >> and arguments.  In Unix-like systems, the shell does this
 >> separation.  Identify at least two advantages of the Unix approach.
+
 1. The shell can more easily be customized to take commands as /n vs. -n 
    vs. just a space and the letter n without having to modify kernel code. 
-2. 
+2. The function calls can then just reference arguments by pointers.
+   moving from user-space to kernel-space requires copying arguments
+   before being able to actually do anything.
+
 			     SYSTEM CALLS
 			     ============
 
@@ -54,14 +79,49 @@ Nikolai Wotton <wotton.n@husky.neu.edu>
 >> `struct' member, global or static variable, `typedef', or
 >> enumeration.  Identify the purpose of each in 25 words or less.
 
+>> /threads/thread.h
+
+struct thread {
+    
+  bool wait_called;
+  A yes or no as to whether this thread is being waited on.
+  
+  tid_t waiting_thread;
+  The thread identifier for the thread that is waiting for this
+  thread to finish.
+  
+  int child_exit_status;
+  The exit status of the last child thread.
+
+  int exit_status;
+  The status that this thread intends to exit with.
+  
+  struct file *fds[128];
+  An array of all of the files this thread has open.
+
+}
+
 >> B2: Describe how file descriptors are associated with open files.
 >> Are file descriptors unique within the entire OS or just within a
 >> single process?
+
+File descriptiors are sort of just arbitrary values. In general,
+a file descriptor is just the numbered order in which the file was
+opened. If a file is closed, the next open file will receive that 
+file's old file descriptor.
+
+The are actually unique throughout the OS (there is only one array
+of open files).
 
 ---- ALGORITHMS ----
 
 >> B3: Describe your code for reading and writing user data from the
 >> kernel.
+
+We first do a bunch of checks to ensure that the pointers are all 
+valid. We then just ensure that our stack is set up correctly. We
+grab new pages to throw data on, and then push/read all of the data
+from that page.
 
 >> B4: Suppose a system call causes a full page (4,096 bytes) of data
 >> to be copied from user space into the kernel.  What is the least
@@ -70,15 +130,36 @@ Nikolai Wotton <wotton.n@husky.neu.edu>
 >> for a system call that only copies 2 bytes of data?  Is there room
 >> for improvement in these numbers, and how much?
 
+The least number of pages would be 1, if all of the data was 
+perfectly aligned. If the data were misaligned, it would have to make
+two calls. A system call should only allocate one page for two bytes
+of data. The only room for improvement would be to make sure page
+data is always aligned, so that you only need to make one call.
+
 >> B5: Briefly describe your implementation of the "wait" system call
 >> and how it interacts with process termination.
+
+Our wait function does quite a bit. The hard part here was figuring
+how how to properly make the process wait (and yield the processor
+while doing so) and then start running again once the thread it's
+waiting on is supposed to exit. We decided to just have the thread
+immediately block itself. This calls schedule() and allows other
+threads to run. Since this thread is blocked, it won't be scheduled.
+However, right before we block the thread, we let the child thread 
+know that there is a thread waiting on it, by just setting its
+waiting_thread parameter. Then, once this child thread is ready to
+exit, right before it does, it unblocks the waiting thread. Then,
+it calls schedule. This allows the parent thread to continue running
+again. The parent thread then returns the exit status of the child.
+We accomlish this by having the child thread tell the parent thread
+what status it intends to exit with. 
 
 >> B6: Any access to user program memory at a user-specified address
 >> can fail due to a bad pointer value.  Such accesses must cause the
 >> process to be terminated.  System calls are fraught with such
 >> accesses, e.g. a "write" system call requires reading the system
 >> call number from the user stack, then each of the call's three
->> arguments, then an arbitrary amount of user memory, and any of
+>> arguments, then an arbitrary amount of user memory, and any of	
 >> these can fail at any point.  This poses a design and
 >> error-handling problem: how do you best avoid obscuring the primary
 >> function of code in a morass of error-handling?  Furthermore, when
@@ -87,12 +168,49 @@ Nikolai Wotton <wotton.n@husky.neu.edu>
 >> paragraphs, describe the strategy or strategies you adopted for
 >> managing these issues.  Give an example.
 
+This is something that we did consider when writing our code. We had
+a firm understanding that with all of the corner and edge cases,
+we would end up having a lot of code that did not actually 
+accomplish the task at hand. Because of this, we tried to make sure
+that our code that checked pointers and other resources of the sort
+was consistent across all functions. If you were to take a look at
+syscall.c, for example, you would notice that it's essentially the
+same exact line each time to check if a pointer is valid.
+
+We handle errors in what we think is a very straightforward way.
+We have lots of checks in our code for when something just goes
+wrong. These all are if statements. Within those if statements,
+we free all resources that have obtained before exiting. This does
+require us to be mindful about every single time that we decide
+to allocate resources. We must remember in our code to free all
+of that memory. If at any time we forget, it could be disastrous.
+However, we believe that we are quite mindful coders in the sense
+that we are careful about every line that we write and what impact
+it may have. Thus, we generally remember to free all of the 
+resources.
+
+A good example of this is the load() function. Here you can see that
+if we fail to properly load a file, we immediately free the resouces
+and return.
+
 ---- SYNCHRONIZATION ----
 
 >> B7: The "exec" system call returns -1 if loading the new executable
 >> fails, so it cannot return before the new executable has completed
 >> loading.  How does your code ensure this?  How is the load
 >> success/failure status passed back to the thread that calls "exec"?
+
+We immediately do some checks on the load conditions to see if
+loading the new executable would fail. If it would, we just go ahead
+and return -1. Our code must wait for the child executable to finish
+loading because we just have SYS_EXEC() as a wrapper around
+process_execute, which then calls start_process and load. By the
+general rules of C, exec just will not return until either the load
+fails or it has been fully loaded successfully. As far as returning
+a value goes, our code is just a chain of return statements, so each
+function returns the value of the one it's calling. If an error 
+happens, the code will go all the way up and return. The same goes
+for success.
 
 >> B8: Consider parent process P with child process C.  How do you
 >> ensure proper synchronization and avoid race conditions when P
@@ -101,16 +219,46 @@ Nikolai Wotton <wotton.n@husky.neu.edu>
 >> terminates without waiting, before C exits?  After C exits?  Are
 >> there any special cases?
 
+Ideally, P calls wait(C) before C exits. That gives the best results.
+There isn't a race condition in this case, as P literally yields to C
+and waits for it to finish. If C exits first, then wait(C) will 
+return -1 immedately as C doesn't exist anymore. Each thread frees
+its own resources before it exits. If P terminates before C, P will
+still free all of its resources, and the same goes for C before P,
+all because each thread frees all of its resources right before it
+exits.
+
+Because we have implemented it in this way, there aren't really any
+special cases.
+
 ---- RATIONALE ----
 
 >> B9: Why did you choose to implement access to user memory from the
 >> kernel in the way that you did?
 
+We do it by retrieving pages. We did it this way because we thought
+it would be very bad to just allow the kernel to access any user 
+memory as it saw fit. We also believed this was just the way we were
+required to implement it.
+
 >> B10: What advantages or disadvantages can you see to your design
 >> for file descriptors?
 
+The advantages are that our design is very simple and easy to follow.
+It's quite easy to see what files are open, and each thread keeps 
+track of the files it opens. Each FD is unique to the open file.
+
+The disadvantages are that we have a limited number of files that
+we can open at once. Not only this, but there could be issues down
+the road with reusing FDs (our implementation uses the FD as the
+index of the file in our array of open files) as we just use the
+numbers over and over again, with no true uniqueness.
+
 >> B11: The default tid_t to pid_t mapping is the identity mapping.
 >> If you changed it, what advantages are there to your approach?
+
+We did not change it. However, if we did, an advantage would be
+always knowing if a thread was a kernel or user process.
 
 			   SURVEY QUESTIONS
 			   ================
@@ -124,14 +272,28 @@ the quarter.
 >> In your opinion, was this assignment, or any one of the three problems
 >> in it, too easy or too hard?  Did it take too long or too little time?
 
+We believed that the problems were quite difficult, but not to the extent
+of being impossible. The hard part are some of the really awkward
+corner-case test cases that generally would never ever happen. This
+assignment did take a great deal of time.
+
 >> Did you find that working on a particular part of the assignment gave
 >> you greater insight into some aspect of OS design?
+
+All of it did.
 
 >> Is there some particular fact or hint we should give students in
 >> future quarters to help them solve the problems?  Conversely, did you
 >> find any of our guidance to be misleading?
 
+A better understanding of exactly how to do some things (like pushing to
+the stack) would be useful. It would also be helpful to know which
+functions do not have sufficent solutions and that we should make sure
+that we change them.
+
 >> Do you have any suggestions for the TAs to more effectively assist
 >> students, either for future quarters or the remaining projects?
+
+No.
 
 >> Any other comments?
