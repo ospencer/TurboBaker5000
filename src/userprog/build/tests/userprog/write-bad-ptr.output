@@ -1,6 +1,10 @@
 Copying tests/userprog/write-bad-ptr to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/sQ9j35vUus.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/NGNQI6R8wF.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-ptr
@@ -23,6 +27,7 @@ Erasing ustar archive...
 Executing 'write-bad-ptr':
 (write-bad-ptr) begin
 (write-bad-ptr) open "sample.txt"
+<<<<<<< HEAD
 Page fault at 0x10123420: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027549
  cr2=10123420 error=00000000
@@ -37,8 +42,15 @@ of the Pintos documentation for more information.
 Timer: 60 ticks
 Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
 hda2 (filesys): 93 reads, 194 writes
+=======
+write-bad-ptr: exit(-1)
+Execution of 'write-bad-ptr' complete.
+Timer: 58 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 0 user ticks
+hda2 (filesys): 92 reads, 194 writes
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 hda3 (scratch): 93 reads, 2 writes
-Console: 1503 characters output
+Console: 971 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

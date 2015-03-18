@@ -124,14 +124,14 @@ syscall_handler (struct intr_frame *f UNUSED)
     {
       printf ("Writing to console!\n");
       fd = 1;
-      write (fd, NULL, NULL);
+      f->eax = write (fd, NULL, NULL);
       break;
     }
     esp += 1;
     buffer = (void *) *esp;
     esp += 1;
     size = (int) *esp;
-    write (fd, buffer, size);
+    f->eax = write (fd, buffer, size);
     break;
   case SYS_SEEK:
     //printf ("SEEK CALLED\n");
@@ -237,6 +237,8 @@ int
 read (int fd, void *buffer, unsigned size)
 {
   if(fd == NULL || fd < 0 || fd == 1 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if(buffer == NULL || buffer >= PHYS_BASE
+     || !pagedir_is_mapped(thread_current()->pagedir, buffer)) exit(-1);
   if(fd == 0)
   {
     strlcpy(buffer, input_getc() , size);
@@ -249,10 +251,10 @@ read (int fd, void *buffer, unsigned size)
 int
 write (int fd, const void *buffer, unsigned size)
 {
-  if(fd == NULL)
-  {
-    exit(-1);
-  }else if(fd == 1)
+  if(fd == NULL || fd < 1 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
+  if(buffer == NULL || buffer >= PHYS_BASE
+     || !pagedir_is_mapped(thread_current()->pagedir, buffer)) exit(-1);
+  if(fd == 1)
   {
     putbuf(buffer, size);
     return size;

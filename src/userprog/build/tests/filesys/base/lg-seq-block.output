@@ -1,5 +1,9 @@
 Copying tests/filesys/base/lg-seq-block to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/pyYw3e7baj.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/xtpGuPbNi3.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-seq-block
@@ -23,14 +27,24 @@ Executing 'lg-seq-block':
 (lg-seq-block) create "noodle"
 (lg-seq-block) open "noodle"
 (lg-seq-block) writing "noodle"
-(lg-seq-block) write 513 bytes at offset 0 in "noodle" failed: FAILED
-lg-seq-block: exit(1)
+(lg-seq-block) close "noodle"
+(lg-seq-block) open "noodle" for verification
+(lg-seq-block) verified contents of "noodle"
+(lg-seq-block) close "noodle"
+(lg-seq-block) end
+lg-seq-block: exit(0)
 Execution of 'lg-seq-block' complete.
+<<<<<<< HEAD
 Timer: 60 ticks
 Thread: 2 idle ticks, 56 kernel ticks, 2 user ticks
 hda2 (filesys): 90 reads, 348 writes
+=======
+Timer: 66 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 8 user ticks
+hda2 (filesys): 535 reads, 641 writes
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 hda3 (scratch): 94 reads, 2 writes
-Console: 1047 characters output
+Console: 1148 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

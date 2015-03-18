@@ -1,6 +1,10 @@
 Copying tests/userprog/rox-child to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/11Gt2QEJ0S.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/TH0scVPoyu.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-child
@@ -25,14 +29,25 @@ Executing 'rox-child':
 (rox-child) open "child-rox"
 (rox-child) read "child-rox"
 (rox-child) write "child-rox"
-(rox-child) write "child-rox": FAILED
+(rox-child) exec "child-rox 1"
+(child-rox) begin
+(child-rox) try to write "child-rox"
+(child-rox) try to write "child-rox": FAILED
+child-rox: exit(1)
+(rox-child) wait for child: FAILED
 rox-child: exit(1)
 Execution of 'rox-child' complete.
+<<<<<<< HEAD
 Timer: 62 ticks
 Thread: 2 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 96 reads, 397 writes
+=======
+Timer: 63 ticks
+Thread: 4 idle ticks, 58 kernel ticks, 1 user ticks
+hda2 (filesys): 135 reads, 398 writes
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 hda3 (scratch): 194 reads, 2 writes
-Console: 1039 characters output
+Console: 1187 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

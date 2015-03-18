@@ -314,6 +314,7 @@ thread_exit (void)
   if (thread_current ()->waiting_thread != NULL)
   {
     thread_unblock (get_thread (thread_current ()->waiting_thread));
+    get_thread (thread_current ()->waiting_thread)->child_exit_status = thread_current ()->exit_status;
   }
   thread_current ()->status = THREAD_DYING;
   schedule ();
@@ -489,6 +490,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
   t->wait_called = false;
   t->child_exit_status = 0;
+  t->exit_status = 0;
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);

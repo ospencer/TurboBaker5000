@@ -1,6 +1,10 @@
 Copying tests/userprog/exec-once to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/ArFpOXP7Sm.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/zHsRQQ9IX8.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-once

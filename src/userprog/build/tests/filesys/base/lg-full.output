@@ -1,12 +1,16 @@
 Copying tests/filesys/base/lg-full to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/9E9_T3tEnj.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/kok44cha0_.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-full
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -23,14 +27,24 @@ Executing 'lg-full':
 (lg-full) create "quux"
 (lg-full) open "quux"
 (lg-full) writing "quux"
-(lg-full) write 75678 bytes at offset 0 in "quux" failed: FAILED
-lg-full: exit(1)
+(lg-full) close "quux"
+(lg-full) open "quux" for verification
+(lg-full) verified contents of "quux"
+(lg-full) close "quux"
+(lg-full) end
+lg-full: exit(0)
 Execution of 'lg-full' complete.
+<<<<<<< HEAD
 Timer: 62 ticks
 Thread: 2 idle ticks, 56 kernel ticks, 4 user ticks
 hda2 (filesys): 90 reads, 494 writes
+=======
+Timer: 64 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 3 user ticks
+hda2 (filesys): 242 reads, 494 writes
+>>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
 hda3 (scratch): 94 reads, 2 writes
-Console: 991 characters output
+Console: 1064 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
