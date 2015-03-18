@@ -27,6 +27,7 @@ unsigned tell (int);
 void close (int);
 struct file *fds[128];
 
+
 void
 syscall_init (void) 
 {
