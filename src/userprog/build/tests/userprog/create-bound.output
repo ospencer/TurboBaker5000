@@ -1,5 +1,5 @@
 Copying tests/userprog/create-bound to scratch partition...
-qemu -hda /tmp/AcBHg5_ubx.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/vLnU1nkFtc.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-bound

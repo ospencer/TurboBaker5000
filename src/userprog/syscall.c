@@ -228,12 +228,14 @@ open (const char *file)
 int
 filesize (int fd)
 {
+  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
   return file_length(fds[fd]);
 }
 
 int
 read (int fd, void *buffer, unsigned size)
 {
+  if(fd == NULL || fd < 0 || fd == 1 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
   if(fd == 0)
   {
     strlcpy(buffer, input_getc() , size);
@@ -246,10 +248,16 @@ read (int fd, void *buffer, unsigned size)
 int
 write (int fd, const void *buffer, unsigned size)
 {
-  if(fd == 1)
+  if(fd == NULL)
+  {
+    exit(-1);
+  }else if(fd == 1)
   {
     putbuf(buffer, size);
     return size;
+  }else if(fd < 2 || fd > sizeof(fds)/sizeof(fds[0]))
+  {
+    exit(-1);
   }else
   {
     return file_write(fds[fd], buffer, size);
@@ -259,18 +267,21 @@ write (int fd, const void *buffer, unsigned size)
 void
 seek (int fd, unsigned position)
 {
+  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
   file_seek(fds[fd], position);
 }
 
 unsigned 
 tell (int fd)
 {
+  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
   return file_tell(fds[fd]);
 }
 
 void
 close (int fd)
 {
+  if(fd == NULL || fd < 2 || fd > sizeof(fds)/sizeof(fds[0])) exit(-1);
   file_close(fds[fd]);
   fds[fd] = NULL;
 }
