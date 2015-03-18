@@ -1,20 +1,12 @@
 Copying tests/userprog/multi-recurse to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/8Sfu2gmDAu.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/RjoROJe0B_.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/VTFDjG35zF.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run 'multi-recurse 15'
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-<<<<<<< HEAD
-Calibrating timer...  469,401,600 loops/s.
-=======
-Calibrating timer...  444,825,600 loops/s.
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -90,21 +82,12 @@ multi-recurse: exit(1)
 multi-recurse: exit(1)
 (multi-recurse) wait(exec("multi-recurse 14")) returned 0: FAILED
 multi-recurse: exit(1)
-<<<<<<< HEAD
 Execution of 'multi-recurse 15' complete.
-Timer: 74 ticks
-Thread: 3 idle ticks, 62 kernel ticks, 9 user ticks
+Timer: 73 ticks
+Thread: 4 idle ticks, 58 kernel ticks, 11 user ticks
 hda2 (filesys): 586 reads, 210 writes
 hda3 (scratch): 102 reads, 2 writes
-Console: 3182 characters output
-=======
-Execution of 'multi-recurse' complete.
-Timer: 75 ticks
-Thread: 5 idle ticks, 60 kernel ticks, 10 user ticks
-hda2 (filesys): 586 reads, 210 writes
-hda3 (scratch): 102 reads, 2 writes
-Console: 3147 characters output
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Console: 3183 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

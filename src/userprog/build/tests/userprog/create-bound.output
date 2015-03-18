@@ -1,16 +1,12 @@
 Copying tests/userprog/create-bound to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/jazeYc2NQq.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/vLnU1nkFtc.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/GrtXuOTYIV.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-bound
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -28,8 +24,8 @@ Executing 'create-bound':
 (create-bound) end
 create-bound: exit(0)
 Execution of 'create-bound' complete.
-Timer: 59 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 85 reads, 196 writes
 hda3 (scratch): 93 reads, 2 writes
 Console: 941 characters output

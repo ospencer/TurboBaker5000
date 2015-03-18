@@ -1,9 +1,5 @@
 Copying tests/filesys/base/lg-random to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/7s79HgkSaC.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/evhRwv3Ldc.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/coOMFoap1D.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-random
@@ -27,19 +23,16 @@ Executing 'lg-random':
 (lg-random) create "bazzle"
 (lg-random) open "bazzle"
 (lg-random) write "bazzle" in random order
-(lg-random) write 512 bytes at offset 6144 failed: FAILED
-lg-random: exit(1)
+(lg-random) read "bazzle" in random order
+(lg-random) close "bazzle"
+(lg-random) end
+lg-random: exit(0)
 Execution of 'lg-random' complete.
-<<<<<<< HEAD
-Timer: 60 ticks
-Thread: 1 idle ticks, 56 kernel ticks, 3 user ticks
-=======
-Timer: 62 ticks
-Thread: 3 idle ticks, 59 kernel ticks, 0 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
-hda2 (filesys): 83 reads, 353 writes
+Timer: 64 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 3 user ticks
+hda2 (filesys): 233 reads, 502 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 1022 characters output
+Console: 1050 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

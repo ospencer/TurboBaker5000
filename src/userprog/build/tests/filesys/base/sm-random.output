@@ -1,20 +1,12 @@
 Copying tests/filesys/base/sm-random to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/OFv3s8FAzu.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/ne8rl1iVsC.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/zJkik8Z3ys.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-random
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-<<<<<<< HEAD
-Calibrating timer...  523,468,800 loops/s.
-=======
-Calibrating timer...  444,825,600 loops/s.
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -31,19 +23,16 @@ Executing 'sm-random':
 (sm-random) create "bazzle"
 (sm-random) open "bazzle"
 (sm-random) write "bazzle" in random order
-(sm-random) write 13 bytes at offset 858 failed: FAILED
-sm-random: exit(1)
+(sm-random) read "bazzle" in random order
+(sm-random) close "bazzle"
+(sm-random) end
+sm-random: exit(0)
 Execution of 'sm-random' complete.
-<<<<<<< HEAD
-Timer: 59 ticks
-Thread: 2 idle ticks, 55 kernel ticks, 2 user ticks
-=======
-Timer: 62 ticks
-Thread: 0 idle ticks, 60 kernel ticks, 2 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
-hda2 (filesys): 84 reads, 207 writes
+Timer: 64 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 3 user ticks
+hda2 (filesys): 335 reads, 332 writes
 hda3 (scratch): 96 reads, 2 writes
-Console: 1020 characters output
+Console: 1050 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
