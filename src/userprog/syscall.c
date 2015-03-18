@@ -180,6 +180,8 @@ exec (const char *cmd_line)
 int
 wait (pid_t pid)
 {
+  if(pid == NULL || pid >= PHYS_BASE
+     || pagedir_is_mapped(thread_current()->pagedir, pid)) exit(-1);
   return process_wait (pid);
 }
 

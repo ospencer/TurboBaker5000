@@ -1,9 +1,5 @@
 Copying tests/userprog/create-bound to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/_cHW9XdkIp.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/GrtXuOTYIV.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
+qemu -hda /tmp/t5x_Bo6258.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-bound
@@ -28,13 +24,8 @@ Executing 'create-bound':
 (create-bound) end
 create-bound: exit(0)
 Execution of 'create-bound' complete.
-<<<<<<< HEAD
-Timer: 59 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
-=======
 Timer: 61 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
->>>>>>> 7776f15c1045ab1c3cb4087862c6bbbf8afb0afd
+Thread: 0 idle ticks, 60 kernel ticks, 1 user ticks
 hda2 (filesys): 85 reads, 196 writes
 hda3 (scratch): 93 reads, 2 writes
 Console: 941 characters output

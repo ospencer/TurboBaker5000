@@ -162,7 +162,7 @@ process_wait (tid_t child_tid UNUSED)
   }
   else 
   {
-    printf ("Thread was null.\n");
+//    printf ("Thread was null.\n");
     return -1;
   }
 }
