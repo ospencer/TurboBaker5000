@@ -300,9 +300,9 @@ load (const char *file_name, void (**eip) (void), void **esp, const char *input)
   process_activate ();
 
   /* Open executable file. */
-  //printf ("Attempting to open file: ");
-  //printf (file_name);
-  //printf ("\n");
+  printf ("Attempting to open file: ");
+  printf (file_name);
+  printf ("\n");
   file = filesys_open (file_name);
   if (file == NULL) 
     {
