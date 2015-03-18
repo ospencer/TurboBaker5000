@@ -1,16 +1,1 @@
-<<<<<<< HEAD
-FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002c6cf 0x804a3e3
-Translation of call stack:
-In kernel.o:
-0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002c6cf: file_read (...d/../../filesys/file.c:71)
-In tests/userprog/read-stdout:
-0x0804a3e3: read (...../lib/user/syscall.c:117)
-Translations of user virtual addresses above are based on a guess at
-the binary to use.  If this guess is incorrect, then those
-translations will be misleading.
-=======
 PASS
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d

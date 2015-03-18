@@ -1,17 +1,13 @@
 Copying tests/userprog/write-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/FJN2iVvKnz.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/drnWwz0FLh.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/BP1qsCLR7U.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-normal
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -31,12 +27,8 @@ Executing 'write-normal':
 (write-normal) write() returned 134528608 instead of 239: FAILED
 write-normal: exit(1)
 Execution of 'write-normal' complete.
-Timer: 61 ticks
-<<<<<<< HEAD
-Thread: 4 idle ticks, 57 kernel ticks, 0 user ticks
-=======
-Thread: 2 idle ticks, 59 kernel ticks, 0 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Timer: 60 ticks
+Thread: 2 idle ticks, 58 kernel ticks, 0 user ticks
 hda2 (filesys): 117 reads, 202 writes
 hda3 (scratch): 94 reads, 2 writes
 Console: 1060 characters output

@@ -1,16 +1,12 @@
 Copying tests/userprog/exec-bad-ptr to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/p7JHMSorp5.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/Y3__pU4GSf.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/nshJ7mXY3q.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-bad-ptr
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  444,825,600 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,30 +21,21 @@ Erasing ustar archive...
 Executing 'exec-bad-ptr':
 (exec-bad-ptr) begin
 Page fault at 0x20101234: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027c3d
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027c5d
  cr2=20101234 error=00000000
  eax=00000000 ebx=00001000 ecx=ffffffff edx=20101234
- esi=c0110000 edi=20101234 esp=c00375ac ebp=c0109000
+ esi=c0110000 edi=20101234 esp=c00375cc ebp=c0109000
  cs=0008 ds=0010 es=0010 ss=0000
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc0027c3d 0xccccccccPage fault at 0xcccccccc: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
+Call stack: 0xc002869e 0xc0027c5d 0xccccccccPage fault at 0xcccccccc: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc00260a7
  cr2=cccccccc error=00000000
-<<<<<<< HEAD
  eax=0000000b ebx=cccccccc ecx=000007ac edx=c010bd3c
- esi=00000065 edi=c0030f17 esp=c00305bc ebp=c010bdd8
+ esi=00000065 edi=c0030fd7 esp=c003067c ebp=c010bdd8
  cs=0008 ds=0010 es=0010 ss=cccc
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 62 ticks
-Thread: 2 idle ticks, 58 kernel ticks, 2 user ticks
-=======
- eax=0000000b ebx=cccccccc ecx=000007ac edx=c010ad3c
- esi=00000065 edi=c0030f37 esp=c00305dc ebp=c010add8
- cs=0008 ds=0010 es=0010 ss=cccc
-Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
-Timer: 61 ticks
-Thread: 0 idle ticks, 59 kernel ticks, 2 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Timer: 60 ticks
+Thread: 3 idle ticks, 56 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 1647 characters output

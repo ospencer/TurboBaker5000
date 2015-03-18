@@ -1,10 +1,6 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/7ZGkiOlVI9.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/9EV6u7Catz.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/g3Jf3kPiYH.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-arg
@@ -26,7 +22,6 @@ Putting 'child-args' into the file system...
 Erasing ustar archive...
 Executing 'exec-arg':
 (exec-arg) begin
-<<<<<<< HEAD
 (args) begin
 (args) argc = 2
 (args) argv[0] = 'child-args'
@@ -38,24 +33,8 @@ child-args: exit(0)
 exec-arg: exit(0)
 Execution of 'exec-arg' complete.
 Timer: 63 ticks
-Thread: 2 idle ticks, 61 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 61 kernel ticks, 1 user ticks
 hda2 (filesys): 126 reads, 366 writes
-=======
-Page fault at 0x804a8d2: rights violation error writing page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0027a40
- cr2=0804a8d2 error=00000003
- eax=00000020 ebx=0804a8d1 ecx=00000020 edx=00000020
- esi=0804a8c8 edi=c00306ca esp=c00306ca ebp=00000020
- cs=0008 ds=0010 es=0010 ss=0020
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc0027a40.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 63 ticks
-Thread: 4 idle ticks, 58 kernel ticks, 1 user ticks
-hda2 (filesys): 88 reads, 366 writes
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
 hda3 (scratch): 179 reads, 2 writes
 Console: 1064 characters output
 Keyboard: 0 keys pressed

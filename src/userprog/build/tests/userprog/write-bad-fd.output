@@ -1,16 +1,12 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/fXSsvx5DOu.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/mOVGf7mmL6.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/Pa4FZg3nuT.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-bad-fd
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  444,825,600 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,26 +20,10 @@ Putting 'write-bad-fd' into the file system...
 Erasing ustar archive...
 Executing 'write-bad-fd':
 (write-bad-fd) begin
-<<<<<<< HEAD
-Page fault at 0xc4080568: not present error reading page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bbd9
- cr2=c4080568 error=00000000
- eax=01012342 ebx=00000001 ecx=00000009 edx=bfffff8f
- esi=c010bfb0 edi=00000000 esp=0804be60 ebp=c010bfe8
- cs=0008 ds=0010 es=0010 ss=ff8f
-Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bbd9 0x804a49a.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 61 ticks
-Thread: 0 idle ticks, 60 kernel ticks, 1 user ticks
-=======
 write-bad-fd: exit(-1)
 Execution of 'write-bad-fd' complete.
 Timer: 60 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 65 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 886 characters output

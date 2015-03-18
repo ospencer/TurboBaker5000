@@ -1,16 +1,12 @@
 Copying tests/userprog/open-bad-ptr to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/NmjEu4r07Y.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/9kj7R4DJOD.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+qemu -hda /tmp/PouBUm5uSf.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-bad-ptr
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -26,12 +22,8 @@ Executing 'open-bad-ptr':
 (open-bad-ptr) begin
 open-bad-ptr: exit(-1)
 Execution of 'open-bad-ptr' complete.
-Timer: 60 ticks
-<<<<<<< HEAD
-Thread: 2 idle ticks, 58 kernel ticks, 0 user ticks
-=======
-Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
->>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 886 characters output
