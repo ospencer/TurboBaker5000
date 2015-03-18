@@ -1,5 +1,5 @@
 Copying tests/userprog/rox-simple to scratch partition...
-qemu -hda /tmp/5arxp9EBVO.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/rg_FSauKBb.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-simple

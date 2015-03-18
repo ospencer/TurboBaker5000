@@ -35,9 +35,14 @@ process_execute (const char *input)
   tid_t tid;
   char *input_cpy = palloc_get_page (0);
   if (input_cpy == NULL) return TID_ERROR;
+  char *input_cpy2 = palloc_get_page (0);
+  if (input_cpy2 == NULL) return TID_ERROR;
+  //printf ("After palloc, before copy\n");
   strlcpy (input_cpy, input, PGSIZE);
+  strlcpy (input_cpy2, input, PGSIZE);
+  //printf ("After copy\n");
   char *token, *save_ptr;
-  token = strtok_r (input, " ", &save_ptr);
+  token = strtok_r (input_cpy, " ", &save_ptr);
   //fn_copy = palloc_get_page (0);
   //if (fn_copy == NULL)
   //  return TID_ERROR;
@@ -53,12 +58,14 @@ process_execute (const char *input)
   //printf ("Arguments: ");
   //printf (input);
   //printf ("\n");
-  tid = thread_create (input, PRI_DEFAULT, start_process, input_cpy);
+  //printf ("Before start_process\n");
+  tid = thread_create (token, PRI_DEFAULT, start_process, input_cpy2);
   if (tid == TID_ERROR)
   {
     printf ("TID ERROR\n");
     palloc_free_page (input_cpy);
   }
+  else palloc_free_page (input_cpy);
   return tid;
 
 
@@ -87,12 +94,15 @@ start_process (void *input)
   //token = strtok_r (input, " ", &save_ptr);
   //printf ("Made name token.\n");
   char *input_cpy;
+  //printf ("Before strlcpy\n");
   input_cpy = palloc_get_page (0);
+  //printf ("After palloc\n");
   if (input_cpy == NULL)
     return TID_ERROR;
   strlcpy(input_cpy, input, PGSIZE);
+  //printf ("After s_p strlcpy\n");
   char *token, *save_ptr;
-  token = strtok_r (input, " ", &save_ptr);
+  token = strtok_r (input_cpy, " ", &save_ptr);
   //printf ("Error in start_process?\n");
   struct intr_frame if_;
   bool success;
@@ -104,7 +114,7 @@ start_process (void *input)
   if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
   if_.cs = SEL_UCSEG;
   if_.eflags = FLAG_IF | FLAG_MBS;
-  success = load (token, &if_.eip, &if_.esp, input_cpy);
+  success = load (token, &if_.eip, &if_.esp, input);
 
   //printf("INITIALIZED INTERRUPTS\n");
 
@@ -503,6 +513,11 @@ setup_stack (void **esp, const char *input)
   uint8_t *kpage;
   bool success = false;
 
+  char *input_cpy;
+  input_cpy = palloc_get_page (0);
+  if (input_cpy == NULL)
+    return TID_ERROR;
+  strlcpy(input_cpy, input, PGSIZE);
   kpage = palloc_get_page (PAL_USER | PAL_ZERO);
   if (kpage != NULL) 
     {
@@ -522,7 +537,7 @@ setup_stack (void **esp, const char *input)
   //printf ("kp at %#010x\n", kp);
   
   //printf ("Input: %s\n", input);
-  for (token = strtok_r(input, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
+  for (token = strtok_r(input_cpy, " ", &save_ptr); token != NULL; token = strtok_r(NULL, " ", &save_ptr))
   {
     //printf ("Strok_red\n");
     kp = (char *) kp - (strlen(token) + 1);
