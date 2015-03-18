@@ -201,6 +201,7 @@ int
 open (const char *file)
 {
   //printf ("fds size: %d\n", sizeof(fds)/sizeof(fds[0]));
+  if (file == NULL) return -1;
   int index = 2;
   while(index < sizeof(fds)/sizeof(fds[0]))
   {

@@ -1,5 +1,5 @@
 Copying tests/userprog/write-stdin to scratch partition...
-qemu -hda /tmp/3b8op5a_VS.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/4baZxWKf3a.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run write-stdin
@@ -31,8 +31,8 @@ Call stack: 0xc002867e 0xc002c66d 0x804a40a.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 61 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 1419 characters output

@@ -1,5 +1,5 @@
 Copying tests/filesys/base/syn-remove to scratch partition...
-qemu -hda /tmp/qQ4RrPRHg_.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Vi92YMlWmm.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-remove
