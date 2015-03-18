@@ -1,16 +1,12 @@
 Copying tests/userprog/create-exists to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/z72CRtpPE4.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/ZoyraiWA_F.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
+qemu -hda /tmp/v0TdvrFoiN.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run create-exists
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  444,825,600 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -27,20 +23,16 @@ Executing 'create-exists':
 (create-exists) create quux.dat
 (create-exists) create warble.dat
 (create-exists) try to re-create quux.dat
-(create-exists) try to re-create quux.dat: FAILED
-create-exists: exit(1)
+(create-exists) create baffle.dat
+(create-exists) try to re-create quux.dat
+(create-exists) end
+create-exists: exit(0)
 Execution of 'create-exists' complete.
-<<<<<<< HEAD
-Timer: 59 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
-hda2 (filesys): 109 reads, 200 writes
-=======
-Timer: 61 ticks
-Thread: 3 idle ticks, 57 kernel ticks, 1 user ticks
+Timer: 62 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 1 user ticks
 hda2 (filesys): 135 reads, 208 writes
->>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
 hda3 (scratch): 91 reads, 2 writes
-Console: 1050 characters output
+Console: 1096 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

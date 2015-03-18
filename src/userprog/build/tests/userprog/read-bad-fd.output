@@ -1,9 +1,5 @@
 Copying tests/userprog/read-bad-fd to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/KqbG5Myp73.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/DXRK4Tjc3n.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
+qemu -hda /tmp/rmTG3n2OHC.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-bad-fd
@@ -27,21 +23,16 @@ Executing 'read-bad-fd':
 Page fault at 0x4043c130: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002baca
  cr2=4043c130 error=00000000
- eax=20101234 ebx=00000001 ecx=00000000 edx=00000008
- esi=bfffff8f edi=c010afb0 esp=0804be60 ebp=c010afe8
+ eax=20101234 ebx=00000001 ecx=00000008 edx=bfffff8f
+ esi=bfffff8f edi=00000000 esp=0804be60 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=ff8f
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002baca 0x804a483.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-<<<<<<< HEAD
 Timer: 61 ticks
-Thread: 2 idle ticks, 58 kernel ticks, 1 user ticks
-=======
-Timer: 59 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
->>>>>>> 74914c3d4ec79c7799ace99e30f6cbcf475750db
+Thread: 0 idle ticks, 60 kernel ticks, 1 user ticks
 hda2 (filesys): 65 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 Console: 1426 characters output
