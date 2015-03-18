@@ -1,6 +1,10 @@
 Copying tests/userprog/exec-multiple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/6dufNGKJ1h.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/OtV6tD9PED.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> bc8928e428fa10f13187c0d3b4aa78cee37e2fdf
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-multiple

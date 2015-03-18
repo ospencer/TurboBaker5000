@@ -1,6 +1,10 @@
 Copying tests/userprog/close-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/gaEpvmq_Ix.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/21FP7niZQr.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> bc8928e428fa10f13187c0d3b4aa78cee37e2fdf
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-normal
