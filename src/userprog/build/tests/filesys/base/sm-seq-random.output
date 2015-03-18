@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-seq-random to scratch partition...
-qemu -hda /tmp/Fvrz260Oby.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/xIdddy5Bsu.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-seq-random
@@ -27,14 +27,14 @@ Page fault at 0xe0162200: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
  cr2=e0162200 error=00000000
  eax=0804aa68 ebx=0000029b ecx=00000000 edx=0804bfa0
- esi=c0286f2c edi=0804aa68 esp=0804d600 ebp=c010afe8
+ esi=c0286f2c edi=c010afb0 esp=0804d600 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=bfa0
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002bb08 0x804a59aPage fault at 0x162e: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026087
  cr2=0000162e error=00000000
  eax=0000000a ebx=0000162e ecx=000007ab edx=c010adac
- esi=00000065 edi=c0030e37 esp=c00304dc ebp=c010ae48
+ esi=00000065 edi=c0030e57 esp=c00304fc ebp=c010ae48
  cs=0008 ds=0010 es=0010 ss=a59a
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
 Timer: 61 ticks

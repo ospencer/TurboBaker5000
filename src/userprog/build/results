@@ -13,8 +13,8 @@ pass tests/userprog/create-normal
 pass tests/userprog/create-empty
 pass tests/userprog/create-null
 pass tests/userprog/create-bad-ptr
-FAIL tests/userprog/create-long
-FAIL tests/userprog/create-exists
+pass tests/userprog/create-long
+pass tests/userprog/create-exists
 pass tests/userprog/create-bound
 pass tests/userprog/open-normal
 FAIL tests/userprog/open-missing

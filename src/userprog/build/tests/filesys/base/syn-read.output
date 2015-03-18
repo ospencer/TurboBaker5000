@@ -1,13 +1,13 @@
 Copying tests/filesys/base/syn-read to scratch partition...
 Copying tests/filesys/base/child-syn-read to scratch partition...
-qemu -hda /tmp/BUi6Wr9w7M.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/9OQOnKsyHI.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-read
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -29,15 +29,15 @@ Page fault at 0xe0168a60: not present error reading page in kernel context.
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc002bb08
  cr2=e0168a60 error=00000000
  eax=0804c480 ebx=00000400 ecx=00000000 edx=0804c060
- esi=c0285f3c edi=00000000 esp=0804c480 ebp=c010afe8
+ esi=c0285f3c edi=c010afb0 esp=0804c480 ebp=c010afe8
  cs=0008 ds=0010 es=0010 ss=c060
 Kernel PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
 Call stack: 0xc002867e 0xc002bb08 0x804a64a.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 61 ticks
-Thread: 3 idle ticks, 57 kernel ticks, 1 user ticks
+Timer: 63 ticks
+Thread: 3 idle ticks, 58 kernel ticks, 2 user ticks
 hda2 (filesys): 110 reads, 412 writes
 hda3 (scratch): 199 reads, 2 writes
 Console: 1539 characters output
