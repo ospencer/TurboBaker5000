@@ -1,9 +1,5 @@
 Copying tests/userprog/sc-bad-sp to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/2ckYvOIdlw.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/xTJJHlk6ag.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
+qemu -hda /tmp/ezRNhiyIxw.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sc-bad-sp
@@ -27,11 +23,7 @@ Executing 'sc-bad-sp':
 sc-bad-sp: exit(-1)
 Execution of 'sc-bad-sp' complete.
 Timer: 60 ticks
-<<<<<<< HEAD
-Thread: 2 idle ticks, 58 kernel ticks, 0 user ticks
-=======
-Thread: 1 idle ticks, 59 kernel ticks, 0 user ticks
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
+Thread: 1 idle ticks, 58 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 Console: 868 characters output

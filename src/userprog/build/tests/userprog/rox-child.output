@@ -1,17 +1,13 @@
 Copying tests/userprog/rox-child to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/VHi09hmKWz.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/4Rbj1N2J9x.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
+qemu -hda /tmp/pcKSY5yMJj.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-child
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  444,825,600 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -30,22 +26,14 @@ Executing 'rox-child':
 (rox-child) read "child-rox"
 (rox-child) write "child-rox"
 (rox-child) exec "child-rox 1"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) try to write "child-rox": FAILED
-child-rox: exit(1)
-(rox-child) wait for child: FAILED
+(rox-child) exec "child-rox 1": FAILED
 rox-child: exit(1)
 Execution of 'rox-child' complete.
-Timer: 65 ticks
-<<<<<<< HEAD
-Thread: 3 idle ticks, 61 kernel ticks, 1 user ticks
-=======
-Thread: 3 idle ticks, 60 kernel ticks, 2 user ticks
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
-hda2 (filesys): 135 reads, 398 writes
+Timer: 63 ticks
+Thread: 3 idle ticks, 60 kernel ticks, 0 user ticks
+hda2 (filesys): 113 reads, 397 writes
 hda3 (scratch): 194 reads, 2 writes
-Console: 1187 characters output
+Console: 1072 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

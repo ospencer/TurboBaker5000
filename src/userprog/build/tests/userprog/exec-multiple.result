@@ -1,1 +1,29 @@
-PASS
+FAIL
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (exec-multiple) begin
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (child-simple) run
+  child-simple: exit(81)
+  (exec-multiple) end
+  exec-multiple: exit(0)
+Differences in `diff -u' format:
+  (exec-multiple) begin
+  (child-simple) run
+  child-simple: exit(81)
+- (child-simple) run
+- child-simple: exit(81)
+- (child-simple) run
+- child-simple: exit(81)
+- (child-simple) run
+- child-simple: exit(81)
++ load: child-simple: open failed
++ load: child-simple: open failed
+  (exec-multiple) end
+  exec-multiple: exit(0)

@@ -1,21 +1,13 @@
 Copying tests/userprog/rox-multichild to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-<<<<<<< HEAD
-qemu -hda /tmp/3WIHa5J3ME.dsk -m 4 -net none -nographic -monitor null
-=======
-qemu -hda /tmp/4eUL7ArPmT.dsk -m 4 -net none -nographic -monitor null
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
+qemu -hda /tmp/FncZ9a0lJ9.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-multichild
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-<<<<<<< HEAD
 Calibrating timer...  523,468,800 loops/s.
-=======
-Calibrating timer...  471,040,000 loops/s.
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -34,23 +26,14 @@ Executing 'rox-multichild':
 (rox-multichild) read "child-rox"
 (rox-multichild) write "child-rox"
 (rox-multichild) exec "child-rox 5"
-(child-rox) begin
-(child-rox) try to write "child-rox"
-(child-rox) try to write "child-rox": FAILED
-child-rox: exit(1)
-(rox-multichild) wait for child: FAILED
+(rox-multichild) exec "child-rox 5": FAILED
 rox-multichild: exit(1)
 Execution of 'rox-multichild' complete.
-<<<<<<< HEAD
-Timer: 63 ticks
-Thread: 4 idle ticks, 59 kernel ticks, 0 user ticks
-=======
-Timer: 64 ticks
-Thread: 1 idle ticks, 61 kernel ticks, 2 user ticks
->>>>>>> 987d601c8346a1f6c071500c277a3fdac8410c09
-hda2 (filesys): 135 reads, 398 writes
+Timer: 62 ticks
+Thread: 3 idle ticks, 59 kernel ticks, 0 user ticks
+hda2 (filesys): 113 reads, 397 writes
 hda3 (scratch): 194 reads, 2 writes
-Console: 1242 characters output
+Console: 1127 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

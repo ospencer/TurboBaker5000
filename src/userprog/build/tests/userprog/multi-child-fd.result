@@ -1,11 +1,43 @@
 FAIL
-Kernel panic in run: PANIC at ../../filesys/file.c:147 in file_length(): assertion `file != NULL' failed.
-Call stack: 0xc002869e 0x804a44c
-Translation of call stack:
-In kernel.o:
-0xc002869e: debug_panic (.../../lib/kernel/debug.c:38)
-In tests/userprog/multi-child-fd:
-0x0804a44c: filesize (...../lib/user/syscall.c:111)
-Translations of user virtual addresses above are based on a guess at
-the binary to use.  If this guess is incorrect, then those
-translations will be misleading.
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (multi-child-fd) begin
+  (multi-child-fd) open "sample.txt"
+  (child-close) begin
+  (child-close) end
+  child-close: exit(0)
+  (multi-child-fd) wait(exec()) = 0
+  (multi-child-fd) verified contents of "sample.txt"
+  (multi-child-fd) end
+  multi-child-fd: exit(0)
+Differences in `diff -u' format:
+  (multi-child-fd) begin
+  (multi-child-fd) open "sample.txt"
+- (child-close) begin
+- (child-close) end
+- child-close: exit(0)
+- (multi-child-fd) wait(exec()) = 0
+- (multi-child-fd) verified contents of "sample.txt"
+- (multi-child-fd) end
+- multi-child-fd: exit(0)
++ multi-child-fd: exit(-1)
+Acceptable output:
+  (multi-child-fd) begin
+  (multi-child-fd) open "sample.txt"
+  (child-close) begin
+  child-close: exit(-1)
+  (multi-child-fd) wait(exec()) = -1
+  (multi-child-fd) verified contents of "sample.txt"
+  (multi-child-fd) end
+  multi-child-fd: exit(0)
+Differences in `diff -u' format:
+  (multi-child-fd) begin
+  (multi-child-fd) open "sample.txt"
+- (child-close) begin
+- child-close: exit(-1)
+- (multi-child-fd) wait(exec()) = -1
+- (multi-child-fd) verified contents of "sample.txt"
+- (multi-child-fd) end
+- multi-child-fd: exit(0)
++ multi-child-fd: exit(-1)

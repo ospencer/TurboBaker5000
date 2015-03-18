@@ -1,1 +1,2 @@
-PASS
+FAIL
+run: exec("multi-recurse 14"): FAILED
