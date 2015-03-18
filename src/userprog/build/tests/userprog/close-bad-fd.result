@@ -1,10 +1,10 @@
 FAIL
 Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc002867e 0xc002bbb9 0x804a414
+Call stack: 0xc002867e 0xc002bbb1 0x804a414
 Translation of call stack:
 In kernel.o:
 0xc002867e: debug_panic (.../../lib/kernel/debug.c:38)
-0xc002bbb9: close (...../userprog/syscall.c:272)
+0xc002bbb1: close (...../userprog/syscall.c:274)
 In tests/userprog/close-bad-fd:
 0x0804a414: close (...../lib/user/syscall.c:141)
 Translations of user virtual addresses above are based on a guess at

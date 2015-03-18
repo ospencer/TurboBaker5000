@@ -203,13 +203,14 @@ remove (const char *file)
 int
 open (const char *file)
 {
-  if(file == NULL || file[0] == '\0')
+  if(file == NULL)
     return -1;
   if(file >= PHYS_BASE || !pagedir_is_mapped(thread_current()->pagedir, file))
        exit(-1);
+  if(file[0] == '\0')
+    return -1;
 
   //printf ("fds size: %d\n", sizeof(fds)/sizeof(fds[0]));
-  if (file == NULL) return -1;
   int index = 2;
   while(index < sizeof(fds)/sizeof(fds[0]))
   {
