@@ -1,5 +1,5 @@
 Copying tests/filesys/base/syn-remove to scratch partition...
-qemu -hda /tmp/Z5uMPB7irq.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/FC85Kc3Bzj.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-remove
@@ -36,7 +36,7 @@ The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 60 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
+Thread: 2 idle ticks, 56 kernel ticks, 2 user ticks
 hda2 (filesys): 87 reads, 204 writes
 hda3 (scratch): 95 reads, 2 writes
 Console: 1543 characters output

@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-bad-sp to scratch partition...
-qemu -hda /tmp/JHQrFq2sJ3.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/hoHPYss_pK.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sc-bad-sp

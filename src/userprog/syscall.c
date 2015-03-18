@@ -79,12 +79,12 @@ syscall_handler (struct intr_frame *f UNUSED)
       printf ("No name to execute executable file.");
       exit (-1);
     }
-    exec (cmd);
+    f->eax = exec (cmd);
     break;
   case SYS_WAIT:
     //printf ("WAIT CALLED\n");
     pid = (pid_t) *esp;
-    wait (pid);
+    f->eax = wait (pid);
     break;
   case SYS_CREATE:
     //printf ("CREATE CALLED\n");
@@ -96,17 +96,17 @@ syscall_handler (struct intr_frame *f UNUSED)
   case SYS_REMOVE:
     //printf ("REMOVE CALLED\n");
     file = (const char *) *esp;
-    remove (file);
+    f->eax = remove (file);
     break;
   case SYS_OPEN:
     //printf ("OPEN CALLED\n");
     file = (const char *) *esp;
-    open (file);
+    f->eax = open (file);
     break;
   case SYS_FILESIZE:
     printf ("FILESIZE CALLED\n");
     fd = (int) *esp;
-    filesize (fd);
+    f->eax = filesize (fd);
     break;
   case SYS_READ:
     //printf ("READ CALLED\n");
@@ -115,7 +115,7 @@ syscall_handler (struct intr_frame *f UNUSED)
     buffer = (void *) *esp;
     esp += 1;
     size = (unsigned) *esp;
-    read (fd, buffer, size);
+    f->eax = read (fd, buffer, size);
     break;
   case SYS_WRITE: 
     //printf ("WRITE CALLED\n");
@@ -143,7 +143,7 @@ syscall_handler (struct intr_frame *f UNUSED)
   case SYS_TELL:
     //printf ("TELL CALLED\n");
     fd = (int) *esp;
-    tell (fd);
+    f->eax = tell (fd);
     break;
   case SYS_CLOSE:
     //printf ("CLOSE CALLED\n");
@@ -200,12 +200,14 @@ remove (const char *file)
 int
 open (const char *file)
 {
+  //printf ("fds size: %d\n", sizeof(fds)/sizeof(fds[0]));
   int index = 2;
-  while(index < sizeof(fds))
+  while(index < sizeof(fds)/sizeof(fds[0]))
   {
     if(fds[index] == NULL)
     {
       fds[index] = filesys_open(file);
+      if (fds[index] == NULL) return -1;
       return index;
     }
     index++;

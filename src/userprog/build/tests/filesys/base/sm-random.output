@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-random to scratch partition...
-qemu -hda /tmp/POaQibreJN.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/sDA6rH02u0.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-random
@@ -34,8 +34,8 @@ Call stack: 0xc002867e 0xc002bb2b 0x804a75c.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 60 ticks
-Thread: 2 idle ticks, 56 kernel ticks, 2 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 83 reads, 206 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 1515 characters output

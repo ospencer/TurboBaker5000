@@ -1,13 +1,13 @@
 Copying tests/userprog/rox-child to scratch partition...
 Copying tests/userprog/child-rox to scratch partition...
-qemu -hda /tmp/iDSVV7PhlM.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/U9nj38x2uv.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run rox-child
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  444,825,600 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 174 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -35,8 +35,8 @@ Call stack: 0xc002867e 0xc002bac0 0x804a523.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 62 ticks
-Thread: 2 idle ticks, 59 kernel ticks, 1 user ticks
+Timer: 64 ticks
+Thread: 4 idle ticks, 60 kernel ticks, 0 user ticks
 hda2 (filesys): 94 reads, 396 writes
 hda3 (scratch): 194 reads, 2 writes
 Console: 1522 characters output

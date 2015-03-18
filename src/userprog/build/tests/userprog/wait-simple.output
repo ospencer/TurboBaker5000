@@ -1,6 +1,6 @@
 Copying tests/userprog/wait-simple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu -hda /tmp/F_4DcZkhBZ.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/1P2eqbgQXn.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run wait-simple
@@ -27,8 +27,8 @@ Thread was null.
 (wait-simple) end
 wait-simple: exit(0)
 Execution of 'wait-simple' complete.
-Timer: 61 ticks
-Thread: 2 idle ticks, 59 kernel ticks, 0 user ticks
+Timer: 62 ticks
+Thread: 2 idle ticks, 60 kernel ticks, 0 user ticks
 hda2 (filesys): 88 reads, 368 writes
 hda3 (scratch): 180 reads, 2 writes
 Console: 996 characters output
