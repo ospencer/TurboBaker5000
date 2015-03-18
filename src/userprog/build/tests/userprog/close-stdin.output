@@ -1,5 +1,9 @@
 Copying tests/userprog/close-stdin to scratch partition...
+<<<<<<< HEAD
 qemu -hda /tmp/CZaUwc3DOO.dsk -m 4 -net none -nographic -monitor null
+=======
+qemu -hda /tmp/r45hEsiI7Z.dsk -m 4 -net none -nographic -monitor null
+>>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-stdin
@@ -20,14 +24,18 @@ Putting 'close-stdin' into the file system...
 Erasing ustar archive...
 Executing 'close-stdin':
 (close-stdin) begin
-(close-stdin) end
-close-stdin: exit(0)
+close-stdin: exit(-1)
 Execution of 'close-stdin' complete.
+<<<<<<< HEAD
 Timer: 60 ticks
 Thread: 3 idle ticks, 57 kernel ticks, 0 user ticks
+=======
+Timer: 58 ticks
+Thread: 1 idle ticks, 56 kernel ticks, 1 user ticks
+>>>>>>> 676ae3b3c319e212775c7eacddb34aba979b313d
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
-Console: 897 characters output
+Console: 880 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
