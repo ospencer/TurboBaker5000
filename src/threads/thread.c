@@ -310,7 +310,6 @@ thread_exit (void)
      when it calls thread_schedule_tail(). */
   intr_disable ();
   list_remove (&thread_current()->allelem);
-  //thread_current ()->status = THREAD_DYING;
   if (thread_current ()->waiting_thread != NULL)
   {
     thread_unblock (get_thread (thread_current ()->waiting_thread));
@@ -400,7 +399,7 @@ thread_get_recent_cpu (void)
   /* Not yet implemented. */
   return 0;
 }
-
+
 /* Idle thread.  Executes when no other thread is ready to run.
 
    The idle thread is initially put on the ready list by
@@ -449,7 +448,7 @@ kernel_thread (thread_func *function, void *aux)
   function (aux);       /* Execute the thread function. */
   thread_exit ();       /* If function() returns, kill the thread. */
 }
-
+
 /* Returns the running thread. */
 struct thread *
 running_thread (void) 
@@ -491,7 +490,6 @@ init_thread (struct thread *t, const char *name, int priority)
   t->wait_called = false;
   t->child_exit_status = 0;
   t->exit_status = 0;
-//  t->file_open = NULL;
   old_level = intr_disable ();
   list_push_back (&all_list, &t->allelem);
   intr_set_level (old_level);

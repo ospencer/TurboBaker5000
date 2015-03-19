@@ -1,5 +1,5 @@
 Copying tests/filesys/base/sm-random to scratch partition...
-qemu -hda /tmp/iZLaLS6dlM.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/SCmSlvncGa.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sm-random
@@ -8,7 +8,7 @@ Pintos booting with 4,088 kB RAM...
 382 pages available in user pool.
 Calibrating timer...  471,040,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
-hda1: 174 sectors (87 kB), Pintos OS kernel (20)
+hda1: 175 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
 hda3: 97 sectors (48 kB), Pintos scratch (22)
 filesys: using hda2
@@ -29,7 +29,7 @@ Executing 'sm-random':
 sm-random: exit(0)
 Execution of 'sm-random' complete.
 Timer: 64 ticks
-Thread: 4 idle ticks, 57 kernel ticks, 3 user ticks
+Thread: 2 idle ticks, 58 kernel ticks, 4 user ticks
 hda2 (filesys): 335 reads, 332 writes
 hda3 (scratch): 96 reads, 2 writes
 Console: 1050 characters output

@@ -1,6 +1,6 @@
-qemu -hda /tmp/0AFsI9jX7C.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/H701jc4_84.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
-Loading..........
+Loading.........
 Kernel command line: -q run alarm-simultaneous
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
@@ -29,8 +29,8 @@ Executing 'alarm-simultaneous':
 (alarm-simultaneous) iteration 4, thread 2: woke up 0 ticks later
 (alarm-simultaneous) end
 Execution of 'alarm-simultaneous' complete.
-Timer: 278 ticks
-Thread: 250 idle ticks, 28 kernel ticks, 0 user ticks
-Console: 1615 characters output
+Timer: 279 ticks
+Thread: 0 idle ticks, 279 kernel ticks, 0 user ticks
+Console: 1614 characters output
 Keyboard: 0 keys pressed
 Powering off...
