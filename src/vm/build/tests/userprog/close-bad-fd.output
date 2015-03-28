@@ -1,5 +1,5 @@
 Copying tests/userprog/close-bad-fd to scratch partition...
-qemu -hda /tmp/2dKdgPCUxv.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/O5_3dmxNZx.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run close-bad-fd
@@ -25,7 +25,7 @@ Executing 'close-bad-fd':
 close-bad-fd: exit(-1)
 Execution of 'close-bad-fd' complete.
 Timer: 59 ticks
-Thread: 3 idle ticks, 56 kernel ticks, 0 user ticks
+Thread: 2 idle ticks, 57 kernel ticks, 0 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

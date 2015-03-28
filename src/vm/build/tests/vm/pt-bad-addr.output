@@ -1,5 +1,5 @@
 Copying tests/vm/pt-bad-addr to scratch partition...
-qemu -hda /tmp/krnZD4n4p5.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/PMsCBL8VU2.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run pt-bad-addr
@@ -32,7 +32,7 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a3
 pt-bad-addr: exit(-1)
 Execution of 'pt-bad-addr' complete.
 Timer: 60 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 2 user ticks
+Thread: 2 idle ticks, 56 kernel ticks, 2 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

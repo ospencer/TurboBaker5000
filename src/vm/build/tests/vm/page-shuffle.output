@@ -1,5 +1,5 @@
 Copying tests/vm/page-shuffle to scratch partition...
-qemu -hda /tmp/Qw291VKFRr.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/1VdwOEt8Vf.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run page-shuffle
@@ -36,8 +36,8 @@ Executing 'page-shuffle':
 (page-shuffle) end
 page-shuffle: exit(0)
 Execution of 'page-shuffle' complete.
-Timer: 85 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 26 user ticks
+Timer: 84 ticks
+Thread: 0 idle ticks, 58 kernel ticks, 26 user ticks
 hda2 (filesys): 61 reads, 206 writes
 hda3 (scratch): 100 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes
