@@ -1,5 +1,5 @@
 Copying tests/userprog/sc-bad-arg to scratch partition...
-qemu -hda /tmp/PozJOI0XRR.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/FOFZFQQ9Wu.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run sc-bad-arg

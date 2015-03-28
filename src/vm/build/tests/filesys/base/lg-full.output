@@ -1,5 +1,5 @@
 Copying tests/filesys/base/lg-full to scratch partition...
-qemu -hda /tmp/vsWcvj5jhB.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/28XjneCdlV.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run lg-full
@@ -32,8 +32,8 @@ Executing 'lg-full':
 (lg-full) end
 lg-full: exit(0)
 Execution of 'lg-full' complete.
-Timer: 64 ticks
-Thread: 3 idle ticks, 57 kernel ticks, 4 user ticks
+Timer: 65 ticks
+Thread: 2 idle ticks, 57 kernel ticks, 6 user ticks
 hda2 (filesys): 242 reads, 494 writes
 hda3 (scratch): 94 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

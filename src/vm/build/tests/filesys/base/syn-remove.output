@@ -1,5 +1,5 @@
 Copying tests/filesys/base/syn-remove to scratch partition...
-qemu -hda /tmp/Kc48w7dyMW.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Xmg1U_PMST.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run syn-remove
@@ -33,7 +33,7 @@ Executing 'syn-remove':
 syn-remove: exit(0)
 Execution of 'syn-remove' complete.
 Timer: 60 ticks
-Thread: 1 idle ticks, 57 kernel ticks, 2 user ticks
+Thread: 0 idle ticks, 58 kernel ticks, 2 user ticks
 hda2 (filesys): 91 reads, 209 writes
 hda3 (scratch): 95 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

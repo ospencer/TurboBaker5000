@@ -1,6 +1,6 @@
 Copying tests/vm/page-parallel to scratch partition...
 Copying tests/vm/child-linear to scratch partition...
-qemu -hda /tmp/MMp4yDtLIP.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/F6DpBZI3Mt.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run page-parallel
@@ -36,7 +36,7 @@ load: child-linear: open failed
 page-parallel: exit(1)
 Execution of 'page-parallel' complete.
 Timer: 63 ticks
-Thread: 1 idle ticks, 62 kernel ticks, 0 user ticks
+Thread: 3 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 103 reads, 378 writes
 hda3 (scratch): 185 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes
