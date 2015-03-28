@@ -1,4 +1,6 @@
 *.o
 *.result
 *.d
+*.output
+*.bin
 **/build/
