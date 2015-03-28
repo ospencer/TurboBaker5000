@@ -1,5 +1,5 @@
 Copying tests/vm/pt-grow-stack to scratch partition...
-qemu -hda /tmp/q8RhC06rXO.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/rkBcAjrcow.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run pt-grow-stack
@@ -31,8 +31,8 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480bb
  cs=001b ds=0023 es=0023 ss=0023
 pt-grow-stack: exit(-1)
 Execution of 'pt-grow-stack' complete.
-Timer: 59 ticks
-Thread: 0 idle ticks, 58 kernel ticks, 1 user ticks
+Timer: 60 ticks
+Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 61 reads, 206 writes
 hda3 (scratch): 100 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

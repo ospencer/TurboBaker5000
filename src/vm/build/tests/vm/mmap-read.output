@@ -1,13 +1,13 @@
 Copying tests/vm/mmap-read to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-qemu -hda /tmp/7Mp6PQEp6p.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/BOaNSagEqD.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run mmap-read
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 13,104 sectors (6 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 175 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -35,8 +35,8 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80499b3
  cs=001b ds=0023 es=0023 ss=0023
 mmap-read: exit(-1)
 Execution of 'mmap-read' complete.
-Timer: 61 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
+Timer: 60 ticks
+Thread: 2 idle ticks, 58 kernel ticks, 0 user ticks
 hda2 (filesys): 96 reads, 202 writes
 hda3 (scratch): 97 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

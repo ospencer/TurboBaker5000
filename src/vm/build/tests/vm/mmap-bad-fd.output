@@ -1,5 +1,5 @@
 Copying tests/vm/mmap-bad-fd to scratch partition...
-qemu -hda /tmp/OsSAJmd1sp.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/KEZgcndpfR.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run mmap-bad-fd
@@ -26,8 +26,8 @@ Executing 'mmap-bad-fd':
 (mmap-bad-fd) try to mmap invalid fd: FAILED
 mmap-bad-fd: exit(1)
 Execution of 'mmap-bad-fd' complete.
-Timer: 58 ticks
-Thread: 3 idle ticks, 55 kernel ticks, 0 user ticks
+Timer: 59 ticks
+Thread: 1 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 63 reads, 188 writes
 hda3 (scratch): 91 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

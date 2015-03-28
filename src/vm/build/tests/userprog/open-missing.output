@@ -1,5 +1,5 @@
 Copying tests/userprog/open-missing to scratch partition...
-qemu -hda /tmp/CXpece9Mc8.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Os0Tf0GXr9.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run open-missing

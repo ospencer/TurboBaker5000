@@ -1,6 +1,6 @@
 Copying tests/vm/page-merge-seq to scratch partition...
 Copying tests/vm/child-sort to scratch partition...
-qemu -hda /tmp/7ZzittIGtk.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/pCiSbYRVtL.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run page-merge-seq
@@ -25,7 +25,7 @@ Erasing ustar archive...
 Executing 'page-merge-seq':
 Execution of 'page-merge-seq' complete.
 Timer: 64 ticks
-Thread: 2 idle ticks, 61 kernel ticks, 1 user ticks
+Thread: 1 idle ticks, 62 kernel ticks, 1 user ticks
 hda2 (filesys): 85 reads, 388 writes
 hda3 (scratch): 190 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes
