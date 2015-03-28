@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu -hda /tmp/yWp0g9vXRu.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/Fs3fZTp776.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run read-normal
@@ -30,8 +30,8 @@ Executing 'read-normal':
 (read-normal) end
 read-normal: exit(0)
 Execution of 'read-normal' complete.
-Timer: 59 ticks
-Thread: 0 idle ticks, 58 kernel ticks, 1 user ticks
+Timer: 60 ticks
+Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
 hda2 (filesys): 94 reads, 194 writes
 hda3 (scratch): 93 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

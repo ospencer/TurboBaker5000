@@ -1,12 +1,12 @@
 Copying tests/userprog/exec-bad-ptr to scratch partition...
-qemu -hda /tmp/aGuEasdxOL.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/CcHqCi8Xxx.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run exec-bad-ptr
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  471,040,000 loops/s.
+Calibrating timer...  523,468,800 loops/s.
 hda: 13,104 sectors (6 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 175 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,7 +25,7 @@ Executing 'exec-bad-ptr':
 exec-bad-ptr: exit(-1)
 Execution of 'exec-bad-ptr' complete.
 Timer: 59 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 0 user ticks
+Thread: 1 idle ticks, 58 kernel ticks, 0 user ticks
 hda2 (filesys): 63 reads, 186 writes
 hda3 (scratch): 90 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

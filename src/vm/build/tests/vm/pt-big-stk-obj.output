@@ -1,12 +1,12 @@
 Copying tests/vm/pt-big-stk-obj to scratch partition...
-qemu -hda /tmp/8K4fhFrhjo.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/TWaH5D7dks.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run pt-big-stk-obj
 Pintos booting with 4,088 kB RAM...
 382 pages available in kernel pool.
 382 pages available in user pool.
-Calibrating timer...  523,468,800 loops/s.
+Calibrating timer...  471,040,000 loops/s.
 hda: 13,104 sectors (6 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 175 sectors (87 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -31,8 +31,8 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80480a8
  cs=001b ds=0023 es=0023 ss=0023
 pt-big-stk-obj: exit(-1)
 Execution of 'pt-big-stk-obj' complete.
-Timer: 60 ticks
-Thread: 2 idle ticks, 57 kernel ticks, 1 user ticks
+Timer: 61 ticks
+Thread: 1 idle ticks, 59 kernel ticks, 1 user ticks
 hda2 (filesys): 61 reads, 206 writes
 hda3 (scratch): 100 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

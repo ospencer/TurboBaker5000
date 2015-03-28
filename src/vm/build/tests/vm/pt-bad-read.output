@@ -1,6 +1,6 @@
 Copying tests/vm/pt-bad-read to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-qemu -hda /tmp/w_W8AuTedd.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/P50CUPdd0e.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run pt-bad-read
@@ -40,7 +40,7 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026107
  cs=0008 ds=0010 es=0010 ss=4120
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
 Timer: 62 ticks
-Thread: 1 idle ticks, 59 kernel ticks, 2 user ticks
+Thread: 0 idle ticks, 60 kernel ticks, 2 user ticks
 hda2 (filesys): 94 reads, 196 writes
 hda3 (scratch): 94 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes

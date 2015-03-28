@@ -1,6 +1,6 @@
 Copying tests/vm/pt-write-code2 to scratch partition...
 Copying ../../tests/vm/sample.txt to scratch partition...
-qemu -hda /tmp/e8DShwigJ4.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/3nmOpTgEA_.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading..........
 Kernel command line: -q -f extract run pt-write-code2
@@ -40,7 +40,7 @@ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0026107
  cs=0008 ds=0010 es=0010 ss=4120
 Kernel PANIC recursion at ../../userprog/exception.c:101 in kill().
 Timer: 61 ticks
-Thread: 1 idle ticks, 58 kernel ticks, 2 user ticks
+Thread: 3 idle ticks, 56 kernel ticks, 2 user ticks
 hda2 (filesys): 94 reads, 196 writes
 hda3 (scratch): 94 reads, 2 writes
 hda4 (swap): 0 reads, 0 writes
