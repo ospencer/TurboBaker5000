@@ -1,4 +1,4 @@
-qemu -hda /tmp/BJsrlsyXaE.dsk -m 4 -net none -nographic -monitor null
+qemu -hda /tmp/eefyRrX9HR.dsk -m 4 -net none -nographic -monitor null
 PiLo hda1
 Loading.........
 Kernel command line: -q run priority-donate-multiple2
@@ -18,29 +18,6 @@ Executing 'priority-donate-multiple2':
 Execution of 'priority-donate-multiple2' complete.
 Timer: 27 ticks
 Thread: 0 idle ticks, 27 kernel ticks, 0 user ticks
-(priority-donate-multiple2) Thread a acquired lock a.
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault Exception)
-Unexpected interrupt 0x0e (#PF Page-Fault E
-TIMEOUT after 60 seconds of host CPU time
+Console: 876 characters output
+Keyboard: 0 keys pressed
+Powering off...
