@@ -11,6 +11,7 @@
 #include "threads/vaddr.h"
 #include "userprog/pagedir.h"
 #include "threads/palloc.h"
+#include "threads/synch.h"
 
 static void syscall_handler (struct intr_frame *);
 void halt (void);
@@ -26,18 +27,18 @@ int write (int, const void *, unsigned);
 void seek (int, unsigned);
 unsigned tell (int);
 void close (int);
-//struct file *fds[128];
+struct lock io_lock;
 
 void
 syscall_init (void) 
 {
+  lock_init (&io_lock);
   intr_register_int (0x30, 3, INTR_ON, syscall_handler, "syscall");
 }
 
 static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
-  //printf ("system call!\n");
   int **sp = f->esp;
   int **call = sp;
   if(sp == NULL || is_kernel_vaddr(sp) ||
@@ -59,21 +60,17 @@ syscall_handler (struct intr_frame *f UNUSED)
   switch ((int) *call)
   {
   case SYS_HALT:
-    //printf ("HALT CALLED\n");
     halt ();
     break;
   case SYS_EXIT:
-    //printf ("EXIT CALLED\n");
     if (moreargs)
     {
        status = (int) *esp;
        exit(status);
     }
     else exit(-1);
-    //exit (status);
     break;
   case SYS_EXEC:
-    //printf ("EXEC CALLED\n");
     if (moreargs) cmd = (const char *) *esp;
     else 
     {
@@ -83,34 +80,28 @@ syscall_handler (struct intr_frame *f UNUSED)
     f->eax = exec (cmd);
     break;
   case SYS_WAIT:
-    //printf ("WAIT CALLED\n");
     pid = (pid_t) *esp;
     f->eax = wait (pid);
     break;
   case SYS_CREATE:
-    //printf ("CREATE CALLED\n");
     file = (const char *) *esp;
     esp += 1;
     size = (unsigned) *esp;
     f->eax = create (file, size);
     break;
   case SYS_REMOVE:
-    //printf ("REMOVE CALLED\n");
     file = (const char *) *esp;
     f->eax = remove (file);
     break;
   case SYS_OPEN:
-    //printf ("OPEN CALLED\n");
     file = (const char *) *esp;
     f->eax = open (file);
     break;
   case SYS_FILESIZE:
-    //printf ("FILESIZE CALLED\n");
     fd = (int) *esp;
     f->eax = filesize (fd);
     break;
   case SYS_READ:
-    //printf ("READ CALLED\n");
     fd = (int) *esp;
     esp += 1;
     buffer = (void *) *esp;
@@ -119,7 +110,6 @@ syscall_handler (struct intr_frame *f UNUSED)
     f->eax = read (fd, buffer, size);
     break;
   case SYS_WRITE: 
-    //printf ("WRITE CALLED\n");
     if (moreargs) fd = (int) *esp;
     else
     {
@@ -135,24 +125,20 @@ syscall_handler (struct intr_frame *f UNUSED)
     f->eax = write (fd, buffer, size);
     break;
   case SYS_SEEK:
-    //printf ("SEEK CALLED\n");
     fd = (int) *esp;
     esp += 1;
     position = (unsigned) *esp;
     seek (fd, position);
     break;
   case SYS_TELL:
-    //printf ("TELL CALLED\n");
     fd = (int) *esp;
     f->eax = tell (fd);
     break;
   case SYS_CLOSE:
-    //printf ("CLOSE CALLED\n");
     fd = (int) *esp;
     close (fd);
     break;
   }
-  //printf("END OF SYSTEM CALL\n");
 }
 
 void
@@ -180,10 +166,11 @@ exec (const char *cmd_line)
   if (cmd_copy == NULL) return TID_ERROR;
   strlcpy (cmd_copy, cmd_line, PGSIZE);
   int temp = filesys_open(strtok_r (cmd_copy, " ", &save_ptr));
-  //int temp = open(cmd_line);
   if(temp == NULL || temp == -1) return -1;
-//  close(temp);
-  return process_execute (cmd_line);
+  lock_acquire (&io_lock);
+  pid_t pid = process_execute (cmd_line);
+  lock_release (&io_lock);
+  return pid;
 }
 
 int
@@ -202,15 +189,20 @@ create (const char *file, unsigned size)
     exit(-1);
   if(file[0] == '\0')
     return 0;
-
   if(strlen(file)>14) return 0;
-  return filesys_create (file, size);
+  lock_acquire (&io_lock);
+  bool ret = filesys_create (file, size);
+  lock_release (&io_lock);
+  return ret;
 }
 
 bool
 remove (const char *file)
 {
-  return filesys_remove (file);
+  lock_acquire (&io_lock);
+  bool ret = filesys_remove (file);
+  lock_release (&io_lock);
+  return ret;
 }
 
 int
@@ -220,18 +212,16 @@ open (const char *file)
     return -1;
   if(file >= PHYS_BASE || !pagedir_is_mapped(thread_current()->pagedir, file))
     exit(-1);
-  if(file[0] == '\0')
-    return -1;
-
-  //printf ("fds size: %d\n", sizeof(fds)/sizeof(fds[0]));
+  if(file[0] == '\0') return -1;
   int index = 2;
   while(index < sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
   {
     if(thread_current()->fds[index] == NULL)
     {
+      lock_acquire (&io_lock);
       thread_current()->fds[index] = filesys_open(file);
+      lock_release (&io_lock);
       if (thread_current()->fds[index] == NULL) return -1;
-//      thread_current ()->file_open = index;
       return index;
     }
     index++;
@@ -260,7 +250,10 @@ read (int fd, void *buffer, unsigned size)
     strlcpy(buffer, input_getc() , size);
   }else
   {
-    return file_read(thread_current()->fds[fd], buffer, size);
+    lock_acquire (&io_lock);
+    int ret = file_read(thread_current()->fds[fd], buffer, size);
+    lock_release (&io_lock);
+    return ret;
   }
 }
 
@@ -281,7 +274,10 @@ write (int fd, const void *buffer, unsigned size)
     exit(-1);
   }else
   {
-    return file_write(thread_current()->fds[fd], buffer, size);
+    lock_acquire (&io_lock);
+    int ret = file_write(thread_current()->fds[fd], buffer, size);
+    lock_release (&io_lock);
+    return ret;
   }
 }
 
@@ -291,7 +287,9 @@ seek (int fd, unsigned position)
   if(fd == NULL || fd < 2 ||
      fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
     exit(-1);
+  lock_acquire (&io_lock);
   file_seek(thread_current()->fds[fd], position);
+  lock_release (&io_lock);
 }
 
 unsigned 
@@ -300,7 +298,10 @@ tell (int fd)
   if(fd == NULL || fd < 2 ||
      fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
     exit(-1);
-  return file_tell(thread_current()->fds[fd]);
+  lock_acquire (&io_lock);
+  unsigned ret = file_tell(thread_current()->fds[fd]);
+  lock_release (&io_lock);
+  return ret;
 }
 
 void
@@ -309,9 +310,9 @@ close (int fd)
   if (fd == NULL || fd < 2 ||
       fd > sizeof(thread_current()->fds)/sizeof(thread_current()->fds[0]))
     exit(-1);
-//  if (fd != thread_current ()->file_open) exit(-1);
+  lock_acquire (&io_lock);
   file_close(thread_current()->fds[fd]);
   thread_current()->fds[fd] = NULL;
-//  thread_current ()->file_open = NULL;
+  lock_release (&io_lock);
 }
 

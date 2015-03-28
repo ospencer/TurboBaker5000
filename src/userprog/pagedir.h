@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-//static uint32_t *active_pd (void);
-//static uint32_t *lookup_page (uint32_t *pd, const void *vaddr, bool create);
 uint32_t *pagedir_create (void);
 void pagedir_destroy (uint32_t *pd);
 bool pagedir_set_page (uint32_t *pd, void *upage, void *kpage, bool rw);

@@ -158,6 +158,5 @@ page_fault (struct intr_frame *f)
           write ? "writing" : "reading",
           user ? "user" : "kernel");
   kill (f);
-  //page_lookup (active_pd (void), fault_addr, true);
 }
 
