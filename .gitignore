@@ -1,7 +1,8 @@
-*.a
-*.o
-*.result
-*.d
-*.output
-*.bin
+**/*.a
+**/*.o
+**/*.result
+**/*.d
+**/*.output
+**/*.bin
+**/*.errors
 **/build/
