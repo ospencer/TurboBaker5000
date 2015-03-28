@@ -1,8 +1,0 @@
-FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:101 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00286fe 0xc00275ad 0x4c4c4120
-Translation of call stack:
-In kernel.o:
-0xc00286fe: debug_panic (.../../lib/kernel/debug.c:38)
-0xc00275ad: memcpy (...ild/../../lib/string.c:16)
-0x4c4c4120: (unknown)
