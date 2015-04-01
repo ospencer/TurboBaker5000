@@ -17,6 +17,7 @@
 #include "threads/palloc.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
+#include "vm/frame_table.h"
 
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp, const char *input);
@@ -28,6 +29,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp, const ch
 tid_t
 process_execute (const char *input)
 {
+  frame_table_create();
   tid_t tid;
   char *input_cpy = palloc_get_page (0);
   if (input_cpy == NULL) return TID_ERROR;
@@ -422,7 +424,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
       size_t page_zero_bytes = PGSIZE - page_read_bytes;
 
       /* Get a page of memory. */
-      uint8_t *kpage = palloc_get_page (PAL_USER);
+      uint8_t *kpage = add_frame_entry(PAL_USER);// palloc_get_page (PAL_USER);
       if (kpage == NULL)
         return false;
 
@@ -461,7 +463,8 @@ setup_stack (void **esp, const char *input)
   if (input_cpy == NULL)
     return TID_ERROR;
   strlcpy(input_cpy, input, PGSIZE);
-  kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+  kpage = add_frame_entry(PAL_ZERO);// palloc_get_page (PAL_USER | PAL_ZERO);
+//  kpage = palloc_get_page (PAL_USER | PAL_ZERO);
   if (kpage != NULL) 
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
