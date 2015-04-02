@@ -27,6 +27,8 @@ int write (int, const void *, unsigned);
 void seek (int, unsigned);
 unsigned tell (int);
 void close (int);
+mapid_t mmap (int, void *);
+void munmap (mapid_t);
 struct lock io_lock;
 
 void
@@ -138,6 +140,16 @@ syscall_handler (struct intr_frame *f UNUSED)
   case SYS_CLOSE:
     fd = (int) *esp;
     close (fd);
+    break;
+  case SYS_MMAP:
+    fd = (int) *esp;
+    esp += 1;
+    void *addr = (void *) *esp;
+    f->eax = mmap (fd, addr);
+    break;
+  case SYS_MUNMAP:
+    //mapping = (mapid_t) *esp;
+    //munmap (mapping);
     break;
   }
 }
@@ -317,3 +329,14 @@ close (int fd)
   lock_release (&io_lock);
 }
 
+mapid_t
+mmap (int fd, void *addr)
+{
+  return NULL;
+}
+
+void
+munmap (mapid_t mapping)
+{
+  
+}

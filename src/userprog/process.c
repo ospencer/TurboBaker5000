@@ -517,7 +517,7 @@ install_page (void *upage, void *kpage, bool writable)
   /* Verify that there's not already a page at that virtual
      address, then map our page there. */
   
-  printf ("Available page: %s\n", pagedir_get_page (t->pagedir, upage) == NULL ? "true" : "false"); 
+  //printf ("Available page: %s\n", pagedir_get_page (t->pagedir, upage) == NULL ? "true" : "false"); 
   return (pagedir_get_page (t->pagedir, upage) == NULL
           && pagedir_set_page (t->pagedir, upage, kpage, writable));
 }
