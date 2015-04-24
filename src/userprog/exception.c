@@ -5,6 +5,12 @@
 #include "threads/interrupt.h"
 #include "threads/thread.h"
 #include "userprog/syscall.h"
+#include "vm/frame_table.h"
+#include "userprog/pagedir.h"
+#include "userprog/process.h"
+#include <inttypes.h>
+#include "threads/vaddr.h"
+#include "threads/thread.h"
 
 /* Number of page faults processed. */
 static long long page_fault_cnt;
@@ -157,6 +163,28 @@ page_fault (struct intr_frame *f)
           not_present ? "not present" : "rights violation",
           write ? "writing" : "reading",
           user ? "user" : "kernel");
-  kill (f);
+  // TODO check supp. pt to see if the address exists
+  //printf ("Fault_addr is %p\n", fault_addr);
+  if (not_present && write && user)
+  {
+    printf ("Allocating new page...\n");
+    void *page = add_frame_entry (PAL_USER);
+    if (page != NULL) 
+    {
+      printf ("Allocating page at %p\n", (fault_addr - ((int) fault_addr % PGSIZE)));
+      bool success = pagedir_set_page (thread_current ()->pagedir, fault_addr - ((int) fault_addr % PGSIZE), page, true);
+      if (success) 
+      {
+        //f->esp = page;
+      }
+      else
+      {  
+        printf ("Allocation failed!\n");
+        palloc_free_page (page);
+        kill (f);
+      }
+    }
+  }
+  else kill (f);
 }
 

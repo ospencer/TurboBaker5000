@@ -41,14 +41,14 @@ syscall_init (void)
 static void
 syscall_handler (struct intr_frame *f UNUSED) 
 {
-  int **sp = f->esp;
-  int **call = sp;
-  if(sp == NULL || is_kernel_vaddr(sp) ||
-     !pagedir_is_mapped(thread_current()->pagedir, sp))
+  int **esp = f->esp;
+  int **call = esp;
+  if(esp == NULL || is_kernel_vaddr(esp) ||
+     !pagedir_is_mapped(thread_current()->pagedir, esp))
   {
     exit (-1);
   }
-  int **esp = pagedir_get_page (thread_current()->pagedir, sp);
+  //int **esp = sp;//pagedir_get_page (thread_current()->pagedir, sp);
   const char *file;
   int fd;
   int status;
@@ -58,8 +58,8 @@ syscall_handler (struct intr_frame *f UNUSED)
   void *buffer;
   pid_t pid;
   bool moreargs = true;
-  mapid_t mapping;
-  if (!is_kernel_vaddr(esp += 1)) moreargs = false;
+  esp += 1;
+  if (is_kernel_vaddr(esp)) moreargs = false;
   switch ((int) *call)
   {
   case SYS_HALT:
@@ -148,8 +148,8 @@ syscall_handler (struct intr_frame *f UNUSED)
     f->eax = mmap (fd, addr);
     break;
   case SYS_MUNMAP:
-    mapping = (mapid_t) *esp;
-    munmap (mapping);
+    //mapping = (mapid_t) *esp;
+    //munmap (mapping);
     break;
   }
 }
