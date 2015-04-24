@@ -168,7 +168,7 @@ page_fault (struct intr_frame *f)
   if (not_present && write && user)
   {
     printf ("Allocating new page...\n");
-    void *page = add_frame_entry (PAL_USER);
+    void *page = palloc_get_page (PAL_USER);//dd_frame_entry (PAL_USER);
     if (page != NULL) 
     {
       printf ("Allocating page at %p\n", (fault_addr - ((int) fault_addr % PGSIZE)));
