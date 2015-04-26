@@ -1,11 +1,10 @@
 #include <hash.h>
 #include "filesys/filesys.h"
 #include "devices/block.h"
-
+#include "filesys/cache.h"
+#include "threads/malloc.h"
+#include <string.h>
 struct hash *block_cache;
-
-unsigned block_hash (const struct hash_elem *, void *);
-bool block_hash_less (const struct hash_elem *, const struct hash_elem *, void *);
 
 /* Initializes the cache hash table. */
 void
@@ -27,7 +26,7 @@ bool
 block_hash_less (const struct hash_elem *a_, const struct hash_elem *b_, void *aux)
 {
   const struct sector_block *a = hash_entry (a_, struct sector_block, hash_elem);
-  const struct sector_blcok *b = hash_entry (b_, struct sector_block, hash_elem);
+  const struct sector_block *b = hash_entry (b_, struct sector_block, hash_elem);
 
   return a->sector < b->sector;
 }
@@ -44,7 +43,7 @@ block_evict ()
   hash_first (&i, block_cache);
   while (hash_next (&i))
   {
-    struct sector_block *s = hash_entry (hash_cur (&i), struct sector_block, elem);
+    struct sector_block *s = hash_entry (hash_cur (&i), struct sector_block, hash_elem);
     if (c == 0) 
     { 
       evict_candidate = s;

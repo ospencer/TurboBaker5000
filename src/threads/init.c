@@ -123,10 +123,11 @@ main (void)
 
 #ifdef FILESYS
   /* Initialize file system. */
+  block_cache_create ();
   ide_init ();
   locate_block_devices ();
   filesys_init (format_filesys);
-  block_cache_create ();
+//  block_cache_create ();
 #endif
 
   printf ("Boot complete.\n");
