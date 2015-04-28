@@ -1,0 +1,209 @@
+       	       	     +-------------------------+
+		     |		CS 140	       |
+		     | PROJECT 4: FILE SYSTEMS |
+		     |	   DESIGN DOCUMENT     |
+		     +-------------------------+
+
+---- GROUP ----
+
+>> Fill in the names and email addresses of your group members.
+
+Oscar Spencer <spencer.o@husky.neu.edu>
+Nikolai Wotton <wotton.n@husky.neu.edu>
+
+---- PRELIMINARIES ----
+
+STACKOVERFLOW
+We have consulted StackOverflow on numerous occasions, for help with
+the syntax of the C programming language. 
+
+		     INDEXED AND EXTENSIBLE FILES
+		     ============================
+
+---- DATA STRUCTURES ----
+
+>> A1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+>> cache.c
+
+struct hash *block_cache;
+A cache to store all cached data
+
+>> cache.h
+
+typedef struct sector_block
+Defines a block within a sector. 
+
+
+>> A2: What is the maximum size of a file supported by your inode
+>> structure?  Show your work.
+
+The maximum size of a file supported is the size of the file system
+(minus metadata). 
+
+---- SYNCHRONIZATION ----
+
+>> A3: Explain how your code avoids a race if two processes attempt to
+>> extend a file at the same time.
+
+Quite simply our code avoids a race of two processes attemping to extend
+a file at the same time by not supporting the extension of a file. 
+
+>> A4: Suppose processes A and B both have file F open, both
+>> positioned at end-of-file.  If A reads and B writes F at the same
+>> time, A may read all, part, or none of what B writes.  However, A
+>> may not read data other than what B writes, e.g. if B writes
+>> nonzero data, A is not allowed to see all zeros.  Explain how your
+>> code avoids this race.
+
+Currently our code avoids this by not allowing multiple files to open
+the same file at once. 
+
+>> A5: Explain how your synchronization design provides "fairness".
+>> File access is "fair" if readers cannot indefinitely block writers
+>> or vice versa.  That is, many processes reading from a file cannot
+>> prevent forever another process from writing the file, and many
+>> processes writing to a file cannot prevent another process forever
+>> from reading the file.
+
+Our code unfortunately is not a "fair" file system. This is important
+though, as it mimics real life, which is not fair either. 
+
+---- RATIONALE ----
+
+>> A6: Is your inode structure a multilevel index?  If so, why did you
+>> choose this particular combination of direct, indirect, and doubly
+>> indirect blocks?  If not, why did you choose an alternative inode
+>> structure, and what advantages and disadvantages does your
+>> structure have, compared to a multilevel index?
+
+Our inode structure is not a multilevel index. Going with the single-
+level index has the huge advantage of being simpler to implement and 
+understand. 
+
+			    SUBDIRECTORIES
+			    ==============
+
+---- DATA STRUCTURES ----
+
+>> B1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+---- ALGORITHMS ----
+
+>> B2: Describe your code for traversing a user-specified path.  How
+>> do traversals of absolute and relative paths differ?
+
+Our code like any other system does not allow invalide filepaths. 
+It has a much stricter sense of what is valid though. Traversals
+of absolute and relatives do not differ with this code. 
+
+---- SYNCHRONIZATION ----
+
+>> B4: How do you prevent races on directory entries?  For example,
+>> only one of two simultaneous attempts to remove a single file
+>> should succeed, as should only one of two simultaneous attempts to
+>> create a file with the same name, and so on.
+
+This issue is prevented using lock_aquire and lock_release on all
+create and delete attempts. 
+
+>> B5: Does your implementation allow a directory to be removed if it
+>> is open by a process or if it is in use as a process's current
+>> working directory?  If so, what happens to that process's future
+>> file system operations?  If not, how do you prevent it?
+
+No, our implementation does not account for this possibility. 
+
+---- RATIONALE ----
+
+>> B6: Explain why you chose to represent the current directory of a
+>> process the way you did.
+
+We chose to represent the current directory of a process as we did
+because it seemed the simplist yet most effective way we would
+be able to implement. 
+
+			     BUFFER CACHE
+			     ============
+
+---- DATA STRUCTURES ----
+
+>> C1: Copy here the declaration of each new or changed `struct' or
+>> `struct' member, global or static variable, `typedef', or
+>> enumeration.  Identify the purpose of each in 25 words or less.
+
+---- ALGORITHMS ----
+
+>> C2: Describe how your cache replacement algorithm chooses a cache
+>> block to evict.
+
+Our cache uses the system time to determine which block has been used
+least recently from the cache and removes that block from the cache. 
+
+>> C3: Describe your implementation of write-behind.
+
+Each sector_block within the cache has a dirty bit that is set to true
+when it has been changed in the cache. Then when a block is to be evicted
+its dirty bit is checked to see if it needs to be written. 
+
+>> C4: Describe your implementation of read-ahead.
+
+We did not finish our implementation of read-ahead. 
+
+---- SYNCHRONIZATION ----
+
+>> C5: When one process is actively reading or writing data in a
+>> buffer cache block, how are other processes prevented from evicting
+>> that block?
+
+As soon as a block starts being read from or written to its last access
+time is set to the current time making it go to the bottom of the list 
+for blocks to be evicted. No process is able to manually evict a block
+either, so a process would need to read in enough blocks to fill the 
+cache for this to happen. 
+
+>> C6: During the eviction of a block from the cache, how are other
+>> processes prevented from attempting to access the block?
+
+This luxury could not be afforded by our broke code...
+
+---- RATIONALE ----
+
+>> C7: Describe a file workload likely to benefit from buffer caching,
+>> and workloads likely to benefit from read-ahead and write-behind.
+
+The workload provided by a system that loads drivers such as windows
+would benefit greatly from caching these as it would access them frequently
+and then not have to read directly from the disk as often. 
+Read-ahead would be benefited from by files that are continuously being read,
+such as a movie or audio file. Write-behind benefits workloads that are
+frequently updating files such as with autosave files or log files as they
+would no longer have to access the disk directly to update. 
+
+			   SURVEY QUESTIONS
+			   ================
+
+Answering these questions is optional, but it will help us improve the
+course in future quarters.  Feel free to tell us anything you
+want--these questions are just to spur your thoughts.  You may also
+choose to respond anonymously in the course evaluations at the end of
+the quarter.
+
+>> In your opinion, was this assignment, or any one of the three problems
+>> in it, too easy or too hard?  Did it take too long or too little time?
+
+>> Did you find that working on a particular part of the assignment gave
+>> you greater insight into some aspect of OS design?
+
+>> Is there some particular fact or hint we should give students in
+>> future quarters to help them solve the problems?  Conversely, did you
+>> find any of our guidance to be misleading?
+
+>> Do you have any suggestions for the TAs to more effectively assist
+>> students in future quarters?
+
+>> Any other comments?
